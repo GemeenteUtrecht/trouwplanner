@@ -8,7 +8,7 @@ html {
 }
 
 body{ 
-	background-color: #ededed;
+	background-color: rgb(242, 242, 242);
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -821,37 +821,14 @@ TIMELINE STYLES
   z-index: 99;
 }
 
-.badge-1 {
-	border: 3px solid #FEBF24 !important;
+.badge {
+	border: 3px solid #FFCC00 !important;
 }
 
-.badge-2 {
-	border: 3px solid #FEBF24 !important;
+.line {
+	background: #FFCC00 
 }
 
-.badge-3 {
-	border: 3px solid #FEBF24 !important;
-}
-
-.badge-4 {
-	border: 3px solid #FEBF24 !important;
-}
-
-.line-1 {
-	background: #FEBF24 
-}
-
-.line-2 {
-	background: #FEBF24 
-}
-
-.line-3 {
-	background: #FEBF24 
-}
-
-.line-4 {
-	background: #FEBF24 
-}
 
 
 .timeline-title {

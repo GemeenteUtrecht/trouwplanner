@@ -27,7 +27,7 @@ class HomeController extends AbstractController
 		$components[] = [
 				'id'=> 1,
 				'icon'=>'fa-lg fas fa-calendar-check',
-				'name'=>'Agenda',
+				'name'=>'Agendas',
 				'summary'=>'Afspraken en Beschikbaarheid',
 				'description'=>'Agendas van objecten uit overige componenten met daaraan gekoppelde afspraken en beschikbaarheid',
 				'images'=> [
@@ -198,18 +198,6 @@ class HomeController extends AbstractController
 						['name'=>'docker container','url'=>'https://hub.docker.com/r/huwelijksplanner/trouwen-component'],
 						['name'=>'codebase (git)','url'=>'https://github.com/GemeenteUtrecht/trouwen'],
 						['name'=>'codebase (zip)','url'=>'https://github.com/GemeenteUtrecht/trouwen/archive/master.zip']
-				]
-		];
-		$components[] = [
-				'id'=> 13,
-				'icon'=>'fa-lg fas fa-people-carry',
-				'name'=>'Verhuizen',
-				'summary'=>'Doorgeven verhuizing',
-				'description'=>'To be continued : In ontwikkeling..',
-				'images'=> [
-						'images/large-images/large_agenda.gif'
-				],
-				'links'=> [
 				]
 		];
 		
