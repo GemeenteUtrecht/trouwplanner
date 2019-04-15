@@ -1,12 +1,14 @@
-{# templates/header.html.twig #}
-
-      <!-- Header section. Update the background by changing the .header class background image. -->
+ 	 <!-- Header section. Update the background by changing the .header class background image. -->
       <div class="header">
         <div class="container fluid-container header-content content-area">
-          <span class="header-icon glyphicon glyphicon-heart-empty"></span>
+          <i class="header-icon far fa-rings-wedding"></i>
           <div class="header-title">
-            <h1>We are Utrecht</h1>
-            <h3>And we love Common ground</h3>
+            {% if huwelijk is defined and huwelijk.type is defined  %}
+            <h1>{{ huwelijk.type|capitalize }}</h1>     
+            {% else %} 
+            <h1>Trouwen of Partnerschap</h1>            
+            {% endif %}            
+            <h3>In Utrecht</h3>
           </div>
         </div>        
       </div>

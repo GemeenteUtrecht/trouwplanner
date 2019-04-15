@@ -1,0 +1,174 @@
+{# templates/partners/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <!-- .container -->
+    	<div class="container bg-white">            
+            <!-- .row-custom -->
+            <div class="row-custom">     
+                <div class="post-heading-center">
+                	<h4>You have found your match!</h4>
+                	<h2>Met wie ga je eigenlijk trouwen</h2>
+                </div>
+            
+                <div class="col-left">
+                	<div class="affa-feature-icon"> <!-- 1 -->
+                    	<i class="fas fa-user animation" data-animation="animation-fade-in-left"></i>
+                        <div class="feature-text">
+                        	<h4>{{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}}</h4>
+                            <p>
+	                            Dit bent u zelf
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="affa-feature-icon"> <!-- 2 -->
+                    	<i class="fas fa-home animation" data-animation="animation-fade-in-left"></i>
+                        <div class="feature-text">
+                        	<h4>Adres en contact</h4>
+                            <p ng-hide="huwelijk.partners[0].acceptatieDatum ">{{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
+                            <p ng-show="huwelijk.partners[0].acceptatieDatum">
+                            {# huwelijk.partners[0].persoon.verblijfadres.straatnaam }} {{ huwelijk.partners[0].persoon.verblijfadres.huisnummer }} <br />
+                            {{ huwelijk.partners[0].persoon.verblijfadres.postcode }} {{ huwelijk.partners[0].persoon.verblijfadres.woonplaats }}<br />
+                            {{ huwelijk.partners[0].persoon.emailadres }}<br />
+                            {{ huwelijk.partners[0].persoon.telefoonnummer #}
+                            </p>
+                         </div>
+                    </div>
+
+                    <div class="affa-feature-icon"> <!-- 2 -->
+                    	<i class="fas fa-archive animation" data-animation="animation-fade-in-left"></i>
+                        <div class="feature-text">
+                        	<h4>Geschiedenis</h4>
+                           	<p ng-hide="huwelijk.partners[0].acceptatieDatum">{{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
+                            <p ng-show="huwelijk.partners[0].acceptatieDatum">
+                            Geboren: {# huwelijk.partners[0].persoon.geboorte.datum }} <br />te {{ huwelijk.partners[0].persoon.geboorte.stad }},{{ huwelijk.persoon.geboorte.land #} <br />
+                            <br />
+                            <span ng-show="huwelijk.partners[0].persoon.kinderen.length >= 1">Kinderen: {# huwelijk.partners[0].persoon.kinderen.length #}</span>
+							<!-- @todo kinderen ook weergeven-->
+
+                            <span ng-show="huwelijk.partners[0].persoon.partner.length != 0">Heeft partner: Ja</span>
+                            </p>
+                           </div>
+                    </div>
+                    
+                    <div class="affa-feature-icon" ng-hide="true"> <!-- 3 -->
+                    	<i class="fas fa-file-alt animation" data-animation="animation-fade-in-left"></i>
+                        <div class="feature-text">
+                        	<h4>Documenten</h4>
+                            <p>Proident sunt in culpa qui officia deserunt mollit anim perspiciatis unde omnis natus culpa qui deserunt mollit anim id est laborum.</p>     
+                            <br />                                            
+		                	<form method="post" action="#" class="affa-form-contact">
+		                    	<div class="submit-status"></div> <!-- submit status -->
+		                        <input type="text" name="name" placeholder="Naam" />
+		                        <input type="submit" name="submit" value="Upload" />
+		                    </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-center">
+                	<figure class="margin-bottom40 animation" data-animation="animation-fade-in-down">
+                    	<img src="images/content/elements/MakeItKnown.png"/>
+                    </figure>
+                </div>
+                
+                <div class="col-right">
+					<!-- NAW gegevens partner 2 -->					
+            	    {% if huwelijk.partners|length > 1 %}
+                	<div class="affa-feature-icon"> 
+                    	<i class="fas fa-user animation" data-animation="animation-fade-in-right"></i>
+                        <div class="feature-text">
+                        	<h4>{{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}}</h4>
+                            <p>
+	                            {{ huwelijk.partners[1].status }} 
+                            </p>
+                        </div>
+                    </div>
+                   
+					<!-- Overige gegevens partner 2 -->
+                    <div class="affa-feature-icon" > <!-- 5 -->
+                    	<i class="fas fa-home animation" data-animation="animation-fade-in-right"></i>
+                        <div class="feature-text">
+                        	<h4>Adres en contact</h4>
+                            <p ng-hide="huwelijk.partners[1].acceptatieDatum ">{{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
+                            <p ng-show="huwelijk.partners[1].acceptatieDatum">
+                            {# huwelijk.partners[1].persoon.verblijfadres.straatnaam }} {{ huwelijk.partners[1].persoon.verblijfadres.huisnummer }} <br />
+                            {{ huwelijk.partners[1].persoon.verblijfadres.postcode }} {{ huwelijk.partners[1].persoon.verblijfadres.woonplaats }}<br />
+                            {{ huwelijk.partners[1].persoon.emailadres }}<br />
+                            {{ huwelijk.partners[1].persoon.telefoonnummer #}
+
+							</p>
+                        </div>
+                    </div>
+
+					<!-- Overige gegevens partner 2 -->
+                    <div class="affa-feature-icon" > <!-- 5 -->
+                    	<i class="fas fa-archive animation" data-animation="animation-fade-in-right"></i>
+                        <div class="feature-text">
+                        	<h4>Geschiedenis</h4>
+                           	<p ng-hide="huwelijk.partners[1].acceptatieDatum">{{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
+                            <p ng-show="huwelijk.partners[1].acceptatieDatum">
+                            Geboren: {# huwelijk.partners[1].persoon.geboorte.datum }} <br />te {{ huwelijk.partners[1].persoon.geboorte.stad }},{{ huwelijk.persoon.geboorte.land #} <br />
+                            <br />
+                            <span ng-show="huwelijk.partners[1].persoon.kinderen.length >= 1">Kinderen: {# huwelijk.partners[1].persoon.kinderen.length #}</span>
+							<!-- @todo kinderen ook weergeven-->
+
+                            <span ng-show="huwelijk.partners[1].persoon.partner.length != 0">Heeft partner: Ja</span>
+                            </p>
+                    	</div>
+                    </div>
+                    
+					<!-- bestanden  partner 2 -->
+                    <div class="affa-feature-icon"  ng-hide="true"> <!-- 6 -->
+                    	<i class="fas fa-file-alt animation" data-animation="animation-fade-in-right"></i>
+                        <div class="feature-text">
+                        	<h4>Documenten</h4>
+                            <p>Proident sunt in culpa qui officia deserunt mollit anim perspiciatis unde omnis natus culpa qui deserunt mollit anim id est laborum.</p>         
+                            <br />                   
+		                	<form method="post" action="#" class="affa-form-contact">
+		                    	<div class="submit-status"></div> <!-- submit status -->
+		                        <input type="text" name="name" placeholder="Naam" />
+		                        <input type="submit" name="submit" value="Upload" />
+		                    </form>
+                        </div>
+                    </div>                    
+                    {% else %} 
+					<!-- Uitnodigen partner 2 -->
+                    <div class="affa-feature-icon"> <!-- 6 -->
+                    	<i class="fas fa-envelope animation" data-animation="animation-fade-in-right"></i>
+                        <div class="feature-text">
+                        	<h4>Nodig je partner uit!</h4>
+                            <p>Leuk trouwen doe je natuurlijk samen ;)</p>         
+                            <br/>                   
+		                	<form method="post" action="#" class="affa-form-contact">
+		                    	<div class="submit-status"></div> <!-- submit status -->
+
+								<label for="partner_voornamen">Voornaam(en)</label>
+                                <input type="text" name="partner_voornamen" ng-model="partner.voornamen"  placeholder="John"  ng-disabled="loading"/>
+                                <label for="partner_geslachtsnaam">Achternaam</label>
+                                <input type="text" name="partner_geslachtsnaam" ng-model="partner.geslachtsnaam"  placeholder="Do"  ng-disabled="loading"/>
+                                <label for="partner_email">Email Adres <span class="required">*</span></label>
+                                <input type="text" name="partner_email" ng-model="partner.emailadres"  placeholder="john@do.nl"  ng-disabled="loading"/>
+                                <label for="partner_telefoonnummer">Telefoonnummer</label>
+                                <input type="text" name="partner_telefoonnummer" ng-model="partner.telefoonnummer" placeholder="+31 6 12345678"  ng-disabled="loading"/>
+                                <a href="#" ng-click="setPartner(partner)" class="btn btn-success btn-lg btn-block btn-icon"  ng-disabled="loading"/>
+									<i class="far fa-envelope" ng-hide="loading"></i>
+									<i class="fas fa-circle-notch fa-spin" ng-show="loading"></i>
+									Uitnodigen
+								</a>
+		                    </form>
+                            <p>Uw Partner ontvangt een uitnodiging met daarin een bevestigingslink, spannend! </p>     
+                        </div>
+                    </div>
+                    {% endif %} 
+                    
+                </div>
+                
+            </div>
+            <!-- .row-custom end -->           
+        </div>
+        <!-- .container end -->    
+    
+{% endblock %}

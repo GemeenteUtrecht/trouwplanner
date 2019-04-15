@@ -1,0 +1,73 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <!-- .container -->
+    	<div class="container bg-grey">
+            <!-- .row -->
+            <div class="row">
+                <div class="post-heading-center">
+                	<h4>I Now pronounce you...</4>
+                	<h2>Door wie willen jullie getrouwd worden?</h2>
+                    <p>Een trouwambtenaar waarmee het klikt is heel fijn en belangrijk! Hier kunnen jullie onderzoeken welke ambtenaar bij jullie lijkt te passen. Maak jullie keuze en zij of hij zal na de melding voorgenomen huwelijk, zo snel mogelijk contact met jullie opnemen. Het is hier ook mogelijk om een trouwambtenaar voor een dag op te geven en om eventueel een zelfstandige trouwambtenaar toe te voegen voor jullie huwelijk.</p>
+                </div>
+                {% for ambtenaar in ambtenaren %}
+                <div class="col-sm-6"> <!-- 4 -->
+                	<a href="{{ path('app_ambtenaar_view',{'id':ambtenaar.id}) }}">
+	                	<div class="affa-testimonial">
+	                    	<div class="testimonial-text" >
+	                    		{{ ambtenaar.samenvatting|e }}
+	                        </div>
+	                        <div class="testimonial-author">
+	                            <h4>{{ ambtenaar.voornaamen }} {{ ambtenaar.geslachtsnaam }}</h4>
+	                            <p ng-hide="huwelijk.trouwAmbtenaar.ambtenaar == ambtenaar['@id']">Trouwambtenaar</p>
+	                            <p ng-show="huwelijk.trouwAmbtenaar.ambtenaar == ambtenaar['@id']">Door u gekozen</p>
+	                            <img ng-src="images/content/avatar/1.png" alt="{{ ambtenaar.voornaamen }} {{ ambtenaar.geslachtsnaam }}"  ng-class="{'gekozen-trouwambtenaar':  huwelijk.trouwAmbtenaar.ambtenaar.id == ambtenaar.id  }"/>
+	                        </div>
+	                    </div>
+                    </a>
+                </div>       
+                {% endfor %}     
+            </div>
+
+            <div class="row" >
+			<!-- Trouwbenaar zonder keuze  -->                
+                <div class="col-sm-6"> <!-- 4 -->
+                	<a href="">
+	                	<div class="affa-testimonial">
+	                    	<div class="testimonial-text">
+	                        	<p>Je kan ook zelf een een trouwambtenaar voor een dag aanleveren.</p>
+	                        </div>
+	                        <div class="testimonial-author">
+	                            <h4>Trouwambtenaar voor een dag</h4>
+	                            <p>Zelf regelen</p>
+	                            <img src="images/content/avatar/4.png" alt="Avatar" />
+	                        </div>
+	                    </div>
+                    </a>
+                </div>
+                
+                              
+                <div class="col-sm-6"> <!-- 4 -->
+                	<a href="{{ path('app_ambtenaar_zelfstandig') }}">
+	                	<div class="affa-testimonial" >
+	                    	<div class="testimonial-text">
+	                        	<p>Je kan ook een trouwambtenaar uit een andere gemeente regelen.</p>
+	                        </div>
+	                        <div class="testimonial-author">
+	                            <h4>Zelfstandige trouwambtenaar</h4>
+	                            <p>Zelf regelen</p>
+	                            <img src="images/content/avatar/4.png" alt="Avatar" />
+	                        </div>
+	                    </div>
+                    </a>
+                </div>
+            
+            </div>
+            <!-- .row -->
+            
+        </div>
+        <!-- .container end -->
+    
+{% endblock %}

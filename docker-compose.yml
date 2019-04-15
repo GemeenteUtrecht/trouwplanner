@@ -18,29 +18,29 @@ services:
       - "3306:3306"
       
   ## The new Syfony Based MVC website
-  love-component:
-    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-php:latest
+  utrecht-trouwen-php:
+    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-php:V.0.0.1
     build:
       context: ./
       target: api_platform_php
       cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-website_php
-        - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-website_nginx 
+        - ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-php
+        - ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-nginx
     depends_on:
       - db-website
     volumes:
       - ./:/srv/api:rw,cached
 
-  love-nginx:
-    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-nginx:latest
+  utrecht-trouwen-nginx:
+    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-nginx:V.0.0.1
     build:
       context: ./
       target: api_platform_nginx
       cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-website_php
-        - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-website_nginx
+        - ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-php
+        - ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-nginx
     depends_on:
-      - love-component
+      - utrecht-trouwen-php
     volumes:
       - ./public:/srv/api/public:ro
     ports:

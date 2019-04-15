@@ -1,0 +1,60 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <!-- .container -->
+    	<div class="container bg-white">
+        	
+            <div class="post-heading-center">
+                <h4>A big fat wedding or pure and simple</h4>
+            	<h2>Hoe willen jullie trouwen?</h2>
+            </div>
+            
+            <!-- .tbl-pricing -->
+            <div class="tbl-pricing tbl-prc-recommended">
+                
+                <!-- .row -->
+                <div class="row">
+                {% for product in producten %}                     
+                    <div class="col-sm-4 tbl-prc-col" ng-class="{'tbl-prc-col-recommended ':  huwelijk.primairProduct.id == product.id  }" > <!-- 1  -->
+                    	<div class="tbl-prc-wrap">
+                        	<div class="tbl-prc-heading">
+                            	<h4>{{ product.naam }}</h4>
+                            </div>
+                            <div class="tbl-prc-price">
+                                <h5>&euro; {{ product.exclAmount / 100 }} </h5>
+                                <p>Inclusief locatie & trouwambtenaar.</p>
+                            </div>
+                            <ul class="tbl-prc-list">
+                                <li>Eerste mogelijkheid: <b>{{  product.beschikbaar | date:'dd-MM-yyyy' }}</b></li>
+                            </ul>
+                            <div class="tbl-prc-footer" ng-bind-html="product.samenvatting" ng-cut="255">
+                            </div>
+                            <div class="tbl-prc-footer" ng-hide="huwelijk.primairProduct || loading">
+	                            <a href="/product/{{product.id}}" class="btn-custom" >Meer lezen</a>
+	                            <br/><br/>
+	                            <a href="" class="btn-custom"  ng-click="setProduct(product)">Dit wil ik!</a>
+                            </div>
+                            <div class="tbl-prc-footer" ng-hide="!huwelijk.primairProduct || huwelijk.primairProduct.id == product.id || loading">
+	                            <a href="/product/{{product.id}}"  class="btn-custom" >Meer lezen</a>
+	                            <br/><br/>
+	                            <a class="btn-custom"  ng-click="setProduct(product)">Ik wil toch deze....</a>
+                            </div>
+                            <div class="tbl-prc-footer" ng-show="huwelijk.primairProduct.id == product.id && !loading">
+	                            <a href="" class="btn-custom" >Meer lezen</a>
+	                            <br/><br/>
+	                            Dit is het huwelijks type dat u momenteel hebt gekozen 
+                            </div>
+                        </div>
+                    </div>                    
+                    {% endfor %} 
+                </div>
+                <!-- .row end -->
+                
+            </div>
+            <!-- .tbl-pricing end -->
+            
+        </div>
+        <!-- .container end -->
+{% endblock %}

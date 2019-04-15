@@ -1,0 +1,32 @@
+{# templates/betalen/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <!-- .container -->
+    	<div class="container bg-dark">
+            
+            <!-- .row -->
+            <div class="row">
+                
+                <div class="col-sm-4"> <!-- 1 -->
+                	<div class="affa-feature-img">
+                    	<img src="images/content/thumbs/betalen.png" alt="Icon">
+                    </div>
+                </div>
+                
+                <div class="col-sm-8"> <!-- 2 -->
+                 	<h4>{{ huwelijk.currency }} {{ huwelijk.inclAmount/100 }}</h4>
+              		<p>U heeft een huwelijk of opties gekozen waar kosten aan zijn verbonden. U dient deze kosten 6 weken voor aanvang van huwelijk te voldoen</p>
+              		<p><a href="#" class="btn btn-login btn-large" >
+						<i class="fas fa-money-bill-wave" ></i>
+			       		Betaal uw huwelijk
+		        	</a></p>
+                </div>
+                
+            </div>
+            <!-- .row end -->
+            
+        </div>
+        <!-- .container end -->        
+{% endblock %}
