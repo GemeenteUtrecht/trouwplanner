@@ -14,7 +14,7 @@
             
                 <div class="col-left">
                 	<div class="affa-feature-icon"> <!-- 1 -->
-                    	<i class="fas fa-user animation" data-animation="animation-fade-in-left"></i>
+                    	<i class="fas fa-heart animation" data-animation="animation-fade-in-left"></i>
                         <div class="feature-text">
                         	<h4>Partnerschap</h4>
                             <p>
@@ -34,7 +34,7 @@
                                 
                 <div class="col-right">
                 	<div class="affa-feature-icon"> 
-                    	<i class="fas fa-user animation" data-animation="animation-fade-in-right"></i>
+                    	<i class="fas fa-heart animation" data-animation="animation-fade-in-right"></i>
                         <div class="feature-text">
                         	<h4>Huwelijk</h4>
                             <p>
@@ -66,25 +66,18 @@
                         	<div class="tbl-prc-heading">
                             	<h4>{{ product.naam }}</h4>
                             </div>
-                            <div class="tbl-prc-price">
+                            <div class="tbl-prc-price bg-yellow">
                                 <h5>&euro; {{ product.exclAmount / 100 }} </h5>
-                                <p>Inclusief locatie & trouwambtenaar.</p>
+                                <p>{{ product.samenvatting|raw }}</p>
                             </div>
                             <ul class="tbl-prc-list">
                                 <li>Eerste mogelijkheid: <b>{{  product.beschikbaar |date("Y-d-m") }}</b></li>
                             </ul>
+                            {{ product.beschrijving|raw }}
                             <div class="tbl-prc-footer">
-                            	{{ product.beschrijving|raw }}
-                            </div>
-                            <div class="tbl-prc-footer" ng-hide="huwelijk.primairProduct || loading">
-	                            <a href="/product/{{product.id}}" class="btn-custom" >Meer lezen</a>
+	                            <a href="{{ path('app_product_view',{'id':product.id}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> <!-- 
 	                            <br/><br/>
-	                            <a href="" class="btn-custom"  ng-click="setProduct(product)">Dit wil ik!</a>
-                            </div>
-                            <div class="tbl-prc-footer" ng-hide="!huwelijk.primairProduct || huwelijk.primairProduct.id == product.id || loading">
-	                            <a href="{{ path('app_product_view',{'id':product.id}) }}"  class="btn-custom" >Meer lezen</a>
-	                            <br/><br/>
-	                            <a class="btn-custom"  ng-click="setProduct(product)">Ik wil toch deze....</a>
+	                            <a class="btn btn-secondary btn-icon  btn-block"  ng-click="setProduct(product)">Ik wil toch deze....</a> -->
                             </div>
                         </div>
                     </div>
