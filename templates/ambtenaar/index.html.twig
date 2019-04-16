@@ -21,9 +21,12 @@
 	                        </div>
 	                        <div class="testimonial-author">
 	                            <h4>{{ ambtenaar.voornaamen }} {{ ambtenaar.geslachtsnaam }}</h4>
-	                            <p ng-hide="huwelijk.trouwAmbtenaar.ambtenaar == ambtenaar['@id']">Trouwambtenaar</p>
-	                            <p ng-show="huwelijk.trouwAmbtenaar.ambtenaar == ambtenaar['@id']">Door u gekozen</p>
-	                            <img ng-src="images/content/avatar/1.png" alt="{{ ambtenaar.voornaamen }} {{ ambtenaar.geslachtsnaam }}"  ng-class="{'gekozen-trouwambtenaar':  huwelijk.trouwAmbtenaar.ambtenaar.id == ambtenaar.id  }"/>
+	                            {% if  huwelijk is defined  and huwelijk and huwelijk.trouwambtenaar and huwelijk.trouwambtenaar.id == ambtenaar.id %}
+	                            <p>Door u gekozen</p>
+	                            {% else %}
+	                            <p>Trouwambtenaar</p>
+	                            {% endif %}
+	                            <img src="{{ambtenaar.afbeelding.url}}" alt="{{ ambtenaar.voornaamen }} {{ ambtenaar.geslachtsnaam }}"/>
 	                        </div>
 	                    </div>
                     </a>
@@ -42,7 +45,7 @@
 	                        <div class="testimonial-author">
 	                            <h4>Trouwambtenaar voor een dag</h4>
 	                            <p>Zelf regelen</p>
-	                            <img src="images/content/avatar/4.png" alt="Avatar" />
+	                            <img src="https://utrecht.trouwplanner.online/images/content/avatar/2.png" alt="Avatar" />
 	                        </div>
 	                    </div>
                     </a>
@@ -58,7 +61,7 @@
 	                        <div class="testimonial-author">
 	                            <h4>Zelfstandige trouwambtenaar</h4>
 	                            <p>Zelf regelen</p>
-	                            <img src="images/content/avatar/4.png" alt="Avatar" />
+	                            <img src="https://utrecht.trouwplanner.online/images/content/avatar/3.png" alt="Avatar" />
 	                        </div>
 	                    </div>
                     </a>
