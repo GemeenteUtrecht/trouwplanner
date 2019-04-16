@@ -13,8 +13,9 @@
                 	<h2>Uw Getuigen</h2>
                     <p>Voor een huwelijk zijn er getuigen nodig, minimaal 1 en maximaal 2 per partner</p>
                 </div>        
-                <div class="{% if huwelijk.getuigen|length >= 4 %}col-sm-12{% else %}col-md-8{% endif %}">                 
+                <div class="{% if huwelijk is defined and  huwelijk.getuigen is defined and huwelijk.getuigen|length >= 4 %}col-sm-12{% else %}col-md-8{% endif %}">                 
 		            <div class="row">   
+		            {% if huwelijk is defined and  huwelijk.getuigen is defined %}
                         {% for getuige in huwelijk.getuigen %}
 			            <div class="col-md-3"> <!-- 1 -->
 		                	<div class="affa-team-profile">
@@ -36,11 +37,12 @@
 		                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore officia mollit anim id est laborum.</p>
 		                    </div>
 		                </div>
-                        {% endfor %}     
+                        {% endfor %}  
+                        {% endif %}   
 		            </div><!-- /.row -->
             	</div>
             	{# We are onlygoing to display this form if we do not yet already have 4 witnesses #}
-            	{% if huwelijk.getuigen|length < 4 %}
+            	{# if (huwelijk is defined and  huwelijk.getuigen is defined and huwelijk.getuigen|length < 4) or !huwelijk.getuigen #}
                 <div class="col-sm-4"> 
                 	<form class="affa-form-contact">
                     	<h3>Toevoegen</h3>
@@ -67,7 +69,7 @@
                     	<p>Uw getuige ontvangt een email met daarin een bevestigingslink. <br /> Via die link kan uw getuige aangeven of hij voor u wilt/gaat getuigen.</p>
                		</form>
             	</div>
-                {% endif %} 
+                {# endif #} 
             </div><!-- /.row -->            
 		</div><!-- /.container  -->
         

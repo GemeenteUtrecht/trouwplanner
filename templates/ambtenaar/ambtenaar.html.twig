@@ -17,7 +17,7 @@
                         {{ ambtenaar.samenvatting|raw }}     
                         <br/>
                         <br/>
-                         {% if  huwelijk is defined  and huwelijk%}
+                         {% if huwelijk is defined and huwelijk%}
                         <a ng-click="setAmbtenaar(ambtenaar)" class="btn btn-success btn-icon" >
                         	<i class="fas fa-circle-notch fa-spin" ng-show="loading"></i>
                         	<i class="far fa-calendar-check" ng-hide="loading"></i>
