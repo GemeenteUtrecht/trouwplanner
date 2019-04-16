@@ -4,8 +4,51 @@
 
 {% block body %}
         <!-- .container -->
-    	<div class="container bg-grey">
+    	<div class="container bg-white">  
+            <!-- .row-custom -->
+            <div class="row-custom" style="padding-top: 30px;">     
+                <div class="post-heading-center">
+                	<h4>Gaat u een huwelijk of partnerschap aan?</h4>
+                	<h2>Er zijn nog een paar klein verschillen</h2>
+                </div>
             
+                <div class="col-left">
+                	<div class="affa-feature-icon"> <!-- 1 -->
+                    	<i class="fas fa-user animation" data-animation="animation-fade-in-left"></i>
+                        <div class="feature-text">
+                        	<h4>Partnerschap</h4>
+                            <p>
+	                           Bij een partnerschp...
+                            </p>
+                        </div>
+                    </div>
+     			
+     				<a href="" class="btn btn-secondary btn-icon  btn-block"><i class="far fa-rings-wedding"></i> Kies Partnerschp</a>
+     			</div><!-- .col-left -->    	
+     			
+                <div class="col-center">
+                	<figure class="margin-bottom40 animation" data-animation="animation-fade-in-down">
+                    	<img src="/images/content/elements/trouwstell.png"/>
+                    </figure>
+                </div>
+                                
+                <div class="col-right">
+                	<div class="affa-feature-icon"> 
+                    	<i class="fas fa-user animation" data-animation="animation-fade-in-right"></i>
+                        <div class="feature-text">
+                        	<h4>Huwelijk</h4>
+                            <p>
+	                           Bij een huwelijk.... 
+                            </p>
+                        </div>
+                    </div>
+                    
+     				<a href="" class="btn btn-secondary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Kies huwelijk</a>
+     			</div><!-- .col-right -->    
+     			
+           </div> <!-- .row-custom end -->              
+       </div> <!-- /.container -->      
+    	<div class="container bg-grey">    
             <!-- .tbl-pricing -->
             <div class="tbl-pricing tbl-prc-recommended">
                 
@@ -30,7 +73,8 @@
                             <ul class="tbl-prc-list">
                                 <li>Eerste mogelijkheid: <b>{{  product.beschikbaar |date("Y-d-m") }}</b></li>
                             </ul>
-                            <div class="tbl-prc-footer" ng-bind-html="product.samenvatting" ng-cut="255">
+                            <div class="tbl-prc-footer">
+                            	{{ product.beschrijving|raw }}
                             </div>
                             <div class="tbl-prc-footer" ng-hide="huwelijk.primairProduct || loading">
 	                            <a href="/product/{{product.id}}" class="btn-custom" >Meer lezen</a>
