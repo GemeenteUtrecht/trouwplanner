@@ -25,7 +25,7 @@
                             
                 <div class="isotope-row">
                     {% for locatie in locaties %}
-                	<div class="item entertainment mobile intern"  ng-repeat="locatie in $storage.locaties"> <!-- 1 -->
+                	<div class="item entertainment mobile intern"> <!-- 1 -->
                     	<a href="{{ path('app_locatie_view',{'id':locatie.id}) }}" data-fancybox-group="images_gallery" >
                             <figure class="img-overlay">
                             	<img ng-src="{{ locatie.afbeelding.url}}" alt="Portfolio Item 1" />

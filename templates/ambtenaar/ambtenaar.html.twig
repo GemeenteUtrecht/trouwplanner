@@ -14,16 +14,18 @@
                         	<h4>Trouwambtenaar </h4>
                             <h2>{{ ambtenaar.voornaamen}} {{ ambtenaar.geslachtsnaam}}</h2>
                         </div>
-                        
-                        <p ng-bind-html="ambtenaar.samenvatting" ></p>
-                        <p class="margin-bottom30">Oeh deze is leuk .....</p>
+                        {{ ambtenaar.samenvatting|raw }}     
                         <br/>
                         <br/>
+                         {% if  huwelijk is defined  and huwelijk%}
                         <a ng-click="setAmbtenaar(ambtenaar)" class="btn btn-success btn-icon" >
                         	<i class="fas fa-circle-notch fa-spin" ng-show="loading"></i>
                         	<i class="far fa-calendar-check" ng-hide="loading"></i>
                          	Reserveer deze trouwambtenaar
                          </a>
+                         {% else %}
+                         <p>U dient eerst in te loggen voordat u deze ambtenaar kan reserveren</p>
+                         {% endif %}
                     </div>
                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
@@ -31,7 +33,7 @@
                         <img  ng-src="{{ambtenaar.afbeelding.url}}" alt="Image">
                     </figure>
                     
-                    beschikbaarheid van de Ambtenaar
+                    beschikbaarheid van deze Ambtenaar
                 </div>
                 
             </div>

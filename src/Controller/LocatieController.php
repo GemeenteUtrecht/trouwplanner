@@ -21,7 +21,7 @@ class LocatieController extends AbstractController
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		$locaties= $locatieService->getAll();
+		$locaties = $locatieService->getAll();
 		
 		return $this->render('locatie/index.html.twig', [
 				'user' => $user,
@@ -37,6 +37,9 @@ class LocatieController extends AbstractController
 	{
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
+		
+		
+		$locatie= $locatieService->getOne($id);
 		
 		return $this->render('locatie/locatie.html.twig', [
 				'user' => $user,

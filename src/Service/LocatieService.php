@@ -25,15 +25,15 @@ class LocatieService
 	public function getAll()
 	{		
 		$response = $this->client->request('GET');
-		$response = json_decode($response->getBody(), true);
+		$response = json_decode($response->getBody(), true);		
 		return $response["hydra:member"];
 	}
 	
 	public function getOne($id)
 	{
-		$response = $this->client->request('GET','/$id');
+		$response = $this->client->request('GET','/locaties/'.$id);
 		$response = json_decode($response->getBody(), true);
-		return $response["hydra:member"];
+		return $response;
 	}
 	
 }
