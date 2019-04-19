@@ -90,6 +90,7 @@ VOLUME /srv/api/var
 # Then lets run the entry point script
 COPY docker/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
+RUN dos2unix /usr/local/bin/docker-entrypoint #this is a fix just in case the image was build on a windows machine
 
 ENTRYPOINT ["docker-entrypoint"]
 CMD ["php-fpm"]
