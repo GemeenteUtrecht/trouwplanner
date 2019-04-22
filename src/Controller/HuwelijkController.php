@@ -29,4 +29,6 @@ class HuwelijkController extends AbstractController
 				'producten' => $producten,
 		]);
 	}
+	
+	
 }

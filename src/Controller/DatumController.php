@@ -25,4 +25,17 @@ class DatumController extends AbstractController
 				'user' => $user,
 		]);
 	}
+	
+	/**
+	 * @Route("/set")
+	 */
+	public function setAction(Session $session)
+	{
+		$huwelijk = $session->get('huwelijk');
+		$user = $session->get('user');
+		
+		$this->addFlash('success', 'Datum voorkeur opgeslagen');
+		
+		return $this->redirect($this->generateUrl('app_reservering_index'));
+	}
 }

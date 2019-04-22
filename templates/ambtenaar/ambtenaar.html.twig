@@ -18,9 +18,8 @@
                         <br/>
                         <br/>
                          {% if huwelijk is defined and huwelijk%}
-                        <a ng-click="setAmbtenaar(ambtenaar)" class="btn btn-success btn-icon" >
-                        	<i class="fas fa-circle-notch fa-spin" ng-show="loading"></i>
-                        	<i class="far fa-calendar-check" ng-hide="loading"></i>
+                        <a href="{{ path('app_ambtenaar_set',{'id':ambtenaar.id}) }}" class="btn btn-success btn-icon" >
+                        	<i class="far fa-calendar-check"></i>
                          	Reserveer deze trouwambtenaar
                          </a>
                          {% else %}

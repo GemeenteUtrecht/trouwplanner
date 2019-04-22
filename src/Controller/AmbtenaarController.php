@@ -59,6 +59,21 @@ class AmbtenaarController extends AbstractController
 	}
 	
 	/**
+	 * @Route("/{id}/set")
+	 */
+	public function setAction(Session $session, $id, AmbtenaarService $ambtenaarService)
+	{
+		$huwelijk = $session->get('huwelijk');
+		$user = $session->get('user');
+		
+		$ambtenaar = $ambtenaarService->getOne($id);
+		
+		$this->addFlash('success', 'Ambtenaar '.$ambtenaar['geslachtsnaam'].' uitgenodigd');
+		
+		return $this->redirect($this->generateUrl('app_datum_index'));
+	}
+	
+	/**
 	 * @Route("/{id}")
 	 */
 	public function viewAction(Session $session, $id, AmbtenaarService $ambtenaarService)

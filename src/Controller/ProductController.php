@@ -31,6 +31,21 @@ class ProductController extends AbstractController
 				'producten' => $producten,
 		]);
 	}
+		
+	/**
+	 * @Route("/{id}/set")
+	 */
+	public function setAction(Session $session, $id, ProductService $productService)
+	{
+		$huwelijk = $session->get('huwelijk');
+		$user = $session->get('user');
+		
+		$product= $productService->getOne($id);
+		
+		$this->addFlash('success', 'Plechtigheid '.$product['naam'].' ingesteld');
+		
+		return $this->redirect($this->generateUrl('app_partner_index'));
+	}
 	
 	/**
 	 * @Route("/{id}")
@@ -38,7 +53,9 @@ class ProductController extends AbstractController
 	public function viewAction(Session $session, $id, ProductService $productService)
 	{
 		$huwelijk = $session->get('huwelijk');
-		$user = $session->get('user');
+		$user = $session->get('user');		
+		
+		$product= $productService->getOne($id);
 		
 		return $this->render('product/product.html.twig', [
 				'user' => $user,

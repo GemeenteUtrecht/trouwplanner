@@ -25,4 +25,16 @@ class PartnerController extends AbstractController
 				'user' => $user,
 		]);
 	}
+	
+	
+	/**
+	 * @Route("/invite")
+	 */
+	public function inviteAction(Session $session)
+	{		
+		$this->addFlash('success', 'Uw partner is uitgenodigd');		
+		
+		return $this->redirect($this->generateUrl('app_locatie_index'));
+	}
+	
 }

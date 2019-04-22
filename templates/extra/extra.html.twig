@@ -3,87 +3,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- 		<!-- .wrap-container -->
-    <div class="wrap-container8040" ng-init="loadAmbtenaar(<?php echo $requestUriArray[2]; ?>)">
-        
-        <!-- .container -->
-    	<div class="container">
+ 	  <!-- .container -->
+    	<div class="container bg-white">
             
             <!-- .row -->
-            <div class="row">
-                
-                <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs" ng-hide="ambtenaar">
-                	<div class="margin-bottom40">
-                    	<div class="post-heading-left text-center-sm text-center-xs" ng-hide="ambtenaar">
-                        	<h4>We zijn uw toekomstig favoritie Ambtenaar aan het opzoeken </h4>
-                            <h2><i class="fas fa-circle-notch fa-spin"></i> Een moment geduld alstublief</h2>
-                        </div>
-                        
-                        <p>We zijn onderweg om zo snel mogelijk te achterhalen waarvoor u om een bevestiging bent gevraagd</p>
-                        <p class="margin-bottom30">Dat kan heel even duren.....</p>
-                        <a href="/" class="btn-custom btn-icon"><i class="fas fa-caret-square-left"></i> Ga in plaats hiervan terug naar de Hoofdpagina</a>
-                    </div>
-                </div>
-                
-                <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs" ng-show="ambtenaar">
+            <div class="row">          
+                <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
                 	<div class="margin-bottom40">
                     	<div class="post-heading-left text-center-sm text-center-xs" >
-                        	<h4>Trouwambtenaar </h4>
-                            <h2>{{ ambtenaar.voornamen}} {{ ambtenaar.geslachtsnaam}}</h2>
+                        	<h4>Extra </h4>
+                            <h2>{{ extra.naam}}</h2>
                         </div>
-                        
-                        <p ng-bind-html="ambtenaar.samenvatting" ></p>
-                        <p class="margin-bottom30">Oeh deze is leuk .....</p>
-                        <a href="/" class="btn-custom btn-icon" ng-disabled="loading"><i class="fa fa-search"></i> Ga terug naar de Hoofdpagina</a>
+                        {{ extra.samenvatting|raw }}                        
                         <br/>
                         <br/>
-                        <a ng-click="setAmbtenaar(ambtenaar)" class="btn btn-success btn-icon"  ng-disabled="loading">
-                        	<i class="fas fa-circle-notch fa-spin" ng-show="loading"></i>
-                        	<i class="far fa-calendar-check" ng-hide="loading"></i>
-                         	Reserveer deze trouwambtenaar
+                        {% if huwelijk is defined  and huwelijk%}
+                        <a href="{{ path('app_extra_add',{'id':extra.id}) }}" class="btn btn-success btn-icon" >
+                        	<i class="far fa-calendar-check"></i>
+                         	Voeg deze extra toe
                          </a>
+                         {% else %}
+                         <p>U dient eerst in te loggen voordat u deze extra kan reserveren</p>
+                         {% endif %}
                     </div>
                 </div>
-                
-                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1" ng-hide="ambtenaar">
-                	<figure class="col-img40 margin-bottom40 animation" data-animation="animation-fade-in-right">
-                        <img src="images/content/elements/Scooter.png" alt="Image">
-                    </figure>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1" ng-show="ambtenaar">
+                <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
                 	<figure class="col-img40 margin-bottom40 animation">
-                        <img  ng-src="{{ambtenaar.afbeelding.url}}" alt="Image">
+                        <img  ng-src="{{extra.afbeelding.url}}" alt="Image">
                     </figure>
                     
-                    beschikbaarheid van de Ambtenaar
                 </div>
                 
             </div>
-            <!-- .row end -->
-            
-        </div>
-        <!-- .container end -->
-        
-    </div>
-    <!-- .wrap-container end -->
-    
-    <!-- .wrap-container -->
-    <div class="wrap-container8040 bg-grey" ng-show="ambtenaar">
-        
-        <!-- .container -->
-    	<div class="container">
-            
+            <!-- .row end -->            
             <!-- .row -->
             <div class="row">
                 
                 <div class="col-sm-10 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0">
                 	<figure class="margin-bottom40 animation" data-animation="animation-fade-in-left">
-                        <iframe width="560" height="315" frameborder="0" allowfullscreen="" ng-src="{{ambtenaar.film.url}}"></iframe>
+                        <iframe width="560" height="315" frameborder="0" allowfullscreen="" src="{{extra.film.url}}"></iframe>
                     </figure>
                 </div>
                 
                 <div class="col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                	<div class="col-text20 margin-bottom20" ng-bind-html="ambtenaar.beschrijving" >
+                	<div class="col-text20 margin-bottom20">{{ extra.beschrijving|raw }}
                     </div>
                 </div>
                 
@@ -92,8 +55,6 @@
             
         </div>
         <!-- .container end -->
-        
-    </div>
-    <!-- .wrap-container end -->
+    
     
 {% endblock %}

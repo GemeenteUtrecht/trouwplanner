@@ -33,20 +33,15 @@
 						<div class="dateholder">
 							<md-datepicker ng-model="huwelijk.datum" md-placeholder="Voor datum in" md-open-on-focus="" md-date-filter="availabledates"></md-datepicker>
 						</div>
-		            	<select ng-model="huwelijk.tijd"  ng-disabled="loading" ng-selected="huwelijk.tijd">
+		            	<select ng-model="huwelijk.tijd"  ng-selected="huwelijk.tijd">
 						  <option value="10:00">10:00</option>
 						  <option value="10:30">10:30</option>
 						  <option value="11:00">11:00</option>
 						  <option value="10:30">10:30</option>
 						</select>
-		                <select ng-model="huwelijk.type"  ng-disabled="loading">
-						  <option value="partnerschap">Partnerschap</option>
-						  <option value="huwelijk">Huwelijk</option>
-						</select>
-                       <a href="#" ng-click="postHuwelijk(huwelijk)"  class="btn btn-success btn-lg btn-block btn-icon" ng-disabled="loading" />
-						<i class="fas fa-save" ng-hide="loading"></i> 
-						<i class="fas fa-circle-notch fa-spin" ng-show="loading"></i>
-						Save the date
+                       <a href="{{ path('app_datum_set') }}"   class="btn btn-success btn-lg btn-block btn-icon" />
+						<i class="fas fa-save"></i> 
+						Sla datum op
 					  </a>
 		           </form>
                 </div>

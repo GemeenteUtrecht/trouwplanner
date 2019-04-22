@@ -25,4 +25,17 @@ class ReserveringController extends AbstractController
 				'user' => $user,
 		]);
 	}
+	
+	/**
+	 * @Route("/send")
+	 */
+	public function sendAction(Session $session)
+	{
+		$huwelijk = $session->get('huwelijk');
+		$user = $session->get('user');
+				
+		$this->addFlash('success', 'Uw reservering is verzonden');
+		
+		return $this->redirect($this->generateUrl('app_extra_index'));
+	}
 }

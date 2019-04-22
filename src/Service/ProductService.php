@@ -31,9 +31,9 @@ class ProductService
 	
 	public function getOne($id)
 	{
-		$response = $this->client->request('GET','/$id');
+		$response = $this->client->request('GET','/product/'.$id);
 		$response = json_decode($response->getBody(), true);
-		return $response["hydra:member"];
+		return $response;
 	}
 	
 }

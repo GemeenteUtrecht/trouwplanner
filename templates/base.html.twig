@@ -412,6 +412,11 @@
         border: 2px solid;
         background: #FFF;
 	}
+	/* trouw ambtenaar avatar */
+	.affa-testimonial .testimonial-author img{
+  		object-fit: cover;
+	    background-color: #FFF;
+	}
     </style>
 </head>
 
@@ -425,7 +430,25 @@
     
     {{ include('home/flow.html.twig') }}
     <div class="content">
-    
+	
+		<!-- the alert box -->
+	    {% if app.session.flashbag.peekAll|length > 0 %}
+    	<div class="container bg-white">            
+            {% for type, messages in app.session.flashbag.all %}
+                {% for message in messages %}
+            <div class="row">                
+                <div class="col-md-12   ">
+                	<div class="alert alert-{{ type ? type : '' }}">		
+                        {{ message|trans({}, domain|default('messages')) }}
+        			</div><!-- /.alert -->
+            	</div><!-- /.col -->  
+            </div><!-- /.row -->         
+                {% endfor %}
+            {% endfor %}
+        </div><!-- /.container -->
+        {% endif %}
+		<!-- end of the alert box -->
+        
     {% if huwelijk is defined and huwelijk%}
 	    {{ include('home/nietgereserveerd.html.twig') }}	
     {% endif %}    

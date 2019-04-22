@@ -31,6 +31,21 @@ class LocatieController extends AbstractController
 	}
 	
 	/**
+	 * @Route("/{id}/set")
+	 */
+	public function setAction(Session $session, $id, LocatieService $locatieService)
+	{
+		$huwelijk = $session->get('huwelijk');
+		$user = $session->get('user');
+				
+		$locatie= $locatieService->getOne($id);
+		
+		$this->addFlash('success', 'Locatie '.$locatie['naam'].' ingesteld');
+		
+		return $this->redirect($this->generateUrl('app_ambtenaar_index'));
+	}
+	
+	/**
 	 * @Route("/{id}")
 	 */
 	public function viewAction(Session $session, $id, LocatieService $locatieService)
