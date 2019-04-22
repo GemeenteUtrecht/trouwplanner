@@ -8,8 +8,8 @@
             <!-- .row-custom -->
             <div class="row-custom">     
                 <div class="post-heading-center">
-                	<h4>You have found your match!</h4>
-                	<h2>Met wie ga je eigenlijk trouwen</h2>
+                	<h4>Jouw partner</h4>
+                	<h2>Met wie ga je {% if huwelijk is defined and huwelijk.type is defined  %}huwelijk.type{% else %}trouwen of partnerschap{% endif %}en  </h2>
                 </div>
             
                 <div class="col-left">
@@ -35,36 +35,6 @@
                             {{ huwelijk.partners[0].persoon.telefoonnummer #}
                             </p>
                          </div>
-                    </div>
-
-                    <div class="affa-feature-icon"> <!-- 2 -->
-                    	<i class="fas fa-archive animation" data-animation="animation-fade-in-left"></i>
-                        <div class="feature-text">
-                        	<h4>Geschiedenis</h4>
-                           	<p ng-hide="huwelijk.partners[0].acceptatieDatum">{{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
-                            <p ng-show="huwelijk.partners[0].acceptatieDatum">
-                            Geboren: {# huwelijk.partners[0].persoon.geboorte.datum }} <br />te {{ huwelijk.partners[0].persoon.geboorte.stad }},{{ huwelijk.persoon.geboorte.land #} <br />
-                            <br />
-                            <span ng-show="huwelijk.partners[0].persoon.kinderen.length >= 1">Kinderen: {# huwelijk.partners[0].persoon.kinderen.length #}</span>
-							<!-- @todo kinderen ook weergeven-->
-
-                            <span ng-show="huwelijk.partners[0].persoon.partner.length != 0">Heeft partner: Ja</span>
-                            </p>
-                           </div>
-                    </div>
-                    
-                    <div class="affa-feature-icon" ng-hide="true"> <!-- 3 -->
-                    	<i class="fas fa-file-alt animation" data-animation="animation-fade-in-left"></i>
-                        <div class="feature-text">
-                        	<h4>Documenten</h4>
-                            <p>Proident sunt in culpa qui officia deserunt mollit anim perspiciatis unde omnis natus culpa qui deserunt mollit anim id est laborum.</p>     
-                            <br />                                            
-		                	<form method="post" action="#" class="affa-form-contact">
-		                    	<div class="submit-status"></div> <!-- submit status -->
-		                        <input type="text" name="name" placeholder="Naam" />
-		                        <input type="submit" name="submit" value="Upload" />
-		                    </form>
-                        </div>
                     </div>
                 </div>
                 
@@ -101,46 +71,14 @@
 
 							</p>
                         </div>
-                    </div>
-
-					<!-- Overige gegevens partner 2 -->
-                    <div class="affa-feature-icon" > <!-- 5 -->
-                    	<i class="fas fa-archive animation" data-animation="animation-fade-in-right"></i>
-                        <div class="feature-text">
-                        	<h4>Geschiedenis</h4>
-                           	<p ng-hide="huwelijk.partners[1].acceptatieDatum">{{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
-                            <p ng-show="huwelijk.partners[1].acceptatieDatum">
-                            Geboren: {# huwelijk.partners[1].persoon.geboorte.datum }} <br />te {{ huwelijk.partners[1].persoon.geboorte.stad }},{{ huwelijk.persoon.geboorte.land #} <br />
-                            <br />
-                            <span ng-show="huwelijk.partners[1].persoon.kinderen.length >= 1">Kinderen: {# huwelijk.partners[1].persoon.kinderen.length #}</span>
-							<!-- @todo kinderen ook weergeven-->
-
-                            <span ng-show="huwelijk.partners[1].persoon.partner.length != 0">Heeft partner: Ja</span>
-                            </p>
-                    	</div>
-                    </div>
-                    
-					<!-- bestanden  partner 2 -->
-                    <div class="affa-feature-icon"  ng-hide="true"> <!-- 6 -->
-                    	<i class="fas fa-file-alt animation" data-animation="animation-fade-in-right"></i>
-                        <div class="feature-text">
-                        	<h4>Documenten</h4>
-                            <p>Proident sunt in culpa qui officia deserunt mollit anim perspiciatis unde omnis natus culpa qui deserunt mollit anim id est laborum.</p>         
-                            <br />                   
-		                	<form method="post" action="#" class="affa-form-contact">
-		                    	<div class="submit-status"></div> <!-- submit status -->
-		                        <input type="text" name="name" placeholder="Naam" />
-		                        <input type="submit" name="submit" value="Upload" />
-		                    </form>
-                        </div>
-                    </div>                    
+                    </div>        
                     {% else %} 
 					<!-- Uitnodigen partner 2 -->
                     <div class="affa-feature-icon"> <!-- 6 -->
                     	<i class="fas fa-envelope animation" data-animation="animation-fade-in-right"></i>
                         <div class="feature-text">
-                        	<h4>Nodig je partner uit!</h4>
-                            <p>Leuk trouwen doe je natuurlijk samen ;)</p>         
+                        	<h4>{% if huwelijk is defined and huwelijk.type is defined  %}Vraag je partner ten  {{ huwelijk.type|capitalize }}{% else %}Nodig je partner uit{% endif %}.</h4>
+                            <p>Want dit doe je natuurlijk samen ;)</p>         
                             <br/>                   
 		                	<form method="post" action="#" class="affa-form-contact">
 		                    	<div class="submit-status"></div> <!-- submit status -->

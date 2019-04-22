@@ -204,6 +204,18 @@
     	margin-top: 0px;
     }
     
+    .header-loginbar {
+    	font-size: 1.5em;	
+    }
+    
+    .header-loginbar a {
+        color: #fff;
+  		text-decoration: underline;
+    }
+    .header-loginbar a :hoover {
+        color: #F2F2F2;
+    }
+    
     .header-menu {
     	position: relative;
     	margin: -100px auto 0;
@@ -293,6 +305,9 @@
 	.flow li a{
 	    color: #2A5587;
 	}
+	.completed a{
+	    color: #8BB929 !important;
+	}
 	.flow li a:hover .fas {
 	    color: #CC0000;
         width: 100px;
@@ -377,10 +392,25 @@
         position: relative;
 	}	
 	.post-heading-left h2:after, .post-heading-center h2:after {
-    background-color: #FFCC00;
+    	background-color: #FFCC00;
 	}
 	.tbl-pricing .tbl-prc-col .tbl-prc-price {
 	    background-color: #ffcc00;
+	}
+	
+	/* md-calendar */
+	.md-calendar-date{
+		color: #2A5587;
+	}
+	.md-calendar-date-disabled {
+		color: #cc0000;
+	}
+	/* alerts*/
+	.alert{
+	    border-radius: 0px;
+        padding: .5em 1em;
+        border: 2px solid;
+        background: #FFF;
 	}
     </style>
 </head>
@@ -395,6 +425,11 @@
     
     {{ include('home/flow.html.twig') }}
     <div class="content">
+    
+    {% if huwelijk is defined and huwelijk%}
+	    {{ include('home/nietgereserveerd.html.twig') }}	
+    {% endif %}    
+          
     {% block body %}{% endblock %}
     </div>
     

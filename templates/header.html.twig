@@ -10,5 +10,10 @@
             {% endif %}            
             <h3>In Utrecht</h3>
           </div>
+          {% if huwelijk is defined and huwelijk%}
+          <div class="header-loginbar">
+          	<i class="fas fa-lock-alt"></i> U bent ingelogd over een beveiligde verbinding, klik <a href=""> hier om uit te loggen</a>
+          </div>          
+          {% endif %}            
         </div>        
       </div>

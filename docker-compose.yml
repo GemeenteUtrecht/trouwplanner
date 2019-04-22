@@ -19,7 +19,7 @@ services:
       
   ## The new Syfony Based MVC website
   utrecht-trouwen-php:
-    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-php:V.0.0.3
+    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-php:V.0.0.4
     build:
       context: ./
       target: api_platform_php
@@ -32,7 +32,7 @@ services:
       - ./:/srv/api:rw,cached
 
   utrecht-trouwen-nginx:
-    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-nginx:V.0.0.3
+    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-nginx:V.0.0.4
     build:
       context: ./
       target: api_platform_nginx
@@ -45,6 +45,7 @@ services:
       - ./public:/srv/api/public:ro
     ports:
       - "80:80" 
+      - "443:80" 
        
 ## We use volumes to achieve db (semi) persistancy for developtment purposes, but do not use this in production! volumes are by nature not persistent     
 volumes:
