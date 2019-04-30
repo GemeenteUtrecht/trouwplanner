@@ -14,6 +14,7 @@ use App\Service\BRPService;
 
 class HomeController extends AbstractController
 { 	
+	
 	/**
 	* @Route("/")
 	*/
@@ -30,18 +31,16 @@ class HomeController extends AbstractController
 		]);
 	}
 	
-	
 	/**
 	 * @Route("/login")
 	 */
 	public function loginAction(Session $session, Request $request, HuwelijkService $huwelijkService, BRPService $brpService)
 	{
-		if($bsn = $request->request->get('bsn') ){
-			$session->set('huwelijk', $huwelijkService->getHuwelijkOnBsn($bsn));
-			//$session->set('user', $brpService->getPersonOnBsn($bsn)); (we cant do this yet)
+		if($huwelijk = $huwelijkService->getHuwelijkOnBsn($request->request->get('bsn'))){			
+			$this->addFlash('success', 'U ben succesvol ingelogd');		
 		}
 		else{
-			// Throw an error
+			$this->addFlash('danger', 'U kon helaas niet worden ingelogd');		
 		}
 				
 		$response = $this->forward('App\Controller\HomeController::indexAction');		

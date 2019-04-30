@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use App\Service\HuwelijkService;
+
 /**
  * @Route("/getuigen")
  */
@@ -24,5 +26,15 @@ class GetuigenController extends AbstractController
 				'huwelijk' => $huwelijk,
 				'user' => $user,
 		]);
+	} 
+	
+	/**
+	 * @Route("/invite")
+	 */
+	public function inviteAction(Session $session, HuwelijkService $huwelijkService)
+	{
+		$this->addFlash('success', 'Uw getuigen is uitgenodigd');
+		
+		return $this->redirect($this->generateUrl('app_locatie_index'));
 	}
 }

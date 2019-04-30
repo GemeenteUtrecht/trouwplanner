@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Service\AmbtenaarService;
+use App\Service\HuwelijkService;
 /**
  * @Route("/ambtenaren")
  */
@@ -20,6 +21,11 @@ class AmbtenaarController extends AbstractController
 	{
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
+		
+		// What if we already have an official?
+		if($huwelijk['trouwAmbtenaar'] && $huwelijk['trouwAmbtenaar']['id']){
+			return $this->redirect($this->generateUrl('app_ambtenaar_view', ['id'=> (int)$huwelijk['trouwAmbtenaar']['ambtenaar']['id']]));			
+		}		
 		
 		$ambtenaren= $ambtenaarService->getAll();
 				
@@ -61,16 +67,39 @@ class AmbtenaarController extends AbstractController
 	/**
 	 * @Route("/{id}/set")
 	 */
-	public function setAction(Session $session, $id, AmbtenaarService $ambtenaarService)
+	public function setAction(Session $session, $id, AmbtenaarService $ambtenaarService, HuwelijkService $huwelijkService)
+	{
+		$huwelijk = $session->get('huwelijk');
+		$user = $session->get('user');		
+		
+		if($huwelijkService->setOfficial((int) $id)){
+			$this->addFlash('success', 'Ambtenaar uitgenodigd');
+			return $this->redirect($this->generateUrl('app_datum_index'));
+		}
+		else{
+			$this->addFlash('danger', 'Ambtenaar kon niet worden uitgenodigd');
+			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
+		}				
+		
+	}
+	
+	/**
+	 * @Route("/{id}/unset")
+	 */
+	public function unsetAction(Session $session, $id, AmbtenaarService $ambtenaarService, HuwelijkService $huwelijkService)
 	{
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		$ambtenaar = $ambtenaarService->getOne($id);
+		if($huwelijkService->removeOfficial((int) $id)){
+			$this->addFlash('success', 'Ambtenaar geanuleerd');
+			return $this->redirect($this->generateUrl('app_datum_index'));
+		}
+		else{
+			$this->addFlash('danger', 'Ambtenaar kon niet worden geanuleerd');
+			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
+		}
 		
-		$this->addFlash('success', 'Ambtenaar '.$ambtenaar['geslachtsnaam'].' uitgenodigd');
-		
-		return $this->redirect($this->generateUrl('app_datum_index'));
 	}
 	
 	/**

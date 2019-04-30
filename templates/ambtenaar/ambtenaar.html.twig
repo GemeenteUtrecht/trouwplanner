@@ -17,11 +17,20 @@
                         {{ ambtenaar.samenvatting|raw }}     
                         <br/>
                         <br/>
-                         {% if huwelijk is defined and huwelijk%}
+                         {% if huwelijk is defined and huwelijk and huwelijk.trouwAmbtenaar is empty%}
                         <a href="{{ path('app_ambtenaar_set',{'id':ambtenaar.id}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Reserveer deze trouwambtenaar
                          </a>
+                         {% elseif huwelijk is defined and huwelijk and huwelijk.trouwAmbtenaar is not empty and huwelijk.trouwAmbtenaar.ambtenaar.id == ambtenaar.id and (huwelijk.primairProduct is empty or huwelijk.primairProduct.id != 1) %}
+                         <a href="{{ path('app_ambtenaar_unset',{'id':ambtenaar.id}) }}" class="btn btn-danger btn-icon" >
+                        	<i class="far fa-calendar-times"></i>
+                         	Annuleer deze trouwambtenaar
+                         </a>
+                         {% elseif  huwelijk.primairProduct.id == 1 %}
+                         <p>Het type plechtigheid dat u heeft geselecteerd laat geen keuze voor ambtenaar toe, u kunt het type plechtigheid <a href="{{ path('app_huwelijk_index') }}">hier</a> aanpassen.</p>
+                         {% elseif huwelijk is defined and huwelijk and huwelijk.trouwAmbtenaar is not empty and huwelijk.trouwAmbtenaar.ambtenaar.id != ambtenaar.id %}
+                         <p>U heeft reeds een andere trouwambtenaar gereserveerd</p>
                          {% else %}
                          <p>U dient eerst in te loggen voordat u deze ambtenaar kan reserveren</p>
                          {% endif %}

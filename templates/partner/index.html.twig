@@ -52,7 +52,7 @@
                         <div class="feature-text">
                         	<h4>{{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}}</h4>
                             <p>
-	                            {{ huwelijk.partners[1].status }} 
+	                            {# huwelijk.partners[1].status #} 
                             </p>
                         </div>
                     </div>
@@ -80,22 +80,20 @@
                         	<h4>{% if huwelijk is defined and huwelijk.type is defined  %}Vraag je partner ten  {{ huwelijk.type|capitalize }}{% else %}Nodig je partner uit{% endif %}.</h4>
                             <p>Want dit doe je natuurlijk samen ;)</p>         
                             <br/>                   
-		                	<form method="post" action="#" class="affa-form-contact">
+		                	<form method="post" action="{{ path('app_partner_index')}}" class="affa-form-contact">
 		                    	<div class="submit-status"></div> <!-- submit status -->
 
 								<label for="partner_voornamen">Voornaam(en)</label>
-                                <input type="text" name="partner_voornamen" ng-model="partner.voornamen"  placeholder="John"  ng-disabled="loading"/>
+                                <input type="text" name="voornamen" placeholder="John" />
                                 <label for="partner_geslachtsnaam">Achternaam</label>
-                                <input type="text" name="partner_geslachtsnaam" ng-model="partner.geslachtsnaam"  placeholder="Do"  ng-disabled="loading"/>
+                                <input type="text" name="geslachtsnaam" placeholder="Do" />
                                 <label for="partner_email">Email Adres <span class="required">*</span></label>
-                                <input type="text" name="partner_email" ng-model="partner.emailadres"  placeholder="john@do.nl"  ng-disabled="loading"/>
+                                <input type="text" name="emailadres" placeholder="john@do.nl" />
                                 <label for="partner_telefoonnummer">Telefoonnummer</label>
-                                <input type="text" name="partner_telefoonnummer" ng-model="partner.telefoonnummer" placeholder="+31 6 12345678"  ng-disabled="loading"/>
-                                <a href="{{ path('app_partner_invite') }}" class="btn btn-success btn-lg btn-block btn-icon" />
-									<i class="far fa-envelope" ng-hide="loading"></i>
-									<i class="fas fa-circle-notch fa-spin" ng-show="loading"></i>
-									Uitnodigen
-								</a>
+                                <input type="text" name="telefoonnummer" nlaceholder="+31 6 12345678" />
+                                
+ 								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Uitnodigen</button>
+ 								
 		                    </form>
                             <p>Uw Partner ontvangt een uitnodiging met daarin een bevestigingslink, spannend! </p>     
                         </div>

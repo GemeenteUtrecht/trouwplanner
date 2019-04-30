@@ -255,6 +255,7 @@
 			});
 			
 			// Contact form when submit button clicked
+			/*
 			$('.affa-form-contact').submit(function() {
 				var $form		= $(this);
 				var submitData	= $form.serialize();
@@ -309,6 +310,7 @@
 				
 				return false;
 			});
+			*/
 			
 			// Signup form when submit button clicked
 			$('.affa-form-signup').submit(function() {

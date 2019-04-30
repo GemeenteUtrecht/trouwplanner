@@ -17,14 +17,24 @@
                         {{ locatie.samenvatting|raw }}                        
                         <br/>
                         <br/>
-                        {% if  huwelijk is defined  and huwelijk%}
+                         {% if huwelijk is defined and huwelijk and huwelijk.locatie is empty%}
                         <a href="{{ path('app_locatie_set',{'id':locatie.id}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Reserveer deze locatie
                          </a>
+                         {% elseif huwelijk is defined and huwelijk and huwelijk.locatie is not empty and huwelijk.locatie.locatie.id == locatie.id and (huwelijk.primairProduct is empty or huwelijk.primairProduct.id != 1) %}
+                         <a href="{{ path('app_locatie_unset',{'id':locatie.id}) }}" class="btn btn-danger btn-icon" >
+                        	<i class="far fa-calendar-times"></i>
+                         	Annuleer deze locatie
+                         </a>
+                         {% elseif huwelijk.primairProduct.id == 1  %}
+                         <p>Het type plechtigheid dat u heeft geselecteerd laat geen keuze voor locatie toe, u kunt het type plechtigheid <a href="{{ path('app_huwelijk_index') }}">hier</a> aanpassen.</p>
+                         {% elseif huwelijk is defined and huwelijk and huwelijk.locatie is not empty and huwelijk.locatie.ambtenaar.id != locatie.id %}
+                         <p>U heeft reeds een andere locatie gereserveerd</p>
                          {% else %}
                          <p>U dient eerst in te loggen voordat u deze locatie kan reserveren</p>
                          {% endif %}
+                         
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">

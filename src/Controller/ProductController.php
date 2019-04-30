@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 use App\Service\ProductService;
+use App\Service\HuwelijkService;
 
 /**
  * @Route("/producten")
@@ -35,7 +36,7 @@ class ProductController extends AbstractController
 	/**
 	 * @Route("/{id}/set")
 	 */
-	public function setAction(Session $session, $id, ProductService $productService)
+	public function setAction(Session $session, $id, ProductService $productService, HuwelijkService $huwelijkService)
 	{
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');

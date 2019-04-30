@@ -11,56 +11,63 @@
             	{% if huwelijk is defined and huwelijk %}
             	<div class="col-md-12 text-center flow"> 
                     <ul>
-                        <li {% if huwelijk is defined and huwelijk.type is defined and huwelijk.product is defined   %}class="completed"{% endif %}>                    
+                        <li {% if huwelijk is not empty and huwelijk.type is not empty and huwelijk.primairProduct is not empty %}class="completed"{% endif %}>                    
                         	<a href="{{ path('app_huwelijk_index') }}">
                         		<i class="fas fa-ring fa-3x "></i>
                             </a>
-                            <br/>Huwelijk
+                            <br/>{% if huwelijk is not empty and huwelijk.type is not empty %}{{ huwelijk.type|capitalize }}{% else %} Huwelijk {% endif %}
     					</li>
-                        <li {% if huwelijk is defined and huwelijk.partners|length >= 2 %}class="completed"{% endif %}>          
+                        <li {% if huwelijk is not empty and huwelijk.partners|length >= 2 %}class="completed"{% endif %}>          
                         	<a href="{{ path('app_partner_index') }}">
                             	<i class="fas fa-user-friends fa-3x "></i>
                             </a>
                            <br/> Partner
     					</li>
-                        <li {% if huwelijk is defined and huwelijk.locaties is defined  %}class="completed"{% endif %}>            
+                        <li {% if huwelijk is not empty and huwelijk.locatie is defined and huwelijk.locatie  %}class="completed"{% endif %}>            
                         	<a href="{{ path('app_locatie_index') }}" >
                             	<i class="fas fa-building  fa-3x "></i>
                             </a>
                             <br/>Locatie
     					</li>
-                        <li {% if huwelijk is defined and huwelijk.ambtenaar is defined  %}class="completed"{% endif %}>             
+                        <li {% if huwelijk is not empty and huwelijk.trouwAmbtenaar is defined  and huwelijk.trouwAmbtenaar  %}class="completed"{% endif %}>             
                         	<a href="{{ path('app_ambtenaar_index') }}" >
                         		<i class="fas fa-user-tie fa-3x "></i>
                             </a>
                             <br/>Ambtenaar
     					</li>
-                        <li {% if huwelijk is defined and huwelijk.datum is defined  %}class="completed"{% endif %}>             
+                        <li {% if huwelijk is not empty and huwelijk.datum is not empty and huwelijk.tijd is not empty %}class="completed"{% endif %}>             
                         	<a href="{{ path('app_datum_index') }}">
                         		<i class="fas fa-calendar-day fa-3x"></i>
                             </a>
                             <br/>Datum
     					</li>
-                        <li{% if huwelijk is defined and huwelijk.reservering is defined  %}class="completed"{% endif %}>             
+                        <li {% if huwelijk is not empty and huwelijk.aanvraag is not empty %}class="completed"{% endif %}>             
                         	<a href="{{ path('app_reservering_index') }}" >
                         		<i class="fas fa-calendar-check fa-3x" ></i>
                             </a>
-                            <br/>Reservering
+                            <br/>Overzicht
     					</li>
     					<!-- 
-                        <li {% if huwelijk is defined and huwelijk.getuigen|length >= 4 %}class="completed"{% endif %}>             
+                        <li {% if huwelijk is not empty and huwelijk.getuigen|length >= 4 %}class="completed"{% endif %}>             
                         	<a href="{{ path('app_getuigen_index') }}">
                             	<i class="fas fa-users  fa-3x"></i>
                             </a>
                             <br/>Getuigen
-    					</li> -->
+    					</li>
                         <li>             
                         	<a href="{{ path('app_extra_index') }}">
                         		<i class="fas fa-gift fa-3x"></i>
                             </a>
                             <br/>Extras       
+    					</li> -->
+                        <li>      
+                        	<a href="https://pki.utrecht.nl/Loket/product/start/70e867fa386cda6205557e70defb3db6/c0820d2301a11a4c7a268fec039e295c" target="_blanck"> 
+                            	<i class="fas fa-envelope fa-3x"></i>
+                            </a>
+                            <br/>Melding
     					</li>
-                        <li {% if huwelijk is defined and huwelijk.melding is defined  %}class="completed"{% endif %}>      
+    					<!-- 
+                        <li {% if huwelijk is not empty and huwelijk.melding is defined  %}class="completed"{% endif %}>      
                         	<a href="{{ path('app_melding_index') }}"> 
                             	<i class="fas fa-envelope fa-3x"></i>
                             </a>
@@ -71,7 +78,7 @@
                         		<i class="fas fa-cash-register fa-3x"></i>
                             </a>
                             <br/>Betalen
-    					</li>
+    					</li>-->
                     </ul>          
                 </div><!-- .col end -->  
                 {% else %} 

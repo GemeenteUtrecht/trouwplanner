@@ -17,8 +17,8 @@
                     	<i class="fas fa-heart animation" data-animation="animation-fade-in-left"></i>
                         <div class="feature-text">
                         	<h4>Partnerschap</h4>
-                            <p>
-                            	<ul>
+                            <p class="text-left">
+                            	<ul class="text-left">
 									<li>Niet alle landen in de wereld erkennen het geregistreerd partnerschap. Dit kan bijvoorbeeld gevolgen hebben voor het erfrecht of de familieverhouding tot uw kinderen.</li>
 									<li>Is een geregistreerd partnerschap voor u verstandig? Vraag dit bijvoorbeeld aan de ambassade van het land waar u mee te maken hebt of misschien mee te maken gaat krijgen.</li>
 									<li>Van de akte van geregistreerd partnerschap kunnen wij geen internationaal uittreksel afgeven.</li>
@@ -27,9 +27,9 @@
 								Meer informatie over trouwen, geregistreerd partnerschap en een samenlevingscontract vindt u op de <a href="https://www.rijksoverheid.nl/onderwerpen/trouwen-samenlevingscontract-en-geregistreerd-partnerschap/">website</a> van de Rijksoverheid.
                             </p>
                         </div>
+     				<a href="{{ path('app_huwelijk_type',{'type':'partnerschap'}) }}" class="btn btn-secondary btn-icon  btn-block"><i class="far fa-rings-wedding"></i> Kies Partnerschp</a>
                     </div>
      			
-     				<a href="" class="btn btn-secondary btn-icon  btn-block"><i class="far fa-rings-wedding"></i> Kies Partnerschp</a>
      			</div><!-- .col-left -->    	
      			
                 <div class="col-center">
@@ -51,11 +51,25 @@
                             	</ul>
                             </p>
                         </div>
+     					<a href="{{ path('app_huwelijk_type',{'type':'huwelijk'}) }}" class="btn btn-secondary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Kies huwelijk</a>
+                    </div>
+                	<div class="affa-feature-icon"> 
+                    	<i class="fas fa-heart animation" data-animation="animation-fade-in-right"></i>
+                        <div class="feature-text">
+                        	<h4>Omzetten</h4>
+                            <p>
+                            	<ul>
+									<li>U heeft reeds een partneschap</li>
+									<li>U wilt dit laten omzetten naar een huwelijk</li>
+									<li>Omzettingen geschieden aan de ballie, zonder ceremonie</li>
+									<li>Er zijn geen getuigen nodig.</li>
+                            	</ul>
+                            </p>
+                        </div>
+     					<a href="https://www.utrecht.nl/" class="btn btn-secondary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Kies Omzetten</a>
                     </div>
                     
-     				<a href="" class="btn btn-secondary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Kies huwelijk</a>
-     			</div><!-- .col-right -->    
-     			
+     			</div><!-- .col-right -->         			
            </div> <!-- .row-custom end -->              
        </div> <!-- /.container -->      
     	<div class="container bg-grey">    
@@ -71,7 +85,7 @@
                     </div>
                     
                     {% for product in producten %} 
-                    <div class="col-sm-4 tbl-prc-col"> <!-- 1  -->
+                    <div class="col-sm-4 tbl-prc-col {% if huwelijk is not empty and huwelijk.primairProduct is not empty and product.id == huwelijk.primairProduct.id %}tbl-prc-col-recommended{%  endif  %}" > <!-- 1  -->
                     	<div class="tbl-prc-wrap">
                         	<div class="tbl-prc-heading">
                             	<h4>{{ product.naam }}</h4>
@@ -85,9 +99,14 @@
                             </ul>
                             {{ product.beschrijving|raw }}
                             <div class="tbl-prc-footer">
-	                            <a href="{{ path('app_product_view',{'id':product.id}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
+	                            <a href="{{ path('app_huwelijk_view',{'id':product.id}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
+                                {% if huwelijk is not empty and huwelijk.aanvraag is empty %}
 	                            <br/><br/>
-	                            <a href="{{ path('app_product_set',{'id':product.id}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
+	                            <a href="{{ path('app_huwelijk_set',{'id':product.id}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
+	                            {% else %}
+	                            <br/><br/>
+	                            U heeft reeds een reserving gedaan
+	                            {% endif %}
                             </div>
                         </div>
                     </div>

@@ -355,9 +355,12 @@
 	/* overschrijven van de stijl op knoppwn*/
 	.btn {
 		border-radius: 0px;
+    	padding: .5em 1em;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        font-weight: 700;
 	}
 	.btn-primary {
-    	padding: .5em 1em;
         border: 2px solid #2A5587;
         background: #2A5587;
         color: #FFF !important;
@@ -366,22 +369,14 @@
         font-weight: 700;
 	}
 	.btn-secondary {
-    	padding: .5em 1em;
         border: 2px solid #2A5587;
         background: #FFF;
         color: #2A5587 !important;
-        text-transform: uppercase;
-        letter-spacing: .04em;
-        font-weight: 700;
 	}
 	.btn-login {
-    	padding: .5em 1em;
         border: 2px solid #FFF;
         background: #2A5587;
         color: #FFF !important;
-        text-transform: uppercase;
-        letter-spacing: .04em;
-        font-weight: 700;
 	}
 	.btn-secondary:hover { 
         background: #FFF;
@@ -449,7 +444,7 @@
         {% endif %}
 		<!-- end of the alert box -->
         
-    {% if huwelijk is defined and huwelijk%}
+    {% if huwelijk is not empty and huwelijk.aanvraag is empty  %}
 	    {{ include('home/nietgereserveerd.html.twig') }}	
     {% endif %}    
           
