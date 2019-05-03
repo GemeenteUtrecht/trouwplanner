@@ -3,6 +3,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if huwelijk is not empty and huwelijk.aanvraag is empty  %}
+	    {{ include('home/nietgereserveerd.html.twig') }}	
+    {% endif %}    
  	 <!-- .container -->
     	<div class="container bg-white">            
             <!-- .row -->
@@ -17,8 +20,7 @@
                 <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-0">
                 	<div class="col-text20 margin-bottom20">
                     	<div class="post-heading-left">
-                            <h4>Wat is al gedaan en wat moet er nog gebeuren?</h4>
-                            <h2>En, zijn jullie er al klaar voor?</h2>
+                            <h2>Wat is al gedaan en wat moet er nog gebeuren?</h2>
                             <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen van een {{ huwelijk.type }}, daarom hebben we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook wat er al is gedaan.</p>
                             <p>Legenda
                             	<i class="fa far fa-square"></i> Nog te doen
@@ -26,7 +28,7 @@
                             </p>
                         </div><!-- /.post-heading-left -->
                         <div class="list-row"><div class="list-col">
-                        		Uw perfecte dag
+                        		Gedaan
                                 <ul class="list-icon">      
                                     <!--  Trouwdatum -->                        
                                     <li>
@@ -83,15 +85,20 @@
                                 	</ul>
                             	</div><!-- /.list-col -->   
                         	<div class="list-col">
-                            	Uw Verplichtingen
+                            	Nog te doen
                             	<ul class="list-icon">
+                                    {% if huwelijk is not empty and huwelijk.aanvraag  is not empty   %}
                                     <li>
-                                    	{% if huwelijk is not empty and huwelijk.aanvraag  is not empty   %}
                                     	<i class="fa fas fa-check"></i> Uw reservering: {{ huwelijk.aanvraag }} 
-                                    	{% else %}
-                                    	<i class="fa far fa-square"></i> U heeft nog  geen reservering gedaan
-                                    	{% endif %}
                                     </li>
+                                    <li>
+                                        <i class="fas fa-exclamation"></i><u>Uw reservering is nog xx dagen geldig</u>
+                                    </li>
+                                    {% else %}
+                                    <li>
+                                    	<i class="fa far fa-square"></i> U heeft nog  geen reservering gedaan
+                                    </li>
+                                    {% endif %}
                                     <!-- 
                                     <li>
                                     	{% if huwelijk is defined and huwelijk.melding is defined and huwelijk.melding %}

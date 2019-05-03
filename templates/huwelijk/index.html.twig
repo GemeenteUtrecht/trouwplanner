@@ -8,8 +8,7 @@
             <!-- .row-custom -->
             <div class="row-custom" style="padding-top: 30px;">     
                 <div class="post-heading-center">
-                	<h4>Gaat u een huwelijk of partnerschap aan?</h4>
-                	<h2>Er zijn nog een paar klein verschillen</h2>
+                	<h2>Gaat u een huwelijk of partnerschap aan?</h2>
                 </div>
             
                 <div class="col-left">
@@ -71,53 +70,5 @@
                     
      			</div><!-- .col-right -->         			
            </div> <!-- .row-custom end -->              
-       </div> <!-- /.container -->      
-    	<div class="container bg-grey">    
-            <!-- .tbl-pricing -->
-            <div class="tbl-pricing tbl-prc-recommended">
-                
-                <!-- .row -->
-                <div class="row">
-        	
-                    <div class="post-heading-center">
-                        <h4>Van simpel tot uitgebreid</h4>
-                    	<h2>Hoe willen jullie trouwen?</h2>
-                    </div>
-                    
-                    {% for product in producten %} 
-                    <div class="col-sm-4 tbl-prc-col {% if huwelijk is not empty and huwelijk.primairProduct is not empty and product.id == huwelijk.primairProduct.id %}tbl-prc-col-recommended{%  endif  %}" > <!-- 1  -->
-                    	<div class="tbl-prc-wrap">
-                        	<div class="tbl-prc-heading">
-                            	<h4>{{ product.naam }}</h4>
-                            </div>
-                            <div class="tbl-prc-price bg-yellow">
-                                <h5>&euro; {{ product.exclAmount / 100 }} </h5>
-                                <p>{{ product.samenvatting|raw }}</p>
-                            </div>
-                            <ul class="tbl-prc-list">
-                                <li>Eerste mogelijkheid: <b>{{  product.beschikbaar |date("Y-d-m") }}</b></li>
-                            </ul>
-                            {{ product.beschrijving|raw }}
-                            <div class="tbl-prc-footer">
-	                            <a href="{{ path('app_huwelijk_view',{'id':product.id}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
-                                {% if huwelijk is not empty and huwelijk.aanvraag is empty %}
-	                            <br/><br/>
-	                            <a href="{{ path('app_huwelijk_set',{'id':product.id}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
-	                            {% else %}
-	                            <br/><br/>
-	                            U heeft reeds een reserving gedaan
-	                            {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}                        
-                    
-                </div>
-                <!-- .row end -->
-                
-            </div>
-            <!-- .tbl-pricing end -->
-            
-        </div>
-        <!-- .container end -->
+       </div> <!-- /.container -->          
 {% endblock %}

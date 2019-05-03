@@ -46,11 +46,11 @@ class LocatieController extends AbstractController
 		$user = $session->get('user');
 		
 		if($huwelijkService->setLocation((int) $id)){
-			$this->addFlash('success', 'Locatie ingesteld');
+			//$this->addFlash('success', 'Locatie ingesteld');
 			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
 		}
 		else{
-			$this->addFlash('danger', 'Locatie '.$locatie['naam'].' kon niet worden ingesteld');
+			//$this->addFlash('danger', 'Locatie '.$locatie['naam'].' kon niet worden ingesteld');
 			return $this->redirect($this->generateUrl('app_locatie_index'));
 		}		
 		
@@ -65,11 +65,11 @@ class LocatieController extends AbstractController
 		$user = $session->get('user');
 		
 		if($huwelijkService->removeLocation((int) $id)){
-			$this->addFlash('success', 'Locatie ingesteld');
+			//$this->addFlash('success', 'Locatie ingesteld');
 			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
 		}
 		else{
-			$this->addFlash('danger', 'Locatie '.$locatie['naam'].' kon niet worden ingesteld');
+			//$this->addFlash('danger', 'Locatie '.$locatie['naam'].' kon niet worden ingesteld');
 			return $this->redirect($this->generateUrl('app_locatie_index'));
 		}
 		

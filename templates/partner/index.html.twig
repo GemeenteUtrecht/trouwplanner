@@ -8,8 +8,7 @@
             <!-- .row-custom -->
             <div class="row-custom">     
                 <div class="post-heading-center">
-                	<h4>Jouw partner</h4>
-                	<h2>Met wie gaat u {% if huwelijk is defined and huwelijk.type is defined  %}{{ huwelijk.type }}{% else %}trouwen of partnerschap{% endif %}en  </h2>
+                	<h2>Uw partner</h2>
                 </div>
             
                 <div class="col-left">
@@ -92,10 +91,12 @@
                                 <label for="partner_telefoonnummer">Telefoonnummer</label>
                                 <input type="text" name="telefoonnummer" nlaceholder="+31 6 12345678" />
                                 
- 								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Uitnodigen</button>
+ 								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Per bericht Uitnodigen</button>
  								
 		                    </form>
-                            <p>Uw Partner ontvangt een uitnodiging met daarin een bevestigingslink, spannend! </p>     
+                            <p>- Of -</p>
+                            
+                        	<a href="" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-lock"></i> Uw partner laten inloggen</a>     
                         </div>
                     </div>
                     {% endif %} 

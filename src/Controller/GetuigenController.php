@@ -33,7 +33,7 @@ class GetuigenController extends AbstractController
 	 */
 	public function inviteAction(Session $session, HuwelijkService $huwelijkService)
 	{
-		$this->addFlash('success', 'Uw getuigen is uitgenodigd');
+		//$this->addFlash('success', 'Uw getuigen is uitgenodigd');
 		
 		return $this->redirect($this->generateUrl('app_locatie_index'));
 	}

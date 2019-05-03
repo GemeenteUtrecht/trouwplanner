@@ -5,64 +5,78 @@
 {% block body %}     
         
         <!-- .container -->
-    	<div class="container bg-white">
+    	<div class="container bg-white">       
             
             <!-- .row -->
-            <div class="row">
+            <div class="row"> 
+            
+            	<a href="{{ path('app_ambtenaar_index') }}" class="well-frontpage-link">           	
+                <div class="col-sm-6 col-md-4 text-center-sm text-center-xs">
+                	<div class="well well-lg well-frontpage">
+                		<i class="fas fa-user-tie fa-6x"></i>
+						<h4>Ambtenaren</h4>
+						<p>Kies een geschikte ambtenaar die het beste bij uw wensen past</p>
+						<span class="btn btn-primary btn-block"> Bekijk</span>
+                	</div>
+                </div><!-- /.col -->
+                </a>
                 
-                <div class="col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
-                	<div class="margin-bottom40">
-                    	<div class="post-heading-left text-center-sm text-center-xs">
-                        	<h4>Ambtenaren</h4>
-                            <h2>Door wie willen jullie getrouwd worden?</h2>
-                        </div>
-                        
-                        <p>Hieronder vindt u een overzicht van de trouwambtenaren van de gemeente Utrecht. U kunt een voorkeur aangeven voor een trouwambtenaar, dan krijgt u data te zien waarop hij of zij beschikbaar is en aan de hand daarvan kunt u een datum kiezen. Als u eerst een trouwdatum kiest, worden de beschikbare trouwambtenaren gepresenteerd en kunt u daarna een keuze maken.</p>
-                        <p class="margin-bottom30">Bij een gratis of een eenvoudig huwelijk of geregistreerd partnerschap wordt de trouwambtenaar toegewezen door de gemeente.</p>
-                        <a  href="{{ path('app_ambtenaar_index') }}" class="btn btn-secondary btn-icon hidden-xs hidden-sm"><i class="fas fa-user-tie"></i> Bekijk Ambtenaren</a>
-                    </div>
-                </div>
+            	<a href="{{ path('app_locatie_index') }}">  
+                <div class="col-sm-6 col-md-4 text-center-sm text-center-xs">
+                	<div class="well well-lg well-frontpage">
+                		<i class="fas fa-building fa-6x"></i>
+						<h4>Locaties</h4>
+						<p>Een mooie locatie maakt de dag mooier</p>
+						<span class="btn btn-primary btn-block"> Bekijk</span>
+                	</div>
+                </div><!-- /.col -->
+                </a>
                 
-                <div class="col-md-6 col-lg-5 col-md-offset-0 col-lg-offset-1 hidden-xs hidden-sm">
-                	<figure class="col-img40 margin-bottom40 animation animated animation-fade-in-right" data-animation="animation-fade-in-right">
-                        <img src="images/content/elements/Trouwambtenaren.png" alt="Image">
-                    </figure>
-                </div>
+            	<a href="{{ path('app_pages_getuigen') }}"> 
+                <div class="col-sm-6 col-md-4 text-center-sm text-center-xs">
+                	<div class="well well-lg well-frontpage">
+                		<i class="fas fa-users fa-6x"></i>
+						<h4>Getuigen</h4>
+						<p>Een mooie locatie maakt de dag mooier</p>
+						<span class="btn btn-primary btn-block"> Lees meer</span>
+                	</div>
+                </div><!-- /.col -->
+                </a>
+                
+            	<a href="{{ path('app_pages_naamsgebruik') }}"> 
+                <div class="col-sm-6 col-md-4 text-center-sm text-center-xs">
+                	<div class="well well-lg well-frontpage">
+                		<i class="fas fa-user-friends fa-6x"></i>
+						<h4>Naamsgebruik</h4>
+						<p>Kies het geschikte naamgebruik voor uw huwelijk</p>
+						<span class="btn btn-primary btn-block"> Lees meer</span>
+                	</div>
+                </div><!-- /.col -->
+                </a>
+                
+            	<a href="{{ path('app_pages_melding') }}"> 
+                <div class="col-sm-6 col-md-4 text-center-sm text-center-xs">
+                	<div class="well well-lg well-frontpage">
+                		<i class="fas fa-envelope fa-6x"></i>
+						<h4>Ondertrouw</h4>
+						<p>Ga tijdig in ondertrouw, deze is een jaar geldig</p>
+						<span class="btn btn-primary btn-block"> Lees meer</span>
+                	</div>
+                </div><!-- /.col -->
+                </a>
+                
+            	<a href="{{ path('app_pages_getuigen') }}"> 
+                <div class="col-sm-6 col-md-4 text-center-sm text-center-xs">
+                	<div class="well well-lg well-frontpage">
+                		<i class="fas fa-calendar-check fa-6x"></i>
+						<h4>Regel uw dag</h4>
+						<p>Regel direct de gewenste dag voor uw huwelijk</p>
+						<span class="btn btn-primary btn-block"> Log in</span>
+                	</div>
+                </div><!-- /.col -->
+                </a>
                 
             </div>
-            <!-- .row end -->
-            
-        </div>
-        <!-- .container end -->
-        
-        <!-- .container -->
-    	<div class="container bg-white">
-            
-            <!-- .row -->
-            <div class="row">
-                
-                <div class="col-md-6 col-lg-5 hidden-xs hidden-sm">
-                	<figure class="margin-bottom40 animation animated animation-fade-in-left" data-animation="animation-fade-in-left">
-                    	<img src="images/content/elements/Locatie.png" alt="Image">
-                    </figure>
-                </div>
-                
-                <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 col-lg-offset-1 text-center-sm text-center-xs">
-                	<div class="col-text20 margin-bottom20">
-                    	<div class="post-heading-left margin-bottom20">
-                            <h4>Locaties</h4>
-                            <h2>Waar willen jullie gaan trouwen?</h2>
-                        </div>
-                        
-                        <p class="margin-bottom30">Om te trouwen of een partnerschap te laten registreren is natuurlijk een locatie nodig! De gemeente Utrecht heeft een aantal eigen locaties en daarnaast zijn er in Utrecht ook diverse vrije locaties om te trouwen. Hieronder vindt u een overzicht van deze locaties om een goed beeld te krijgen en een keuze te kunnen maken. Vervolgens kan de locatie worden gereserveerd. </p>
-                        <a href="{{ path('app_locatie_index') }}" class="btn btn-secondary btn-icon hidden-xs hidden-sm"><i class="fas fa-building"></i> Verken locaties</a>
-                    </div>
-                    
-                    
-                </div>
-                
-            </div>
-            <!-- .row end -->
-        
+            <!-- /.row -->        
     </div>
 {% endblock %}

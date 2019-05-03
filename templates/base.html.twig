@@ -270,6 +270,7 @@
 	/* flow stuff*/
 	#flow {
 		padding-bottom: 20px;
+		max-height: 180px;
 	}
 	
 	.flow ul {
@@ -302,11 +303,32 @@
 		margin-left: 5px;
 		margin-right: 5px;
     }
+    
+    
 	.flow li a{
 	    color: #2A5587;
 	}
-	.completed a{
+	
+	.completed:after{
+		content:"✔";
+		background-color: #FFF;
 	    color: #8BB929 !important;
+        line-height: 40px;
+	    font-size: 30px;
+        display: block;
+        position: relative;  
+        text-align: center;
+        vertical-align: middle;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        bottom: 125px;
+        left: 70px;
+        padding: 0;
+        
+    }
+	.completed a{
+		margin-bottom: 90px;
 	}
 	.flow li a:hover .fas {
 	    color: #CC0000;
@@ -412,6 +434,36 @@
   		object-fit: cover;
 	    background-color: #FFF;
 	}
+	
+	.container {
+		padding-top: 15px;
+	}
+	
+	/* The icon wels for the frontpage*/
+	.well-frontpage{
+		height: 300px;
+        text-align: center;
+        vertical-align: middle;
+	    border-radius: 0px;
+	    background-color: #FFF;	
+	}
+	.well-frontpage h4{
+		padding-top: 15px;
+	}
+	.well-frontpage:hover { 
+        background: #F2F2F2 !important;
+	}
+	.well-frontpage .btn{
+        position: absolute;
+        bottom: 45px;
+        left: 45px;
+        right: 45px;
+        width: calc(100% - 90px);
+	}
+	
+	a, a:visited {
+    	color: #2A5587;
+    }
     </style>
 </head>
 
@@ -443,11 +495,7 @@
         </div><!-- /.container -->
         {% endif %}
 		<!-- end of the alert box -->
-        
-    {% if huwelijk is not empty and huwelijk.aanvraag is empty  %}
-	    {{ include('home/nietgereserveerd.html.twig') }}	
-    {% endif %}    
-          
+                  
     {% block body %}{% endblock %}
     </div>
     

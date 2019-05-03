@@ -3,52 +3,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <!-- .container -->
-    	<div class="container bg-white">
-        	
-            <div class="post-heading-center">
-                <h4>A big fat wedding or pure and simple</h4>
-            	<h2>Hoe willen jullie trouwen?</h2>
-            </div>
-            
+        <div class="container bg-white">    
             <!-- .tbl-pricing -->
             <div class="tbl-pricing tbl-prc-recommended">
                 
                 <!-- .row -->
                 <div class="row">
-                {% for product in producten %}                     
-                    <div class="col-sm-4 tbl-prc-col" ng-class="{'tbl-prc-col-recommended ':  huwelijk.primairProduct.id == product.id  }" > <!-- 1  -->
+        	
+                    <div class="post-heading-center">
+                    	<h2>Hoe willen jullie trouwen?</h2>
+                    </div>
+                    
+                    {% for product in producten %} 
+                    <div class="col-sm-4 tbl-prc-col {% if huwelijk is not empty and huwelijk.primairProduct is not empty and product.id == huwelijk.primairProduct.id %}tbl-prc-col-recommended{%  endif  %}" > <!-- 1  -->
                     	<div class="tbl-prc-wrap">
                         	<div class="tbl-prc-heading">
                             	<h4>{{ product.naam }}</h4>
                             </div>
-                            <div class="tbl-prc-price">
+                            <div class="tbl-prc-price bg-yellow">
                                 <h5>&euro; {{ product.exclAmount / 100 }} </h5>
-                                <p>Inclusief locatie & trouwambtenaar.</p>
+                                <p>{{ product.samenvatting|raw }}</p>
                             </div>
                             <ul class="tbl-prc-list">
-                                <li>Eerste mogelijkheid: <b>{{  product.beschikbaar | date:'dd-MM-yyyy' }}</b></li>
+                                <li>Eerste mogelijkheid: <b>{{  product.beschikbaar |date("Y-d-m") }}</b></li>
                             </ul>
-                            <div class="tbl-prc-footer" ng-bind-html="product.samenvatting" ng-cut="255">
-                            </div>
-                            <div class="tbl-prc-footer" ng-hide="huwelijk.primairProduct || loading">
-	                            <a href="/product/{{product.id}}" class="btn-custom" >Meer lezen</a>
+                            {{ product.beschrijving|raw }}
+                            <div class="tbl-prc-footer">
+	                            <a href="{{ path('app_huwelijk_view',{'id':product.id}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
+                                {% if huwelijk is not empty and huwelijk.aanvraag is empty %}
 	                            <br/><br/>
-	                            <a href="" class="btn-custom"  ng-click="setProduct(product)">Dit wil ik!</a>
-                            </div>
-                            <div class="tbl-prc-footer" ng-hide="!huwelijk.primairProduct || huwelijk.primairProduct.id == product.id || loading">
-	                            <a href="/product/{{product.id}}"  class="btn-custom" >Meer lezen</a>
+	                            <a href="{{ path('app_huwelijk_set',{'id':product.id}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
+	                            {% else %}
 	                            <br/><br/>
-	                            <a class="btn-custom"  ng-click="setProduct(product)">Ik wil toch deze....</a>
-                            </div>
-                            <div class="tbl-prc-footer" ng-show="huwelijk.primairProduct.id == product.id && !loading">
-	                            <a href="" class="btn-custom" >Meer lezen</a>
-	                            <br/><br/>
-	                            Dit is het huwelijks type dat u momenteel hebt gekozen 
+	                            U heeft reeds een reserving gedaan
+	                            {% endif %}
                             </div>
                         </div>
-                    </div>                    
-                    {% endfor %} 
+                    </div>
+                    {% endfor %}                        
+                    
                 </div>
                 <!-- .row end -->
                 
@@ -56,5 +49,5 @@
             <!-- .tbl-pricing end -->
             
         </div>
-        <!-- .container end -->
+        <!-- .container end -->  
 {% endblock %}

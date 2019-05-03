@@ -31,10 +31,10 @@ class DatumController extends AbstractController
 			$date = date('Y-m-d',$date);
 			
 			if($huwelijkService->setDate($date, $request->request->get('tijd'))){
-				$this->addFlash('success', 'Datum en tijd '.$date. ' om '.$huwelijk['tijd'].' geselecteerd');
+				//$this->addFlash('success', 'Datum en tijd '.$date. ' om '.$huwelijk['tijd'].' geselecteerd');
 			}
 			else{
-				$this->addFlash('danger', 'Datum en tijd '.$huwelijk['datum']. ' om '.$huwelijk['tijd'].'  kon niet worden geselecteerd');
+				//$this->addFlash('danger', 'Datum en tijd '.$huwelijk['datum']. ' om '.$huwelijk['tijd'].'  kon niet worden geselecteerd');
 			}
 			
 		}
@@ -53,7 +53,7 @@ class DatumController extends AbstractController
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		$this->addFlash('success', 'Datum voorkeur opgeslagen');
+		//$this->addFlash('success', 'Datum voorkeur opgeslagen');
 		
 		return $this->redirect($this->generateUrl('app_reservering_index'));
 	}
