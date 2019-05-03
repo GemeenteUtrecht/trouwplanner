@@ -38,12 +38,13 @@ class HuwelijkController extends AbstractController
 		$huwelijk['type'] = $type;
 		
 		if($huwelijkService->updateHuwelijk($huwelijk)){
+			$huwelijk = $session->get('huwelijk');
 			//$this->addFlash('success', 'Type '.$type.' geselecteerd');
 		}
 		else{
 			//$this->addFlash('danger', 'Type '.$type.' kon niet worden geselecteerd');
 		}
-		return $this->redirect($this->generateUrl('app_datum_index'));		
+		return $this->redirect($this->generateUrl('app_partner_index'));		
 	}
 	
 	/**
@@ -63,7 +64,7 @@ class HuwelijkController extends AbstractController
 			}
 			
 			//$this->addFlash('success', 'Plechtigheid geselecteerd');
-			return $this->redirect($this->generateUrl('app_partner_index'));
+			return $this->redirect($this->generateUrl('app_datum_index'));
 		}
 		else{
 			//$this->addFlash('danger', 'Plechtigheid kon niet worden geselecteerd');

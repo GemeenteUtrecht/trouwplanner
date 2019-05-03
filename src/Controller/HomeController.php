@@ -43,7 +43,7 @@ class HomeController extends AbstractController
 			//$this->addFlash('danger', 'U kon helaas niet worden ingelogd');		
 		}
 				
-		$response = $this->forward('App\Controller\HomeController::indexAction');		
+		$response = $this->forward('App\Controller\HuwelijkController::indexAction');		
 		return $response;
 	}
 	

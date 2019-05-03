@@ -55,6 +55,6 @@ class DatumController extends AbstractController
 		
 		//$this->addFlash('success', 'Datum voorkeur opgeslagen');
 		
-		return $this->redirect($this->generateUrl('app_reservering_index'));
+		return $this->redirect($this->generateUrl('app_locatie_index'));
 	}
 }

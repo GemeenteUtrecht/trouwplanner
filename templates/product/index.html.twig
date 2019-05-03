@@ -5,8 +5,7 @@
 {% block body %}
         <div class="container bg-white">    
             <!-- .tbl-pricing -->
-            <div class="tbl-pricing tbl-prc-recommended">
-                
+            <div class="tbl-pricing tbl-prc-recommended animation" {% if huwelijk is not empty and huwelijk.partners|length >= 2 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>                
                 <!-- .row -->
                 <div class="row">
         	
@@ -46,7 +45,20 @@
                 <!-- .row end -->
                 
             </div>
-            <!-- .tbl-pricing end -->
+            <!-- .tbl-pricing end -->           
+    	    
+            
+            {% if huwelijk is not empty and huwelijk.partners|length >= 2 %}
+             <!-- .row -->
+            <div class="row animation save-confirmation" data-animation="animation-bounce-out" data-delay="3000">        	
+            	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
+                	<h2>Uw partner is uitgenodigd</h2>
+               	</div>
+                <div class="col-md-12 text-center">
+       				<i class="fas fa-check fa-6x animation" data-animation="animation-fade-in-down" ></i>
+                </div><!-- /.col -->
+            </div><!-- /.row -->      
+            {% endif %}    
             
         </div>
         <!-- .container end -->  

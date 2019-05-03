@@ -99,6 +99,9 @@
                                     	<i class="fa far fa-square"></i> U heeft nog  geen reservering gedaan
                                     </li>
                                     {% endif %}
+                                    <li>
+                                    	<i class="fa far fa-square"></i> Vergeet niet om ook een melding te doen
+                                    </li>
                                     <!-- 
                                     <li>
                                     	{% if huwelijk is defined and huwelijk.melding is defined and huwelijk.melding %}
@@ -118,21 +121,28 @@
                                 </ul>
                             </div>     
                         </div><!-- /.list-row -->
-                        {% if huwelijk is not empty and huwelijk.aanvraag  is empty   %}
                       	<div class="btn-section textcenter animation" data-animation="animation-fade-in-up">
+                        {% if huwelijk is not empty and huwelijk.aanvraag  is empty   %}
     		            	<a href="{{ path('app_reservering_send') }}" class="btn btn-primary btn-icon" >
     							<i class="fas fa-share-square"></i> 
     			            	Maak een reservering
-    		           		</a>
-                    	</div><!-- /.btn-section -->      
+    		           		</a>   
                         {% else %}
-                      	<div class="btn-section textcenter animation" data-animation="animation-fade-in-up">
     		            	<a href="{{ path('app_reservering_cancel') }}" class="btn btn-danger btn-icon" >
     							<i class="fas fa-times"></i>
     			            	Annuleer uw reservering
     		           		</a>
-                    	</div><!-- /.btn-section -->                              
+    		            	<a href="https://pki.utrecht.nl/Loket/product/start/70e867fa386cda6205557e70defb3db6/c0820d2301a11a4c7a268fec039e295c" class="btn btn-primary btn-icon" >
+    							<i class="fas fa-share-square"></i> 
+    			            	Doe u melding
+    		           		</a>    
                         {% endif %}
+    		            	<a href="{{ path('app_extra_index') }}" class="btn btn-primary btn-icon" >
+    							<i class="fas fa-share-square"></i> 
+    			            	Kies extras
+    		           		</a>
+                    	</div><!-- /.btn-section -->    
+                    	  
                 	</div><!-- /.col -->           
                 </div><!-- /.row -->           
             </div><!-- ./container --> 

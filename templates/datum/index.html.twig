@@ -4,15 +4,15 @@
 
 {% block body %}
         <!-- .container -->
-    	<div class="container bg-dark">
+    	<div class="container bg-white">
+            
+            <!-- .row -->
+            <div class="row animation" {% if huwelijk is not empty and huwelijk.primairProduct is not empty %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
                     	
                     	<div class="post-heading-left ">
                         	<h4>Markeer de datum!</h4>
                             <h2>Wanneer willen jullie trouwen?</h2>
                         </div>
-            
-            <!-- .row -->
-            <div class="row">
                 
                 	
                 <div class="col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
@@ -49,7 +49,20 @@
                 </div>
                 
             </div>
-            <!-- .row end -->
+            <!-- .row end -->        
+    	    
+            
+            {% if huwelijk is not empty and huwelijk.primairProduct is not empty %}
+             <!-- .row -->
+            <div class="row animation save-confirmation" data-animation="animation-bounce-out" data-delay="3000">        	
+            	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
+                	<h2>Uw keuze {{ huwelijk.primairProduct.name }} is opgeslagen</h2>
+               	</div>
+                <div class="col-md-12 text-center">
+       				<i class="fas fa-check fa-6x animation" data-animation="animation-fade-in-down" ></i>
+                </div><!-- /.col -->
+            </div><!-- /.row -->      
+            {% endif %}    
             
         </div>
         <!-- .container end -->

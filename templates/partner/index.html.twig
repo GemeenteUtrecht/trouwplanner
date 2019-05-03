@@ -4,16 +4,16 @@
 
 {% block body %}
         <!-- .container -->
-    	<div class="container bg-white">            
+    	<div class="container bg-white">                        
             <!-- .row-custom -->
-            <div class="row-custom">     
+            <div class="row-custom animation" {% if huwelijk is not empty and huwelijk.type is not empty %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>     
                 <div class="post-heading-center">
                 	<h2>Uw partner</h2>
                 </div>
             
                 <div class="col-left">
                 	<div class="affa-feature-icon"> <!-- 1 -->
-                    	<i class="fas fa-user animation" data-animation="animation-fade-in-left"></i>
+                    	<i class="fas fa-user" ></i>
                         <div class="feature-text">
                         	<h4>{{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}}</h4>
                             <p>
@@ -23,7 +23,7 @@
                     </div>
                     
                     <div class="affa-feature-icon"> <!-- 2 -->
-                    	<i class="fas fa-home animation" data-animation="animation-fade-in-left"></i>
+                    	<i class="fas fa-home " ></i>
                         <div class="feature-text">
                         	<h4>Adres en contact</h4>
                             <p ng-hide="huwelijk.partners[0].acceptatieDatum ">{{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
@@ -38,7 +38,7 @@
                 </div>
                 
                 <div class="col-center">
-                	<figure class="margin-bottom40 animation" data-animation="animation-fade-in-down">
+                	<figure class="margin-bottom40 " >
                     	<img src="images/content/elements/MakeItKnown.png"/>
                     </figure>
                 </div>
@@ -47,7 +47,7 @@
 					<!-- NAW gegevens partner 2 -->					
             	    {% if huwelijk.partners|length > 1 %}
                 	<div class="affa-feature-icon"> 
-                    	<i class="fas fa-user animation" data-animation="animation-fade-in-right"></i>
+                    	<i class="fas fa-user " ></i>
                         <div class="feature-text">
                         	<h4>{{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}}</h4>
                             <p>
@@ -58,7 +58,7 @@
                    
 					<!-- Overige gegevens partner 2 -->
                     <div class="affa-feature-icon" > <!-- 5 -->
-                    	<i class="fas fa-home animation" data-animation="animation-fade-in-right"></i>
+                    	<i class="fas fa-home"></i>
                         <div class="feature-text">
                         	<h4>Adres en contact</h4>
                             <p ng-hide="huwelijk.partners[1].acceptatieDatum ">{{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
@@ -74,7 +74,7 @@
                     {% else %} 
 					<!-- Uitnodigen partner 2 -->
                     <div class="affa-feature-icon"> <!-- 6 -->
-                    	<i class="fas fa-envelope animation" data-animation="animation-fade-in-right"></i>
+                    	<i class="fas fa-envelope"></i>
                         <div class="feature-text">
                         	<h4>{% if huwelijk is defined and huwelijk.type is defined  %}Vraag je partner ten  {{ huwelijk.type|capitalize }}{% else %}Nodig je partner uit{% endif %}.</h4>
                             <p>Want dit doe je natuurlijk samen ;)</p>         
@@ -104,7 +104,20 @@
                 </div>
                 
             </div>
-            <!-- .row-custom end -->           
+            <!-- .row-custom end -->   
+    	    
+            
+            {% if huwelijk is not empty and huwelijk.type is not empty %} 
+             <!-- .row -->
+            <div class="row animation save-confirmation" data-animation="animation-bounce-out" data-delay="3000">        	
+            	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
+                	<h2>Uw keuze {{ huwelijk.type }} is opgeslagen</h2>
+               	</div>
+                <div class="col-md-12 text-center">
+       				<i class="fas fa-check fa-6x animation" data-animation="animation-fade-in-down" ></i>
+                </div><!-- /.col -->
+            </div><!-- /.row -->      
+            {% endif %}    
         </div>
         <!-- .container end -->    
     

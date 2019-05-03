@@ -29,6 +29,11 @@
                          </a>
                          {% elseif  huwelijk.primairProduct.id == 1 %}
                          <p>Het type plechtigheid dat u heeft geselecteerd laat geen keuze voor ambtenaar toe, u kunt het type plechtigheid <a href="{{ path('app_huwelijk_index') }}">hier</a> aanpassen.</p>
+                         
+                         <a href="{{ path('app_reservering_index') }}" class="btn btn-primary btn-icon" >
+                        	<i class="far fa-calendar-times"></i>
+                         	Ga door naar reservering
+                         </a>
                          {% elseif huwelijk is defined and huwelijk and huwelijk.trouwAmbtenaar is not empty and huwelijk.trouwAmbtenaar.ambtenaar.id != ambtenaar.id %}
                          <p>U heeft reeds een andere trouwambtenaar gereserveerd</p>
                          {% else %}

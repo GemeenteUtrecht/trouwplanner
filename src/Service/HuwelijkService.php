@@ -110,6 +110,21 @@ class HuwelijkService
 		$this->session->set('huwelijk', $huwelijk);
 		
 		return $huwelijk;
+	} 	
+	
+	public function removeLocation()
+	{
+		$huwelijk = $this->session->get('huwelijk');
+		
+		$response =  $this->client->put('/huwelijk/'.$huwelijk['id'], [
+				RequestOptions::JSON => ['location' => null]
+		]);
+		
+		$huwelijk = json_decode($response->getBody(),true);
+		
+		$this->session->set('huwelijk', $huwelijk);
+		
+		return $huwelijk;
 	} 
 	
 	public function setProduct($id)
@@ -126,6 +141,19 @@ class HuwelijkService
 		$this->session->set('huwelijk', $huwelijk);
 		
 		return $huwelijk;
+	}
+	
+	public function removeProduct($id)
+	{
+		$response =  $this->client->put('/huwelijk/'.$huwelijk['id'], [
+				RequestOptions::JSON => ['primairProduct' => null]
+		]);
+		
+		$huwelijk = json_decode($response->getBody(),true);
+		
+		$this->session->set('huwelijk', $huwelijk);
+		
+		return $huwelijk;
 	} 
 	
 	public function setOfficial($id)
@@ -136,6 +164,21 @@ class HuwelijkService
 				RequestOptions::JSON => ['setOfficial' => $id]
 		]);
 		
+		
+		$huwelijk = json_decode($response->getBody(),true);
+		
+		$this->session->set('huwelijk', $huwelijk);
+		
+		return $huwelijk;
+	}
+	
+	public function removeOfficial()
+	{
+		$huwelijk = $this->session->get('huwelijk');
+		
+		$response =  $this->client->put('/huwelijk/'.$huwelijk['id'], [
+				RequestOptions::JSON => ['trouwAmbtenaar' => null]
+		]);
 		
 		$huwelijk = json_decode($response->getBody(),true);
 		

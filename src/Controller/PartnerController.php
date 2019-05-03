@@ -32,7 +32,7 @@ class PartnerController extends AbstractController
 			
 			if($huwelijkService->invitePartner($partner)){
 				//$this->addFlash('success', 'Partner uitgenodigd');
-				return $this->redirect($this->generateUrl('app_locatie_index'));
+				return $this->redirect($this->generateUrl('app_product_index'));
 			}
 			else{
 				//$this->addFlash('danger', 'Partner kon niet worden uitgenodigd');

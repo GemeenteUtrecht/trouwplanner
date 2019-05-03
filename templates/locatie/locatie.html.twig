@@ -29,6 +29,11 @@
                          </a>
                          {% elseif huwelijk.primairProduct.id == 1  %}
                          <p>Het type plechtigheid dat u heeft geselecteerd laat geen keuze voor locatie toe, u kunt het type plechtigheid <a href="{{ path('app_huwelijk_index') }}">hier</a> aanpassen.</p>
+                         
+                         <a href="{{ path('app_ambtenaar_index') }}" class="btn btn-primary btn-icon" >
+                        	<i class="far fa-calendar-times"></i>
+                         	Ga door naar ambtenaar
+                         </a>
                          {% elseif huwelijk is defined and huwelijk and huwelijk.locatie is not empty and huwelijk.locatie.ambtenaar.id != locatie.id %}
                          <p>U heeft reeds een andere locatie gereserveerd</p>
                          {% else %}

@@ -38,7 +38,7 @@ class ReserveringController extends AbstractController
 		
 		if($huwelijkService->aanvraag()){
 			//$this->addFlash('success', 'Uw reservering is verzonden');
-			return $this->redirect($this->generateUrl('app_reservering_index'));
+			return $this->redirect($this->generateUrl('app_extra_index'));
 		}
 		else{
 			//$this->addFlash('danger', 'Uw reservering kon niet worden verzonden');

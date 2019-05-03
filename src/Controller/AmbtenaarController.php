@@ -74,7 +74,7 @@ class AmbtenaarController extends AbstractController
 		
 		if($huwelijkService->setOfficial((int) $id)){
 			$this->addFlash('success', 'Ambtenaar uitgenodigd');
-			return $this->redirect($this->generateUrl('app_datum_index'));
+			return $this->redirect($this->generateUrl('app_reservering_index'));
 		}
 		else{
 			$this->addFlash('danger', 'Ambtenaar kon niet worden uitgenodigd');
@@ -91,12 +91,12 @@ class AmbtenaarController extends AbstractController
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		if($huwelijkService->removeOfficial((int) $id)){
-			$this->addFlash('success', 'Ambtenaar geanuleerd');
-			return $this->redirect($this->generateUrl('app_datum_index'));
+		if($huwelijkService->removeOfficial()){
+			//$this->addFlash('success', 'Ambtenaar geanuleerd');
+			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
 		}
 		else{
-			$this->addFlash('danger', 'Ambtenaar kon niet worden geanuleerd');
+			//$this->addFlash('danger', 'Ambtenaar kon niet worden geanuleerd');
 			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
 		}
 		

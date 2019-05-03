@@ -12,7 +12,21 @@ use App\Service\ProductService;
  * @Route("/paginas")
  */
 class PagesController extends AbstractController
-{ 
+{
+	/**
+	 * @Route("/annimatie")
+	 */
+	public function annimatieAction(Session $session)
+	{
+		$huwelijk = $session->get('huwelijk');
+		$user = $session->get('user');
+		
+		return $this->render('pages/annimatie.html.twig', [
+				'huwelijk' => $huwelijk,
+				'user' => $user,
+		]);
+	}
+	
 	/**
 	* @Route("/melding")
 	*/
