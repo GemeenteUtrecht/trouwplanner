@@ -31,9 +31,17 @@ class ProductService
 	
 	public function getOne($id)
 	{
-		$response = $this->client->request('GET','/producten/'.$id);
+		$response = $this->client->request('GET','/product/'.$id);
 		$response = json_decode($response->getBody(), true);
 		return $response;
 	}
 	
+	
+	public function save($ambtenaar)
+	{
+		$request= $this->client->request('POST','product/'.$id,null,json_encode($ambtenaar));
+		$response=  $this->client->send($request);
+		$response = json_decode($response->getBody(), true);
+		return $response;
+	}
 }

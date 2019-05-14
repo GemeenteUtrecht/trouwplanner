@@ -7,53 +7,64 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType; 
 use Symfony\Component\Form\FormBuilderInterface;
 
-class AmbtenaarType extends AbstractType
+class HuwelijkType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-		->add('aanhef', ChoiceType::class, [
+		->add('type', ChoiceType::class, [
 				'attr' => ['class' => 'form-control'],
-				'label' => 'Aanhef',
+				'label' => 'Type',
 				'label_attr' => ['class' => 'control-label col-sm-2'],
-				'required'   => false,
-				'empty_data' => 'Dhr.',
+				'required'   => true,
 				'choices'  => [
-						'Dhr.' => 'Dhr.',
-						'Mvr.' => 'Mvr.',
+						'Huwelijk' => 'huwelijk.',
+						'Parterschap' => 'partnerschap',
 				],
 				
 		])
-		->add('voornaamen', TextType::class, [
+		->add('primairProduct', ChoiceType::class, [
 				'attr' => ['class' => 'form-control'],
-				'label' => 'Voornaam',
+				'label' => 'Ceremonie',
 				'label_attr' => ['class' => 'control-label col-sm-2'],
-				'required'   => false,
-				'empty_data' => 'John',
+				'required'   => true,
+				'choices'  => [],
 				
 		])
-		->add('geslachtsnaam', TextType::class, [
+		/*
+		->add('datum', DateType::class, [
 				'attr' => ['class' => 'form-control'],
-				'label' => 'Achternaam',
+				'label' => 'Datum',
 				'label_attr' => ['class' => 'control-label col-sm-2'],
-				'required'   => false,
-				'empty_data' => 'Doe',
+				'required'   => false
 				
 		])
-		->add('samenvatting', TextareaType::class, [
+		->add('tijd', TimeType::class, [
 				'attr' => ['class' => 'form-control'],
+				'label' => 'Tijdstip',
 				'label_attr' => ['class' => 'control-label col-sm-2'],
-				'required'   => false,
-				'empty_data' => 'Een top ambtenaar',
+				'required'   => false
 				
 		])
-		->add('beschrijving', TextareaType::class, [
+		*/
+		->add('trouwAmbtenaar', ChoiceType::class, [
 				'attr' => ['class' => 'form-control'],
+				'label' => 'Ambtenaar',
 				'label_attr' => ['class' => 'control-label col-sm-2'],
-				'required'   => false,
-				'empty_data' => 'Maar dan ook echt een top ambtenaar!',
+				'required'   => true,
+				'choices'  => [],
+				
+		])
+		->add('locatie', ChoiceType::class, [
+				'attr' => ['class' => 'form-control'],
+				'label' => 'Locatie',
+				'label_attr' => ['class' => 'control-label col-sm-2'],
+				'required'   => true,
+				'choices'  => [],
 				
 		])
 		->add('opslaan', SubmitType::class, [

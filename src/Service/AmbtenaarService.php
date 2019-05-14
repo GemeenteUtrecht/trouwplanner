@@ -36,4 +36,12 @@ class AmbtenaarService
 		return $response;
 	}
 	
+	public function save($ambtenaar)
+	{
+		$request= $this->client->request('POST','ambtenaar/'.$id,null,json_encode($ambtenaar));
+		$response=  $this->client->send($request);
+		$response = json_decode($response->getBody(), true);
+		return $response;
+	}
+	
 }

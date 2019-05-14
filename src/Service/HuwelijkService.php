@@ -35,7 +35,7 @@ class HuwelijkService
 	
 	public function getOne($id)
 	{
-		$response = $this->client->request('GET','/huwelijken/'.$id);
+		$response = $this->client->request('GET','/huwelijk/'.$id);
 		$response = json_decode($response->getBody(), true);
 		return $response;
 	}
@@ -252,6 +252,14 @@ class HuwelijkService
 	}
 	
 	
+	
+	public function save($ambtenaar)
+	{
+		$request= $this->client->request('POST','huwelijk/'.$id,null,json_encode($ambtenaar));
+		$response=  $this->client->send($request);
+		$response = json_decode($response->getBody(), true);
+		return $response;
+	}
 	
 	
 }

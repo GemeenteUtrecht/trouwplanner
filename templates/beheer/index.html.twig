@@ -4,7 +4,7 @@
 
 {% block body %}
         <!-- .container -->
-    	<div class="container bg-white">
+    	<div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
            <div class="col-md-3 bg-gray">
                		<ul class="nav flex-column nav-fill">
       				<li class="nav-item">

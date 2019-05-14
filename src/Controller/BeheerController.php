@@ -22,6 +22,7 @@ use App\Service\AgendaService;
 use App\Form\AmbtenaarType;
 use App\Form\LocatieType;
 use App\Form\ProductType;
+use App\Form\HuwelijkType;
 
 
 
@@ -78,12 +79,20 @@ class BeheerController extends AbstractController
 		
 		$form->handleRequest($request);
 		
-		if ($form->isSubmitted() && $form->isValid()) {
+		if ($form->isSubmitted() && $form->isValid())
+		{
 			$ambtenaar = $form->getData();
 			$ambtenaar = $ambtenaarService->Save($ambtenaar);
 			
 			
-			return $this->redirectToRoute('task_success');
+			$this->addFlash('success', 'Ambtenaar bijgewerkt');
+			return $this->redirectToRoute('app_beheer_ambtenaar',['id'=>$id]);
+		}
+		elseif($form->isSubmitted() && !$form->isValid())
+		{
+			
+			$this->addFlash('danger', 'Ambtenaar <u>niet</u> bijgewerkt');
+			return $this->redirectToRoute('app_beheer_ambtenaar',['id'=>$id]);
 		}
 		
 		return $this->render('beheer/ambtenaar.html.twig', [
@@ -108,11 +117,31 @@ class BeheerController extends AbstractController
 	/**
 	 * @Route("/locatie/{id}")
 	 */
-	public function locatieAction(Session $session, $id, LocatieService $locatieService)
+	public function locatieAction(Request $request, Session $session, $id, LocatieService $locatieService)
 	{
 		
 		$locatie= $locatieService->getOne($id);
 		$form = $this->createForm(LocatieType::class, $locatie);
+		
+		$form->handleRequest($request);
+		
+		var_dump($form->getErrors());
+		
+		if ($form->isSubmitted() && $form->isValid())
+		{
+			$locatie= $form->getData();
+			$locatie= $locatieService->Save($locatie);
+			
+			
+			$this->addFlash('success', 'Locatie bijgewerkt');
+			return $this->redirectToRoute('app_beheer_locatie',['id'=>$id]);
+		}
+		elseif($form->isSubmitted() && !$form->isValid())
+		{
+			
+			$this->addFlash('danger', 'Locatie <u>niet</u> bijgewerkt');
+			return $this->redirectToRoute('app_beheer_locatie',['id'=>$id]);
+		}
 		
 		return $this->render('beheer/locatie.html.twig', [
 				'locatie' => $locatie,
@@ -139,10 +168,30 @@ class BeheerController extends AbstractController
 	public function huwelijkAction(Request $request,Session $session, $id, HuwelijkService $huwelijkService)
 	{
 		$huwelijk = $huwelijkService->getOne($id);
+		$form = $this->createForm(HuwelijkType::class, $huwelijk);
+		
+		$form->handleRequest($request);
+		
+		if ($form->isSubmitted() && $form->isValid()) 
+		{
+			$huwelijk = $form->getData();
+			$huwelijk= $huwelijkService->Save($huwelijk);
+			
+			
+			$this->addFlash('success', 'Huwelijk bijgewerkt');
+			return $this->redirectToRoute('app_beheer_huwelijk',['id'=>locatie]);
+		}
+		elseif($form->isSubmitted() && !$form->isValid())
+		{
+			
+			$this->addFlash('danger', 'Huwelijk <u>niet</u> bijgewerkt');
+			return $this->redirectToRoute('app_beheer_huwelijk',['id'=>locatie]);
+		}
+		
 		
 		return $this->render('beheer/huwelijk.html.twig', [
 				'huwelijk' => $huwelijk,
-				'user' => $user,
+				'form' => $form->createView(),
 		]);
 	}
 		
@@ -214,13 +263,31 @@ class BeheerController extends AbstractController
 	/**
 	 * @Route("/product/{id}")
 	 */
-	public function productAction(Request $request,Session $session, $id, ProductService $productService)
+	public function productAction(Request $request, Session $session, $id, ProductService $productService)
 	{
 		$product = $productService->getOne($id);
 		$form = $this->createForm(ProductType::class, $product);
 		
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid())
+		{
+			$product= $form->getData();
+			$product= $productService->Save($product);
+			
+			
+			$this->addFlash('success', 'Product bijgewerkt');
+			return $this->redirectToRoute('app_beheer_product',['id'=>$id]);
+		}
+		elseif($form->isSubmitted() && !$form->isValid())
+		{
+			
+			$this->addFlash('danger', 'Product <u>niet</u> bijgewerkt');
+			return $this->redirectToRoute('app_beheer_product',['id'=>$id]);
+		}
+		
 		return $this->render('beheer/product.html.twig', [
-				'product' => $product
+				'product' => $product,
+				'form' => $form->createView(),
 		]);
 	}
 	
