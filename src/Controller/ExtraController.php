@@ -37,7 +37,7 @@ class ExtraController extends AbstractController
 		
 		$product= $productService->getOne($id);
 		
-		//$this->addFlash('success', 'Extra '.$product['naam'].' is toegevoegd');
+		$this->addFlash('success', 'Extra '.$product['naam'].' is toegevoegd');
 		
 		return $this->render('ambtenaar/ambtenaar.html.twig', [
 				'user' => $user,

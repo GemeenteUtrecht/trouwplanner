@@ -3,11 +3,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- 		<!-- .wrap-container -->
-    <div class="wrap-container8040">
-        
         <!-- .container -->
-    	<div class="container">
+    	<div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
             
             <!-- .row -->
                 
@@ -44,10 +41,4 @@
                 
             </div>
             <!-- .row end -->
-            
-        </div>
-        <!-- .container end -->
-        
-    </div>
-    <!-- .wrap-container end -->    
 {% endblock %}

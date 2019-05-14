@@ -43,7 +43,7 @@ class ProductController extends AbstractController
 		
 		$product= $productService->getOne($id);
 		
-		//$this->addFlash('success', 'Plechtigheid '.$product['naam'].' ingesteld');
+		$this->addFlash('success', 'Uw plechtigheid '.$product['naam'].' ingesteld');
 		
 		return $this->redirect($this->generateUrl('app_datum_index'));
 	}

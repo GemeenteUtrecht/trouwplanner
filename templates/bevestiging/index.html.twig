@@ -3,14 +3,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- 	<!-- .wrap-container -->
-    <div class="wrap-container8040" ng-init="getToken('<?php echo $requestUriArray[2]; ?>')">
-        
-        <!-- .container -->
-    	<div class="container">
-            
             <!-- .row -->
-            <div class="row">
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}"  >
                 
                 <div class="col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs" ng-hide="token">
                 	<div class="margin-bottom40">
@@ -85,20 +79,9 @@
             </div>
             <!-- .row end -->
             
-        </div>
-        <!-- .container end -->
-        
-    </div>
-    <!-- .wrap-container end -->
-    
-     <!-- .wrap-container -->
-    <div class="wrap-container8040 bg-grey" ng-show="token.huwelijk">
-        
-        <!-- .container -->
-    	<div class="container">
             
             <!-- .row -->
-            <div class="row">                                
+            <div class="row" class="row animation"  {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>                                
                 <div class="col-sm-6 col-md-3">
                 	<strong>Partner 1</strong>
                 	<br />{{ token.huwelijk.partners[0].persoon.voornamen }} {{ token.huwelijk.partners[0].persoon.geslachtsnaam}} 
@@ -138,10 +121,4 @@
                 </div>               
             </div>
             <!-- .row end -->
-            
-        </div>
-        <!-- .container end -->
-        
-    </div>
-    <!-- .wrap-container end -->
 {% endblock %}

@@ -37,11 +37,11 @@ class ReserveringController extends AbstractController
 		
 		
 		if($huwelijkService->aanvraag()){
-			//$this->addFlash('success', 'Uw reservering is verzonden');
-			return $this->redirect($this->generateUrl('app_extra_index'));
+			$this->addFlash('success', 'Uw reservering is verzonden');
+			return $this->redirect($this->generateUrl('app_melding_index'));
 		}
 		else{
-			//$this->addFlash('danger', 'Uw reservering kon niet worden verzonden');
+			$this->addFlash('danger', 'Uw reservering kon niet worden verzonden');
 			return $this->redirect($this->generateUrl('app_reservering_index'));
 		}		
 		
@@ -60,11 +60,11 @@ class ReserveringController extends AbstractController
 		$huwelijk['melding'] = null;
 		
 		if($huwelijkService->updateHuwelijk($huwelijk)){
-			//$this->addFlash('success', 'Uw reservering is geanuleerd');
+			$this->addFlash('success', 'Uw reservering is geanuleerd');
 			return $this->redirect($this->generateUrl('app_reservering_index'));
 		}
 		else{
-			//$this->addFlash('danger', 'Uw reservering kon niet worden geanuleerd');
+			$this->addFlash('danger', 'Uw reservering kon niet worden geanuleerd');
 			return $this->redirect($this->generateUrl('app_reservering_index'));
 		}		
 	}

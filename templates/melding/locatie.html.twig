@@ -3,14 +3,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- 	<!-- .wrap-container -->
-    <div class="wrap-container8040" ng-init="loadLocatie(<?php echo $requestUriArray[2]; ?>)">
-        
-        <!-- .container -->
-    	<div class="container">
-            
             <!-- .row -->
-            <div class="row">
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
                 
                 <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs" ng-hide="locatie">
                 	<div class="margin-bottom40">
@@ -59,20 +53,9 @@
             </div>
             <!-- .row end -->
             
-        </div>
-        <!-- .container end -->
-        
-    </div>
-    <!-- .wrap-container end -->
-
-    <!-- .wrap-container -->
-    <div class="wrap-container8040 bg-grey" ng-show="locatie">
-        
-        <!-- .container -->
-    	<div class="container">
             
             <!-- .row -->
-            <div class="row">
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
                 
                 <div class="col-sm-10 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0">
                 	<figure class="margin-bottom40 animation" data-animation="animation-fade-in-left">
@@ -87,12 +70,6 @@
                 
             </div>
             <!-- .row end -->
-            
-        </div>
-        <!-- .container end -->
-        
-    </div>
-    <!-- .wrap-container end -->
     
     
 {% endblock %}

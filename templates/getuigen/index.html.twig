@@ -3,11 +3,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}   
-        <!-- .container -->
-    	<div class="container bg-dark">       
-            
             <!-- .row -->
-            <div class="row">         
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >         
                 <div class="post-heading-center">
                 	<h2>Uw Getuigen</h2>
                     <p>Voor een huwelijk zijn er getuigen nodig, minimaal 1 en maximaal 2 per partner</p>
@@ -69,7 +66,6 @@
                		</form>
             	</div>
                 {# endif #} 
-            </div><!-- /.row -->            
-		</div><!-- /.container  -->
+            </div><!-- /.row -->          
         
 {% endblock %}

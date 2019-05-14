@@ -53,24 +53,23 @@
                             </a>
                             <br/>Reserveren
     					</li>
-    					<!-- 
-                        <li class="animation  {% if huwelijk is not empty and huwelijk.getuigen|length >= 4 %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="200">             
+                        <li class="animation" data-animation="animation-bounce-in" data-delay="1400">      
+                        	<a href="{{ path('app_melding_index') }}" target="_blanck"> 
+                            	<i class="fas fa-envelope fa-3x"></i>
+                            </a>
+                            <br/>Melding
+    					</li>
+                        <li class="animation  {% if huwelijk is not empty and huwelijk.getuigen|length >= 4 %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="1600">             
                         	<a href="{{ path('app_getuigen_index') }}">
                             	<i class="fas fa-users  fa-3x"></i>
                             </a>
                             <br/>Getuigen
-    					</li> -->
-                        <li class="animation" data-animation="animation-bounce-in" data-delay="1400">             
+    					</li>
+                        <li class="animation" data-animation="animation-bounce-in" data-delay="1800">             
                         	<a href="{{ path('app_extra_index') }}">
                         		<i class="fas fa-gift fa-3x"></i>
                             </a>
                             <br/>Extras       
-    					</li>
-                        <li class="animation" data-animation="animation-bounce-in" data-delay="1600">      
-                        	<a href="https://pki.utrecht.nl/Loket/product/start/70e867fa386cda6205557e70defb3db6/c0820d2301a11a4c7a268fec039e295c" target="_blanck"> 
-                            	<i class="fas fa-envelope fa-3x"></i>
-                            </a>
-                            <br/>Melding
     					</li>
     					<!-- 
                         <li  class="animation {% if huwelijk is not empty and huwelijk.melding is defined  %}completed{% endif %}">      
@@ -78,13 +77,13 @@
                             	<i class="fas fa-envelope fa-3x"></i>
                             </a>
                             <br/>Melding
-    					</li>
-                        <li  class="animation {% if huwelijk is defined and huwelijk.betaling is defined  %}completed{% endif %}">      
+    					</li>-->
+                        <li  class="animation {% if huwelijk is defined and huwelijk.betaling is defined  %}completed{% endif %}" data-animation="animation-bounce-in" data-delay="2000">      
                         	<a href="{{ path('app_betalen_index') }}">
                         		<i class="fas fa-cash-register fa-3x"></i>
                             </a>
                             <br/>Betalen
-    					</li>-->
+    					</li>
                     </ul>          
                 </div><!-- .col end -->  
                 {% else %} 

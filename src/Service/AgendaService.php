@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use GuzzleHttp\Client ;
 use GuzzleHttp\RequestOptions;
 
-class HuwelijkService
+class AgendaService
 {
 	private $params;
 	private $client;
@@ -25,21 +25,7 @@ class HuwelijkService
 				'timeout'  => 2000.0,
 		]);
 	}
-	
-	public function getAll()
-	{
-		$response = $this->client->request('GET');
-		$response = json_decode($response->getBody(), true);
-		return $response["hydra:member"];
-	}
-	
-	public function getOne($id)
-	{
-		$response = $this->client->request('GET','/huwelijken/'.$id);
-		$response = json_decode($response->getBody(), true);
-		return $response;
-	}
-	
+		
 	public function getHuwelijkOnBsn($bsn)
 	{		
 		$response =  $this->client->post('/huwelijk_bsn', [

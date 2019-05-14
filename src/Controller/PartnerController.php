@@ -26,16 +26,15 @@ class PartnerController extends AbstractController
 		if ($request->isMethod('POST')) {
 			$partner['voornamen'] = $request->request->get('voornamen');
 			$partner['geslachtsnaam'] = $request->request->get('geslachtsnaam');
-			$partner['geslachtsnaam'] = $request->request->get('geslachtsnaam');
 			$partner['emailadres'] = $request->request->get('emailadres');
 			$partner['telefoonnummer'] = $request->request->get('telefoonnummer');
 			
 			if($huwelijkService->invitePartner($partner)){
-				//$this->addFlash('success', 'Partner uitgenodigd');
+				$this->addFlash('success', 'Uw partner '.$partner['voornamen'].' '.$partner['geslachtsnaam'].'uitgenodigd');
 				return $this->redirect($this->generateUrl('app_product_index'));
 			}
 			else{
-				//$this->addFlash('danger', 'Partner kon niet worden uitgenodigd');
+				$this->addFlash('danger', 'Partner kon niet worden uitgenodigd');
 			}
 		}
 		

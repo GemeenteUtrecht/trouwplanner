@@ -2,11 +2,9 @@
 
 {% extends 'base.html.twig' %}
 
-{% block body %}
- 	 <!-- .container -->
-    	<div class="container">            
+{% block body %}     
             <!-- .row -->
-            <div class="row">
+            <div class="row animation" {% if app.session.flashbag.peekAll|length > 0 %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>
                 
                 <div class="d-none d-md-block col-md-4 col-md-offset-0 hidden-xs hidden-sm">
                 	<figure class="margin-bottom40 animation animated animation-fade-in-left" data-animation="animation-fade-in-left">
@@ -140,9 +138,5 @@
                     -->
                 </div>
             </div>
-            <!-- .row end -->
-            
-        </div>
-        <!-- .container end -->   
-    
+            <!-- .row end -->    
 {% endblock %}

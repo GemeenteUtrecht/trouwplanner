@@ -2,13 +2,9 @@
 
 
 {% block body %}   
- 	 <!-- #header end -->
-    <div id="checklist" class="wrap-container8040 bg-grey">        
-        <!-- .container -->
-    	<div class="container">
             
             <!-- .row -->
-            <div class="row">
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
                 
                 <div class="d-none d-md-block col-md-4 col-md-offset-0 hidden-xs hidden-sm">
                 	<figure class="margin-bottom40 animation animated animation-fade-in-left" data-animation="animation-fade-in-left">
@@ -124,9 +120,4 @@
                 </div>
             </div>
             <!-- .row end -->
-            
-        </div>
-        <!-- .container end -->
-    </div>
-    <!-- #checklist end -->
 {% endblock %}

@@ -3,11 +3,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- 	  <!-- .container -->
-    	<div class="container bg-white">
-            
             <!-- .row -->
-            <div class="row">          
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >          
                 <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
                 	<div class="margin-bottom40">
                     	<div class="post-heading-left text-center-sm text-center-xs" >
@@ -53,7 +50,4 @@
                 
             </div>
             <!-- .row end -->
-            
-        </div>
-        <!-- .container end -->    
 {% endblock %}

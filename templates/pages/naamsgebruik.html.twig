@@ -3,22 +3,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <!-- .container -->
-    	<div class="container bg-white">
-                    	
-                    	<div class="post-heading-center ">
-                            <h2>Naamsgebruik</h2>
-                        </div>
-            
             <!-- .row -->
-            <div class="row">
+            <div class="row" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
+                    	<div class="post-heading-center ">
+                            <h2>Naamgebruik</h2>
+                        </div>
                 <div class="col-sm-10 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-               		<p>Echtgenoten en geregistreerd partners mogen elkaars achternaam gebruiken.</p>
-
-					<p> Naast het gebruik van uw eigen naam zijn er 3 mogelijkheden:    eerst uw eigen naam, gevolgd door de achternaam uw partner  eerst de naam van uw partner, gevolgd door uw eigen achternaam  de naam van uw partner in plaats van uw eigen achternaam      In offici&euml;le documenten zoals uw paspoort en rijbewijs wordt altijd uw eigen achternaam vermeld, met eventueel de toevoeging &lsquo;echtgenote of echtgenoot van &#8230;&rsquo; of &lsquo;geregistreerd partner van &#8230;&rsquo;.     Woont u niet in gemeente Etten-Leur dan moet u na uw huwelijk of partnerschapregistratie uw naamgebruik doorgeven aan uw woongemeente.</p>
+               		<p>Na het huwelijk kunt u ervoor kiezen om gewoon onder uw eigen achternaam aangeschreven te blijven worden door overheidsinstanties. Maar u kunt er ook voor kiezen om de achternaam van uw partner te gebruiken. Er zijn  hierbij 3 mogelijkheden:</p>
+					<ul>
+						<li>Eerst uw eigen achternaam, gevolgd door de achternaam uw partner</li>
+						<li>Eerst de achternaam van uw partner, gevolgd door uw eigen achternaam</li>
+						<li>Alleen de achternaam van uw partner</li>
+					</ul>
+					<p>In officiële documenten zoals uw paspoort en rijbewijs wordt altijd uw eigen achternaam vermeld, met eventueel de toevoeging ‘echtgenote of echtgenoot van …’ of ‘geregistreerd partner van …’. </p>
             	</div><!-- /.col -->
             </div><!-- /.row -->
-            
-        </div>
-        <!-- .container end -->
 {% endblock %}

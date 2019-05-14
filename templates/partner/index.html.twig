@@ -2,11 +2,9 @@
 
 {% extends 'base.html.twig' %}
 
-{% block body %}
-        <!-- .container -->
-    	<div class="container bg-white">                        
+{% block body %}                  
             <!-- .row-custom -->
-            <div class="row-custom animation" {% if huwelijk is not empty and huwelijk.type is not empty %}data-animation="animation-fade-in" data-delay="3400"{% endif %}>     
+            <div class="row-custom animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >     
                 <div class="post-heading-center">
                 	<h2>Uw partner</h2>
                 </div>
@@ -25,7 +23,7 @@
                     <div class="affa-feature-icon"> <!-- 2 -->
                     	<i class="fas fa-home " ></i>
                         <div class="feature-text">
-                        	<h4>Adres en contact</h4>
+                        	<h4>Adres</h4>
                             <p ng-hide="huwelijk.partners[0].acceptatieDatum ">{{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
                             <p ng-show="huwelijk.partners[0].acceptatieDatum">
                             {# huwelijk.partners[0].persoon.verblijfadres.straatnaam }} {{ huwelijk.partners[0].persoon.verblijfadres.huisnummer }} <br />
@@ -34,6 +32,27 @@
                             {{ huwelijk.partners[0].persoon.telefoonnummer #}
                             </p>
                          </div>
+                    </div>
+                    
+                    <!-- Uitnodigen partner 2 -->
+                    <div class="affa-feature-icon"> <!-- 6 -->
+                    	<i class="fas fa-envelope"></i>
+                        <div class="feature-text">
+                        	<h4>Uw contact gegevens</h4>
+                            <p>We willen graag nog een paar dingen van u weten</p>         
+                            <br/>                   
+		                	<form method="post" action="{{ path('app_partner_index')}}" class="affa-form-contact">
+		                    	<div class="submit-status"></div> <!-- submit status -->
+
+                                <label for="partner_email">Email Adres <span class="required">*</span></label>
+                                <input type="text" name="emailadres" placeholder="john@do.nl" />
+                                <label for="partner_telefoonnummer">Telefoonnummer</label>
+                                <input type="text" name="telefoonnummer" nlaceholder="+31 6 12345678" />
+                                
+ 								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button>
+ 								
+		                    </form>
+                        </div>
                     </div>
                 </div>
                 
@@ -69,6 +88,9 @@
                             {{ huwelijk.partners[1].persoon.telefoonnummer #}
 
 							</p>
+							
+							
+     						<a href="{{ path('app_product_index') }}" class="btn btn-primary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Ga door naar ceremonie</a>
                         </div>
                     </div>        
                     {% else %} 
@@ -108,17 +130,7 @@
     	    
             
             {% if huwelijk is not empty and huwelijk.type is not empty %} 
-             <!-- .row -->
-            <div class="row animation save-confirmation" data-animation="animation-bounce-out" data-delay="3000">        	
-            	<div class="post-heading-center animation" data-animation="animation-fade-in-down">
-                	<h2>Uw keuze {{ huwelijk.type }} is opgeslagen</h2>
-               	</div>
-                <div class="col-md-12 text-center">
-       				<i class="fas fa-check fa-6x animation" data-animation="animation-fade-in-down" ></i>
-                </div><!-- /.col -->
-            </div><!-- /.row -->      
+              
             {% endif %}    
-        </div>
-        <!-- .container end -->    
     
 {% endblock %}

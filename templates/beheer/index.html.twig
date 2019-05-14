@@ -1,0 +1,48 @@
+{# templates/home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <!-- .container -->
+    	<div class="container bg-white">
+           <div class="col-md-3 bg-gray">
+               		<ul class="nav flex-column nav-fill">
+      				<li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_beheer_huwelijken') }}"><i class="fas fa-ring"></i> Huwelijken</a>
+                  	</li>
+      				<li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_beheer_ambtenaren') }}"><i class="fas fa-user-tie"></i> Ambtenaren</a>
+                  	</li>
+      				<li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_beheer_locaties') }}"><i class="fas fa-building"></i> Locaties</a>
+                  	</li>
+      				<li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_beheer_producten') }}"><i class="fas fa-gift"></i> Producten</a>
+                  	</li>
+      				<li class="nav-item">
+                      <a class="nav-link" href="{{ path('app_beheer_paginas') }}"><i class="far fa-browser"></i> Paginas</a>
+                  	</li>
+      				<li class="nav-item">
+                      <a class="nav-link " href="{{ path('app_beheer_berichten') }}"><i class="far fa-file-alt"></i> Berichten</a>
+                  	</li>
+      				<li class="nav-item">
+                      <a class="nav-link " href="{{ path('app_beheer_instellingen') }}"><i class="fas fa-cogs"></i> Instellingen</a>
+                  	</li>
+            	</ul>
+
+           </div>
+           <div class="col-md-9"> <!-- 4 -->
+                {% block admin %} 
+                <!-- .row -->
+                <div class="row">            
+                    <div class="post-heading-center">
+                    	<h2>Beheer</h2>
+                        <p>Maak aan de linkerkant een keuze voor welke objecten u wilt beheren</p>
+                    </div>
+                </div>
+                
+                {% endblock %}
+           </div>                    
+        <!-- .container end -->
+    
+{% endblock %}

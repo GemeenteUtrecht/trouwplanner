@@ -3,16 +3,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <!-- .container -->
-    	<div class="container bg-white">
             <!-- .row -->
-            <div class="row">
+            <div class="row animation data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
             
                 <div class="post-heading-center">
-                	<h2>Waar willen jullie gaan trouwen?</h2>
-                	
-                    <p>Van puur en simpel tot heel romantisch, voor ieder wat wils. Alle locaties van de gemeente zijn hier te vinden en te boeken. Echter als jullie besluiten op een andere (goedgekeurde) locatie te willen trouwen, maak dan zelf een afspraak daar en geef het aan ons door zodra deze geboekt is! Zo kan er niks mis gaan. </p>
-                	<p class="margin-bottom30">Om te trouwen of een partnerschap te laten registreren is natuurlijk een locatie nodig! De gemeente Utrecht heeft een aantal eigen locaties en daarnaast zijn er in Utrecht ook diverse vrije locaties om te trouwen. Hieronder vindt u een overzicht van deze locaties om een goed beeld te krijgen en een keuze te kunnen maken. Vervolgens kan de locatie worden gereserveerd. </p>
+                	<h2>Waar wilt u trouwen?</h2>                	
+                    <p>Een trouwlocatie; in Utrecht is er voor elk wat wils. De gemeente Utrecht heeft een aantal eigen locaties; het Stadhuis, het Wijkservicecentrum in Vleuten en het Stadskantoor.  Een keuze voor een van deze locaties kunt u direct hier doen. </p>
+                	<p>Daarnaast zijn er verschillende andere vaste trouwlocaties. Deze locaties zijn door de gemeente al goedgekeurd. Hieronder vindt u het overzicht van deze locaties. Heeft u een keuze gemaakt uit een van de vaste locaties? Maak dan eerst een afspraak met de locatieen geef dan aan ons door waar u wilt trouwen. </p>
+                	<p class="margin-bottom30"> Maar misschien wilt u een heel andere locatie. Bijvoorbeeld het café om de hoek, bij u thuis of in uw favoriete restaurant. Zo’n locatie heet een vrije locatie.  Een aanvraag voor een vrije locatie kunt u hier ook doen. </p>
                 </div>
                 
                 <nav class="isotope-menu" >
@@ -39,8 +37,5 @@
                     </div>
                     {% endfor %}     
                 </div>  
-            </div>
-            
-        </div>
-        <!-- .container end -->
+            </div> 
 {% endblock %}

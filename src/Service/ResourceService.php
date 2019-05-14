@@ -1,18 +1,22 @@
 <?php
-// src/Service/ProductService.php
+// src/Service/HuwelijkService.php
 namespace App\Service;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use GuzzleHttp\Client;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use GuzzleHttp\Client ;
+use GuzzleHttp\RequestOptions;
 
-class ProductService
+class ResourceService
 {
 	private $params;
 	private $client;
+	private $session;
 	
-	public function __construct(ParameterBagInterface $params)
+	public function __construct(ParameterBagInterface $params, SessionInterface $session)
 	{
 		$this->params = $params;
+		$this->session = $session;
 		
 		$this->client= new Client([
 				// Base URI is used with relative requests

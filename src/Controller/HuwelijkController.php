@@ -39,10 +39,10 @@ class HuwelijkController extends AbstractController
 		
 		if($huwelijkService->updateHuwelijk($huwelijk)){
 			$huwelijk = $session->get('huwelijk');
-			//$this->addFlash('success', 'Type '.$type.' geselecteerd');
+			$this->addFlash('success', 'Type '.$type.' geselecteerd');
 		}
 		else{
-			//$this->addFlash('danger', 'Type '.$type.' kon niet worden geselecteerd');
+			$this->addFlash('danger', 'Type '.$type.' kon niet worden geselecteerd');
 		}
 		return $this->redirect($this->generateUrl('app_partner_index'));		
 	}
@@ -63,11 +63,11 @@ class HuwelijkController extends AbstractController
 				$huwelijkService->setOfficial((int) 4); // Toegewezen ambtenaar
 			}
 			
-			//$this->addFlash('success', 'Plechtigheid geselecteerd');
+			$this->addFlash('success', 'Plechtigheid geselecteerd');
 			return $this->redirect($this->generateUrl('app_datum_index'));
 		}
 		else{
-			//$this->addFlash('danger', 'Plechtigheid kon niet worden geselecteerd');
+			$this->addFlash('danger', 'Plechtigheid kon niet worden geselecteerd');
 			return $this->redirect($this->generateUrl('app_huwelijk_index'));
 		}
 		
@@ -83,11 +83,11 @@ class HuwelijkController extends AbstractController
 		
 		if($huwelijkService->removeProduct((int) $id)){
 			
-			//$this->addFlash('success', 'Plechtigheid geselecteerd');
+			$this->addFlash('success', 'Plechtigheid geselecteerd');
 			return $this->redirect($this->generateUrl('app_datum_index'));
 		}
 		else{
-			//$this->addFlash('danger', 'Plechtigheid kon niet worden geselecteerd');
+			$this->addFlash('danger', 'Plechtigheid kon niet worden geselecteerd');
 			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
 		}
 		

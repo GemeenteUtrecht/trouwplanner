@@ -37,10 +37,10 @@ class HomeController extends AbstractController
 	public function loginAction(Session $session, Request $request, HuwelijkService $huwelijkService, BRPService $brpService)
 	{
 		if($huwelijk = $huwelijkService->getHuwelijkOnBsn($request->request->get('bsn'))){			
-			//$this->addFlash('success', 'U ben succesvol ingelogd');		
+			$this->addFlash('success', 'U ben succesvol ingelogd');		
 		}
 		else{
-			//$this->addFlash('danger', 'U kon helaas niet worden ingelogd');		
+			$this->addFlash('danger', 'U kon helaas niet worden ingelogd');		
 		}
 				
 		$response = $this->forward('App\Controller\HuwelijkController::indexAction');		

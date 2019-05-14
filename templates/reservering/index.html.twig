@@ -5,11 +5,9 @@
 {% block body %}
     {% if huwelijk is not empty and huwelijk.aanvraag is empty  %}
 	    {{ include('home/nietgereserveerd.html.twig') }}	
-    {% endif %}    
- 	 <!-- .container -->
-    	<div class="container bg-white">            
+    {% endif %}         
             <!-- .row -->
-            <div class="row">
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
                 
                 <div class="d-none d-md-block col-md-4 col-md-offset-0 hidden-xs hidden-sm">
                 	<figure class="margin-bottom40 animation animated animation-fade-in-left" data-animation="animation-fade-in-left">
@@ -20,7 +18,7 @@
                 <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-0">
                 	<div class="col-text20 margin-bottom20">
                     	<div class="post-heading-left">
-                            <h2>Wat is al gedaan en wat moet er nog gebeuren?</h2>
+                            <h2>Wat is er al gedaan en wat moet er nog gebeuren?</h2>
                             <p>We kunnen ons goed voorstellen dat er nogal wat op jullie afkomt bij het plannen van een {{ huwelijk.type }}, daarom hebben we alles op een rij gezet voor jullie. Een handig overzicht van wat er moet gebeuren, maar ook wat er al is gedaan.</p>
                             <p>Legenda
                             	<i class="fa far fa-square"></i> Nog te doen
@@ -62,7 +60,7 @@
                                     	{% if huwelijk is not empty and huwelijk.partners|length >= 2 %}
                         				<i class="fa fas fa-check"></i> U heeft {{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}} uitgenodigd     
                                     	{% else %}
-                                    	<i class="far fa-square" ></i> Nodig <a href="{{ path('app_partner_index') }}">hier</a> uw partner uit
+                                    	<i class="fa far fa-square" ></i> Nodig <a href="{{ path('app_partner_index') }}">hier</a> uw partner uit
                                     	{% endif %}
                                     </li>
                                     <!-- locatie -->
@@ -89,7 +87,7 @@
                             	<ul class="list-icon">
                                     {% if huwelijk is not empty and huwelijk.aanvraag  is not empty   %}
                                     <li>
-                                    	<i class="fa fas fa-check"></i> Uw reservering: {{ huwelijk.aanvraag }} 
+                                    	<i class="fa fas fa-check"></i> Uw reservering is bij ons bekend onder nummer: {{ huwelijk.aanvraag }} 
                                     </li>
                                     <li>
                                         <i class="fas fa-exclamation"></i><u>Uw reservering is nog xx dagen geldig</u>
@@ -132,9 +130,9 @@
     							<i class="fas fa-times"></i>
     			            	Annuleer uw reservering
     		           		</a>
-    		            	<a href="https://pki.utrecht.nl/Loket/product/start/70e867fa386cda6205557e70defb3db6/c0820d2301a11a4c7a268fec039e295c" class="btn btn-primary btn-icon" >
+    		            	<a href="{{ path('app_melding_index') }}" class="btn btn-primary btn-icon" >
     							<i class="fas fa-share-square"></i> 
-    			            	Doe u melding
+    			            	Doe een melding
     		           		</a>    
                         {% endif %}
     		            	<a href="{{ path('app_extra_index') }}" class="btn btn-primary btn-icon" >
@@ -144,8 +142,6 @@
                     	</div><!-- /.btn-section -->    
                     	  
                 	</div><!-- /.col -->           
-                </div><!-- /.row -->           
-            </div><!-- ./container --> 
-          
+                </div><!-- /.row -->                 
     
 {% endblock %}

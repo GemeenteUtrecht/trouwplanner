@@ -92,11 +92,11 @@ class AmbtenaarController extends AbstractController
 		$user = $session->get('user');
 		
 		if($huwelijkService->removeOfficial()){
-			//$this->addFlash('success', 'Ambtenaar geanuleerd');
+			$this->addFlash('success', 'Ambtenaar geanuleerd');
 			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
 		}
 		else{
-			//$this->addFlash('danger', 'Ambtenaar kon niet worden geanuleerd');
+			$this->addFlash('danger', 'Ambtenaar kon niet worden geanuleerd');
 			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
 		}
 		

@@ -3,17 +3,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <!-- .container -->
-    	<div class="container bg-white">  
             <!-- .row-custom -->
-            <div class="row-custom" style="padding-top: 30px;">     
+            <div class="row-custom animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >     
                 <div class="post-heading-center">
                 	<h2>Gaat u een huwelijk of partnerschap aan?</h2>
                 </div>
             
                 <div class="col-left">
                 	<div class="affa-feature-icon"> <!-- 1 -->
-                    	<i class="fas fa-heart animation" data-animation="animation-fade-in-left"></i>
+                    	<i class="fas fa-heart"></i>
                         <div class="feature-text">
                         	<h4>Partnerschap</h4>
                             <p class="text-left">
@@ -26,20 +24,20 @@
 								Meer informatie over trouwen, geregistreerd partnerschap en een samenlevingscontract vindt u op de <a href="https://www.rijksoverheid.nl/onderwerpen/trouwen-samenlevingscontract-en-geregistreerd-partnerschap/">website</a> van de Rijksoverheid.
                             </p>
                         </div>
-     				<a href="{{ path('app_huwelijk_type',{'type':'partnerschap'}) }}" class="btn btn-secondary btn-icon  btn-block"><i class="far fa-rings-wedding"></i> Kies Partnerschp</a>
+     				<a href="{{ path('app_huwelijk_type',{'type':'partnerschap'}) }}" class="btn btn-secondary btn-icon  btn-block"><i class="far fa-rings-wedding"></i> Kies Partnerschap</a>
                     </div>
      			
      			</div><!-- .col-left -->    	
      			
                 <div class="col-center">
-                	<figure class="margin-bottom40 animation" data-animation="animation-fade-in-down">
+                	<figure class="margin-bottom40">
                     	<img src="/images/content/elements/trouwstell.png"/>
                     </figure>
                 </div>
                                 
                 <div class="col-right">
                 	<div class="affa-feature-icon"> 
-                    	<i class="fas fa-heart animation" data-animation="animation-fade-in-right"></i>
+                    	<i class="fas fa-heart" ></i>
                         <div class="feature-text">
                         	<h4>Huwelijk</h4>
                             <p>
@@ -53,7 +51,7 @@
      					<a href="{{ path('app_huwelijk_type',{'type':'huwelijk'}) }}" class="btn btn-secondary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Kies huwelijk</a>
                     </div>
                 	<div class="affa-feature-icon"> 
-                    	<i class="fas fa-heart animation" data-animation="animation-fade-in-right"></i>
+                    	<i class="fas fa-heart" ></i>
                         <div class="feature-text">
                         	<h4>Omzetten</h4>
                             <p>
@@ -69,6 +67,5 @@
                     </div>
                     
      			</div><!-- .col-right -->         			
-           </div> <!-- .row-custom end -->              
-       </div> <!-- /.container -->          
+           </div> <!-- .row-custom end -->      
 {% endblock %}

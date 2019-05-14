@@ -3,20 +3,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- 	<!-- #extras -->
-    <div id="teams" class="wrap-container8040 bg-dark" ng-show="huwelijk && (display == 'page' || stage == 'extras')">
-        
-        <!-- .container -->
-    	<div class="container">
-            
-            <div class="post-heading-center">
-            	<h2>Extra opties</h2>
-                <p>U kunt uiteraard ook extra opties kiezen voor uw huwelijk</p>
-            </div>
-            
             <!-- .row -->
-            <div class="row">
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
                 
+                <div class="post-heading-center">
+                	<h2>Extra opties</h2>
+                    <p>U kunt uiteraard ook extra opties kiezen voor uw huwelijk</p>
+                </div>
+            
                 <div class="col-sm-3"> <!-- 1 -->
                 	<div class="affa-team-profile">
                     	<figure class="team-profile-img" >
@@ -72,10 +66,4 @@
                 
             </div>
             <!-- .row end -->
-            
-		</div>
-        <!-- .container end -->
-        
-	</div>
-    <!-- #teams -->    
 {% endblock %}

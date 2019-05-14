@@ -3,13 +3,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- 	 <!-- #contact -->
-    <div id="contact" class="wrap-container80 bg-grey">        
-        <!-- .container -->
-    	<div class="container">            
-            <!-- .row -->
              <!-- .row -->
-            <div class="row">
+            <div class="row animation" data-animation="animation-fade-in" data-delay=" {% if app.session.flashbag.peekAll|length > 0 %}3400{%else%}200{% endif %}" >
                 
                 <div class="col-sm-4">
                 	<div class="affa-info-text">
@@ -77,11 +72,5 @@
 						
             </div>
             <!-- .row end -->
-            
-        </div>
-        <!-- .container end -->
-        
-    </div>
-    <!-- #contact end --> 
     
 {% endblock %}

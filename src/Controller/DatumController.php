@@ -24,17 +24,21 @@ class DatumController extends AbstractController
 		$user = $session->get('user');
 		
 		/* @todo we should turn this into symfony form */
-		if ($request->isMethod('POST')) {
+		if ($request->isMethod('POST') && $request->request->get('datum')) {
+			
+			var_dump($request->request->get('datum'));
 			
 			$dateArray = (explode(" ",$request->request->get('datum')));
 			$date = strtotime($dateArray[1].' '.$dateArray[2].' '.$dateArray[3]);
 			$date = date('Y-m-d',$date);
 			
 			if($huwelijkService->setDate($date, $request->request->get('tijd'))){
-				//$this->addFlash('success', 'Datum en tijd '.$date. ' om '.$huwelijk['tijd'].' geselecteerd');
+				$this->addFlash('success', 'Uw datum voorkeur '.$date.' is opgeslagen');
+				return $this->redirect($this->generateUrl('app_locatie_index'));
 			}
 			else{
-				//$this->addFlash('danger', 'Datum en tijd '.$huwelijk['datum']. ' om '.$huwelijk['tijd'].'  kon niet worden geselecteerd');
+				$this->addFlash('danger', 'Datum voorkeur kon niet worden opgeslagen');
+				return $this->redirect($this->generateUrl('app_datum_index'));
 			}
 			
 		}
@@ -53,7 +57,6 @@ class DatumController extends AbstractController
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		//$this->addFlash('success', 'Datum voorkeur opgeslagen');
 		
 		return $this->redirect($this->generateUrl('app_locatie_index'));
 	}
