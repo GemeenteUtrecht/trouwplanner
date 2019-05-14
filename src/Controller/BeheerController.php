@@ -74,8 +74,8 @@ class BeheerController extends AbstractController
 	 */
 	public function ambtenaarAction(Request $request, Session $session, $id, AmbtenaarService $ambtenaarService)
 	{
-		$ambtenaar = $ambtenaarService->getOne($id);		
-		$form = $this->createForm(AmbtenaarType::class, $ambtenaar);
+		$ambtenaar = $ambtenaarService->getOne($id);
+		$form = $this->createForm(AmbtenaarType::class,$ambtenaar);			
 		
 		$form->handleRequest($request);
 		
@@ -85,14 +85,18 @@ class BeheerController extends AbstractController
 			$ambtenaar = $ambtenaarService->Save($ambtenaar);
 			
 			
+			
 			$this->addFlash('success', 'Ambtenaar bijgewerkt');
 			return $this->redirectToRoute('app_beheer_ambtenaar',['id'=>$id]);
 		}
 		elseif($form->isSubmitted() && !$form->isValid())
 		{
 			
-			$this->addFlash('danger', 'Ambtenaar niet< bijgewerkt');
+			$this->addFlash('danger', 'Ambtenaar niet bijgewerkt');
 			return $this->redirectToRoute('app_beheer_ambtenaar',['id'=>$id]);
+		}
+		else{
+			$form = $this->createForm(AmbtenaarType::class,$ambtenaar);			
 		}
 		
 		return $this->render('beheer/ambtenaar.html.twig', [

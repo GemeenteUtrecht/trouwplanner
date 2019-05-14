@@ -36,9 +36,11 @@ class LocatieService
 		return $response;
 	}
 	
-	public function save($ambtenaar)
+	public function save($locatie)
 	{
-		$response= $this->client->request('PUT','locatie/'.$id,[],json_encode($ambtenaar));
+		$response = $this->client->put('locaties/'.$locatie['id'], [
+				\GuzzleHttp\RequestOptions::JSON => $locatie
+		]);
 		//$response=  $this->client->send($request);
 		$response = json_decode($response->getBody(), true);
 		return $response;

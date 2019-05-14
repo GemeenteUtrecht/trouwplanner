@@ -253,9 +253,11 @@ class HuwelijkService
 	
 	
 	
-	public function save($ambtenaar)
+	public function save($huwelijk)
 	{
-		$response= $this->client->request('PUT','huwelijk/'.$id,[],json_encode($ambtenaar));
+		$response = $this->client->put('huwelijk/'.$huwelijk['id'], [
+				\GuzzleHttp\RequestOptions::JSON => $huwelijk
+		]);
 		//$response=  $this->client->send($request);
 		$response = json_decode($response->getBody(), true);
 		return $response;

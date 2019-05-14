@@ -38,7 +38,11 @@ class AmbtenaarService
 	
 	public function save($ambtenaar)
 	{
-		$response= $this->client->request('PUT','ambtenaar/'.$ambtenaar['id'],[],json_encode($ambtenaar));
+		//$response= $this->client->request('PUT','ambtenaar/'.$ambtenaar['id'], $ambtenaar);
+		
+		$response = $this->client->put('ambtenaar/'.$ambtenaar['id'], [
+				\GuzzleHttp\RequestOptions::JSON => $ambtenaar
+		]);
 		//$response=  $this->client->send($request);
 		$response = json_decode($response->getBody(), true);
 		return $response;
