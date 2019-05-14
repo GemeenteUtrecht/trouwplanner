@@ -38,8 +38,8 @@ class AmbtenaarService
 	
 	public function save($ambtenaar)
 	{
-		$request= $this->client->request('POST','ambtenaar/'.$id,null,json_encode($ambtenaar));
-		$response=  $this->client->send($request);
+		$response= $this->client->request('PUT','ambtenaar/'.$ambtenaar['id'],[],json_encode($ambtenaar));
+		//$response=  $this->client->send($request);
 		$response = json_decode($response->getBody(), true);
 		return $response;
 	}

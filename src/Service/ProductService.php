@@ -37,10 +37,10 @@ class ProductService
 	}
 	
 	
-	public function save($ambtenaar)
+	public function save($product)
 	{
-		$request= $this->client->request('POST','product/'.$id,null,json_encode($ambtenaar));
-		$response=  $this->client->send($request);
+		$response= $this->client->request('PUT','product/'.$product['id'],[],json_encode($product));
+		//$response=  $this->client->send($request);
 		$response = json_decode($response->getBody(), true);
 		return $response;
 	}

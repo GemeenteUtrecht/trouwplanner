@@ -91,7 +91,7 @@ class BeheerController extends AbstractController
 		elseif($form->isSubmitted() && !$form->isValid())
 		{
 			
-			$this->addFlash('danger', 'Ambtenaar <u>niet</u> bijgewerkt');
+			$this->addFlash('danger', 'Ambtenaar niet< bijgewerkt');
 			return $this->redirectToRoute('app_beheer_ambtenaar',['id'=>$id]);
 		}
 		
@@ -125,7 +125,7 @@ class BeheerController extends AbstractController
 		
 		$form->handleRequest($request);
 		
-		var_dump($form->getErrors());
+		///var_dump($form->getErrorsAsString());
 		
 		if ($form->isSubmitted() && $form->isValid())
 		{
@@ -139,7 +139,7 @@ class BeheerController extends AbstractController
 		elseif($form->isSubmitted() && !$form->isValid())
 		{
 			
-			$this->addFlash('danger', 'Locatie <u>niet</u> bijgewerkt');
+			$this->addFlash('danger', 'Locatie niet bijgewerkt');
 			return $this->redirectToRoute('app_beheer_locatie',['id'=>$id]);
 		}
 		
@@ -184,7 +184,7 @@ class BeheerController extends AbstractController
 		elseif($form->isSubmitted() && !$form->isValid())
 		{
 			
-			$this->addFlash('danger', 'Huwelijk <u>niet</u> bijgewerkt');
+			$this->addFlash('danger', 'Huwelijk niet bijgewerkt');
 			return $this->redirectToRoute('app_beheer_huwelijk',['id'=>locatie]);
 		}
 		
@@ -281,7 +281,7 @@ class BeheerController extends AbstractController
 		elseif($form->isSubmitted() && !$form->isValid())
 		{
 			
-			$this->addFlash('danger', 'Product <u>niet</u> bijgewerkt');
+			$this->addFlash('danger', 'Product niet bijgewerkt');
 			return $this->redirectToRoute('app_beheer_product',['id'=>$id]);
 		}
 		

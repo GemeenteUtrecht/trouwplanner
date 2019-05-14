@@ -38,8 +38,8 @@ class LocatieService
 	
 	public function save($ambtenaar)
 	{
-		$request= $this->client->request('POST','locatie/'.$id,null,json_encode($ambtenaar));
-		$response=  $this->client->send($request);
+		$response= $this->client->request('PUT','locatie/'.$id,[],json_encode($ambtenaar));
+		//$response=  $this->client->send($request);
 		$response = json_decode($response->getBody(), true);
 		return $response;
 	}
