@@ -40,4 +40,21 @@ class ResourceService
 		return $response;
 	}
 	
+	public function save($locatie)
+	{
+		if($locatie['id']){
+			$response = $this->client->put('locaties/'.$locatie['id'], [
+					\GuzzleHttp\RequestOptions::JSON => $locatie
+			]);
+		}
+		else{
+			$locatie= $this->client->post('locaties', [
+					\GuzzleHttp\RequestOptions::JSON => $locatie
+			]);
+		}
+		//$response=  $this->client->send($request);
+		$response = json_decode($response->getBody(), true);
+		return $response;
+	}
+	
 }

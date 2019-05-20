@@ -38,14 +38,19 @@ class AmbtenaarService
 	
 	public function save($ambtenaar)
 	{
-		//$response= $this->client->request('PUT','ambtenaar/'.$ambtenaar['id'], $ambtenaar);
+		if($ambtenaar['id']){
+			$response = $this->client->put('ambtenaar/'.$ambtenaar['id'], [
+					\GuzzleHttp\RequestOptions::JSON => $ambtenaar
+			]);
+		}
+		else{
+			$response = $this->client->post('ambtenaren', [
+					\GuzzleHttp\RequestOptions::JSON => $ambtenaar
+			]);
+		}
 		
-		$response = $this->client->put('ambtenaar/'.$ambtenaar['id'], [
-				\GuzzleHttp\RequestOptions::JSON => $ambtenaar
-		]);
 		//$response=  $this->client->send($request);
 		$response = json_decode($response->getBody(), true);
 		return $response;
-	}
-	
+	}	
 }

@@ -13,7 +13,8 @@
                     </div>
 	                            
                     {% for product in producten %} 
-                    <div class="col-sm-4 tbl-prc-col {% if huwelijk is not empty and huwelijk.primairProduct is not empty and product.id == huwelijk.primairProduct.id %}tbl-prc-col-recommended{%  endif  %}" > <!-- 1  -->
+                    {% if huwelijk is not empty and ((huwelijk.primairProduct is not empty and product.id == huwelijk.primairProduct.id) or huwelijk.primairProduct is empty) %}
+                    <div class="col-sm-4 tbl-prc-col"> <!-- 1  -->
                     	<div class="tbl-prc-wrap">
                         	<div class="tbl-prc-heading">
                             	<h4>
@@ -44,11 +45,17 @@
 	                            <br/><br/>
 	                            U dient in te loggen voordat u een huwelijks type kan selecteren.<br/><br/>
                     			<a href="http://digispoof.zaakonline.nl?responce_url={{ absolute_url(path('app_home_login'))|replace({'http://': 'https://'}) }}"  class="btn btn-primary btn-icon  btn-block"><span class="fas fa-sign-in-alt"></span> Inloggen</a> 
-	                            
-                                {% endif %}
+	                            {% endif %}
                             </div>
                         </div>
                     </div>
+                    {% endif %}
+                    
+                    {% if huwelijk is not empty and huwelijk.primairProduct is not empty %}
+                    <div class="col-sm-8 tbl-prc-col"> <!-- 1  -->                    	
+	                 	<a href="{{ path('app_huwelijk_unset',{'id':product.id}) }}"  class="btn btn-danger btn-icon " >Wijzig ceremonie</a> 
+                    </div>
+                     {% endif %}
                     {% endfor %}                        
                     
                 </div>

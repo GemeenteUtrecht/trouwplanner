@@ -40,9 +40,11 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                	<figure class="col-img40 margin-bottom40 animation">
-                        <img  ng-src="{{locatie.afbeelding.url}}" alt="Image">
-                    </figure>
+                         {% if huwelijk is defined and huwelijk and huwelijk.locatie is not empty%}
+                        	<figure class="col-img40 margin-bottom40">
+                                <img  ng-src="{{locatie.afbeelding.url}}" alt="Image">
+                            </figure>
+                         {% endif %}
                     
                     beschikbaarheid van deze locatie
                 </div>

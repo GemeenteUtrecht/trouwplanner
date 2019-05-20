@@ -39,9 +39,16 @@ class ProductService
 	
 	public function save($product)
 	{
-		$response = $this->client->put('product/'.$product['id'], [
-				\GuzzleHttp\RequestOptions::JSON => $product
-		]);
+		if($product['id']){
+			$response = $this->client->put('product/'.$product['id'], [
+					\GuzzleHttp\RequestOptions::JSON => $product
+			]);
+		}
+		else{
+			$response = $this->client->post('products', [
+					\GuzzleHttp\RequestOptions::JSON => $product
+			]);
+		}
 		//$response=  $this->client->send($request);
 		$response = json_decode($response->getBody(), true);
 		return $response;
