@@ -41,16 +41,14 @@
                         	<h4>Uw contact gegevens</h4>
                             <p>We willen graag nog een paar dingen van u weten</p>         
                             <br/>                   
-		                	<form method="post" action="{{ path('app_partner_index')}}" class="affa-form-contact">
+		                	<form method="post" action="{{ path('app_partner_update')}}" class="affa-form-contact">
 		                    	<div class="submit-status"></div> <!-- submit status -->
 
                                 <label for="partner_email">Email Adres <span class="required">*</span></label>
-                                <input type="text" name="emailadres" placeholder="john@do.nl" />
+                                <input type="text" name="emailadres" placeholder="john@do.nl" value="{{ huwelijk.partners[1].persoon.emailadres }}"/>
                                 <label for="partner_telefoonnummer">Telefoonnummer</label>
-                                <input type="text" name="telefoonnummer" nlaceholder="+31 6 12345678" />
-                                
- 								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button>
- 								
+                                <input type="text" name="telefoonnummer" placeholder="+31 6 12345678" value="{{ huwelijk.partners[1].persoon.telefoonnummer }}"/>                                
+ 								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button> 								
 		                    </form>
                         </div>
                     </div>

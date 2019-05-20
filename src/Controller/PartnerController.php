@@ -46,6 +46,29 @@ class PartnerController extends AbstractController
 	
 	
 	/**
+	 * @Route("/update")
+	 */
+	public function updateAction(Session $session ,Request $request,HuwelijkService $huwelijkService)
+	{
+		$huwelijk = $session->get('huwelijk');
+		$user = $session->get('user');
+		
+		var_dump($huwelijk);
+		$huwelijk['partners'][0]['persoon']['emailadres'] = $request->request->get('emailadres');
+		$huwelijk['partners'][0]['persoon']['telefoonnummer'] = $request->request->get('telefoonnummer');
+		
+		if($huwelijkService->updateHuwelijk($huwelijk)){
+			$huwelijk = $session->get('huwelijk');
+			$this->addFlash('success', 'Uw gegevens zijn bijgewerkt');
+		}
+		else{
+			$this->addFlash('danger', 'Uw gegevens konden niet worden bijgewerkt');
+		}
+		
+		return $this->redirect($this->generateUrl('app_partner_index'));
+	}
+	
+	/**
 	 * @Route("/invite")
 	 */
 	public function inviteAction(Session $session, HuwelijkService $huwelijkService)
