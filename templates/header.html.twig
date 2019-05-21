@@ -12,7 +12,7 @@
           </div>
           {% if huwelijk is defined and huwelijk%}
           <div class="header-loginbar">
-          	<i class="fas fa-lock-alt"></i> U bent ingelogd over een beveiligde verbinding, klik <a href="{{ path('app_home_logout') }}"> hier om uit te loggen</a>
+          	<i class="fas fa-lock-alt"></i>Beste {{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}} bent ingelogd over een beveiligde verbinding, klik <a href="{{ path('app_home_logout') }}"> hier om uit te loggen</a>
           </div>          
           {% endif %}            
         </div>        
