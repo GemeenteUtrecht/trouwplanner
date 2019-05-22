@@ -7,20 +7,24 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use GuzzleHttp\Client ;
 use GuzzleHttp\RequestOptions;
 
+use App\Service\CommonGroundService;
+
 class HuwelijkService
 {
 	private $params;
 	private $client;
 	private $session;
+	private $commonGroundService;
 	
-	public function __construct(ParameterBagInterface $params, SessionInterface $session)
+	public function __construct(ParameterBagInterface $params, SessionInterface $session, CommonGroundService $commonGroundService)
 	{
 		$this->params = $params;
 		$this->session = $session;
+		$this->commonGroundService = $commonGroundService;
 		
 		$this->client= new Client([
 				// Base URI is used with relative requests
-				'base_uri' => 'http://api.zaakonline.nl/huwelijken',
+				'base_uri' => 'http://trouwen.demo.zaakonline.nl/huwelijken',
 				// You can set any number of default request options.
 				'timeout'  => 2000.0,
 		]);
@@ -37,19 +41,60 @@ class HuwelijkService
 	{
 		$response = $this->client->request('GET','/huwelijk/'.$id);
 		$response = json_decode($response->getBody(), true);
+		//$response = $this->bewitchHuwelijk($response);
+		return $response;
+	}
+		
+	public function delete($huwelijk)
+	{
+		$response = $this->client->request('DELETE','/huwelijk/'.$huwelijk['id']);
+		$response = json_decode($response->getBody(), true);
 		return $response;
 	}
 	
-	public function getHuwelijkOnBsn($bsn)
-	{		
-		$response =  $this->client->post('/huwelijk_bsn', [
-				RequestOptions::JSON => ['bsn' => $bsn]
-		]);
+	public function getHuwelijkOnPersoon($persoon)
+	{
+		$response = $this->client->request('GET','/huwelijken',['query' => ['partners' => 'http://brp.demo.zaakonline.nl'.$persoon['@id']]]); //
+		$response = json_decode($response->getBody(), true);
 		
-		$huwelijk = json_decode($response->getBody(),true);
+		// Geen huwelijk, dus laten we er eentje aanmaken
+		if($response["hydra:totalItems"]==0){
+			$response =  $this->client->post('/huwelijken', [
+					RequestOptions::JSON => ['bronOrganisatie' => 123456789, 'partners' => ['http://brp.demo.zaakonline.nl'.$persoon['@id']]]
+			]);
+			$response = json_decode($response->getBody(), true);
+		}
+		else{
+			$response = $response["hydra:member"][0];			
+		}
 		
-		$this->session->set('huwelijk', $huwelijk);
-		$this->session->set('user', false);
+		//s$response = $this->bewitchHuwelijk($response);
+		
+		return $response;
+	}
+	
+	
+	/* Gets the contextual data for a huwelijk */
+	public function bewitchHuwelijk($huwelijk)
+	{			
+		if($huwelijk['locatie'])
+		{
+			$url = $huwelijk['locatie'];
+			$huwelijk['locatie']=$this->commonGroundService->getSingle($url);
+			$huwelijk['locatie']['url']=$url;
+		}
+		if($huwelijk['ambtenaar'])
+		{
+			$url = $huwelijk['ambtenaar'];
+			$huwelijk['ambtenaar']=$this->commonGroundService->getSingle($url);
+			$huwelijk['ambtenaar']['url']=$url;
+		}
+		if($huwelijk['ceremonie'])
+		{
+			$url = $huwelijk['ceremonie'];
+			$huwelijk['ceremonie']=$this->commonGroundService->getSingle($url);
+			$huwelijk['ceremonie']['url']=$url;
+		}
 		
 		return $huwelijk;
 	}
@@ -57,28 +102,38 @@ class HuwelijkService
 	/* updates the huwelijk to the session */
 	public function updateHuwelijk($huwelijk)
 	{				
-		$this->session->set('huwelijk', $huwelijk);
-		$huwelijk= $this->synchronizeHuwelijk();
+		//$this->session->set('huwelijk', $huwelijk);
+		$huwelijk = $this->synchronizeHuwelijk($huwelijk);
 		
 		return $huwelijk;
 	}
 	
 	/* synchronizes the Huwelijk in session with the api */
 	/* @todo this could be sped up using async */
-	public function synchronizeHuwelijk()
+	public function synchronizeHuwelijk($huwelijk)
 	{	
-		$huwelijk = $this->session->get('huwelijk');
-		unset($huwelijk['locatie']);
-		unset($huwelijk['primairProduct']);
-		unset($huwelijk['trouwAmbtenaar']);
-		unset($huwelijk['locaties']);
-		unset($huwelijk['partners']);
-		unset($huwelijk['getuigen']); 
-		unset($huwelijk['ambtenaren']);
-		unset($huwelijk['documenten']);
-		unset($huwelijk['issues']);
-		unset($huwelijk['additioneleProducten']);
-		//unset($huwelijk['']);
+		//$huwelijk = $this->session->get('huwelijk');
+		//unset($huwelijk['locatie']);
+		//unset($huwelijk['primairProduct']);
+		//unset($huwelijk['trouwAmbtenaar']);
+		//if($huwelijk['locatie']){$huwelijk['locatie'] = $huwelijk['locatie']['url'];}
+		//if($huwelijk['ambtenaar']){$huwelijk['ambtenaar'] = $huwelijk['ambtenaar']['url'];}
+		//if($huwelijk['ceremonie']){$huwelijk['ceremonie'] = $huwelijk['ceremonie']['url'];}
+		//unset();
+		//unset($huwelijk['partners']);
+		//unset($huwelijk['getuigen']); 
+		//unset($huwelijk['ambtenaren']);
+		//unset($huwelijk['documenten']);		
+		if(!$huwelijk['getuigen']){
+			$huwelijk['getuigen']=[];
+		}
+		if(!$huwelijk['extras']){
+			$huwelijk['extras']=[];
+		}
+		unset($huwelijk['registratiedatum']);
+		unset($huwelijk['wijzigingsdatum']);
+		unset($huwelijk['eigenaar']);
+		unset($huwelijk['taal']);
 		
 		$response =  $this->client->put('/huwelijk/'.$huwelijk['id'], [
 				RequestOptions::JSON => $huwelijk
@@ -86,7 +141,6 @@ class HuwelijkService
 		
 		
 		$huwelijk = json_decode($response->getBody(),true);
-		
 		$this->session->set('huwelijk', $huwelijk);
 		
 		return $huwelijk;
@@ -110,18 +164,13 @@ class HuwelijkService
 		
 		return $huwelijk;
 	}
-	public function setLocation($id)
+	public function setLocation($locatie)
 	{		
 		$huwelijk = $this->session->get('huwelijk');
-		
-		$response =  $this->client->post('/huwelijk/'.$huwelijk['id'].'/setLocation', [
-				RequestOptions::JSON => ['setLocation' => $id]
-		]);
-		
-		
-		$huwelijk = json_decode($response->getBody(),true);
-		
+		$huwelijk['locatie'] = $locatie;
+		$huwelijk = $this->synchronizeHuwelijk();
 		$this->session->set('huwelijk', $huwelijk);
+		
 		
 		return $huwelijk;
 	} 	
@@ -129,41 +178,30 @@ class HuwelijkService
 	public function removeLocation()
 	{
 		$huwelijk = $this->session->get('huwelijk');
-		
-		$response =  $this->client->put('/huwelijk/'.$huwelijk['id'], [
-				RequestOptions::JSON => ['location' => null]
-		]);
-		
-		$huwelijk = json_decode($response->getBody(),true);
+		$huwelijk['locatie'] = null;
+		$huwelijk = $this->synchronizeHuwelijk();
 		
 		$this->session->set('huwelijk', $huwelijk);
 		
 		return $huwelijk;
 	} 
 	
-	public function setProduct($id)
+	public function setProduct($product)
 	{
 		$huwelijk = $this->session->get('huwelijk');
-		
-		$response =  $this->client->post('/huwelijk/'.$huwelijk['id'].'/setProduct', [
-				RequestOptions::JSON => ['setProduct' => $id]
-		]);
-		
-		
-		$huwelijk = json_decode($response->getBody(),true);
+		$huwelijk['ceremonie'] = null;
+		$huwelijk = $this->synchronizeHuwelijk();
 		
 		$this->session->set('huwelijk', $huwelijk);
 		
 		return $huwelijk;
 	}
 	
-	public function removeProduct($id)
+	public function removeProduct()
 	{
-		$response =  $this->client->put('/huwelijk/'.$huwelijk['id'], [
-				RequestOptions::JSON => ['primairProduct' => null]
-		]);
-		
-		$huwelijk = json_decode($response->getBody(),true);
+		$huwelijk = $this->session->get('huwelijk');
+		$huwelijk['ceremonie'] = null;
+		$huwelijk = $this->synchronizeHuwelijk();
 		
 		$this->session->set('huwelijk', $huwelijk);
 		

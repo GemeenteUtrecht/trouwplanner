@@ -19,17 +19,16 @@
                         	<h4>Trouwboekje</h4>
                             <p>Blauw</p>
                         </div>
-                        <p>Een leuk boekje dat iedereen tekend, een leuk aandenken</p>
+                        <p>Een leuk aandenken<br/></p>
                         <div class="tbl-prc-footer">
                         	<!--
 	                    	<a href="{# path('app_extra_view',{'id':extra.id}) #}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
 	                    	<br/>
 	                    	-->
 	                    	<a href="{# path('app_extra_set',{'id':extra.id}) #}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
-                            {% if huwelijk is not empty and huwelijk.primairProduct is not empty %}
+                            
 	                    		<br/>	                    	
                            		<a href="{{ path('app_betalen_index') }}"  class="btn btn-danger btn-icon  btn-block">Ik hoef geen extra opties</a> 
-        	                 {% endif %}
                     	</div>
                     </div>
                 </div>
@@ -44,17 +43,15 @@
                         	<h4>Trouwboekje</h4>
                             <p>Rood</p>
                         </div>
-                        <p>Een leuk boekje dat iedereen tekend, een leuk aandenken</p>
+                        <p>Een leuk aandenken <br/></p>
                         <div class="tbl-prc-footer">
                         	<!--
 	                    	<a href="{# path('app_extra_view',{'id':extra.id}) #}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
 	                    	<br/>
 	                    	-->
 	                    	<a href="{# path('app_extra_set',{'id':extra.id}) #}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
-                            {% if huwelijk is not empty and huwelijk.primairProduct is not empty %}
 	                    		<br/>	                    	
-                           		<a href="{{ path('app_melding_index') }}"  class="btn btn-danger btn-icon  btn-block">Ik hoef geen extra opties</a> 
-        	                 {% endif %}
+                           		<a href="{{ path('app_betalen_index') }}"  class="btn btn-danger btn-icon  btn-block">Ik hoef geen extra opties</a> 
                     	</div>
                     </div>
                 </div>
@@ -75,10 +72,8 @@
 	                    	<br/>
 	                    	-->
 	                    	<a href="{# path('app_extra_set',{'id':extra.id}) #}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
-                            {% if huwelijk is not empty and huwelijk.primairProduct is not empty %}
 	                    		<br/>	                    	
-                           		<a href="{{ path('app_melding_index') }}"  class="btn btn-danger btn-icon  btn-block">Ik hoef geen extra opties</a> 
-        	                 {% endif %}
+                           		<a href="{{ path('app_betalen_index') }}"  class="btn btn-danger btn-icon  btn-block">Ik hoef geen extra opties</a> 
                     	</div>
                     </div>
                 </div>

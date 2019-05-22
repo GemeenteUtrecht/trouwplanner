@@ -13,7 +13,7 @@
                 	<div class="affa-feature-icon"> <!-- 1 -->
                     	<i class="fas fa-user" ></i>
                         <div class="feature-text">
-                        	<h4>{{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}}</h4>
+                        	<h4>{{ user.naam.voornamen }} {{  user.naam.geslachtsnaam }}</h4>
                             <p>
 	                            Dit bent u zelf
                             </p>
@@ -24,12 +24,11 @@
                     	<i class="fas fa-home " ></i>
                         <div class="feature-text">
                         	<h4>Adres</h4>
-                            <p ng-hide="huwelijk.partners[0].acceptatieDatum ">{{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
-                            <p ng-show="huwelijk.partners[0].acceptatieDatum">
-                            {# huwelijk.partners[0].persoon.verblijfadres.straatnaam }} {{ huwelijk.partners[0].persoon.verblijfadres.huisnummer }} <br />
-                            {{ huwelijk.partners[0].persoon.verblijfadres.postcode }} {{ huwelijk.partners[0].persoon.verblijfadres.woonplaats }}<br />
-                            {{ huwelijk.partners[0].persoon.emailadres }}<br />
-                            {{ huwelijk.partners[0].persoon.telefoonnummer #}
+                            <p>
+                            {{ user.verblijfadres.straatnaam }} {{  user.verblijfadres.huisnummer }} <br />
+                            {{ user.verblijfadres.postcode }} {{ user.verblijfadres.woonplaats }}<br />
+                            {{ user.emailadres }}<br />
+                            {{ user.telefoonnummer }}
                             </p>
                          </div>
                     </div>
@@ -45,9 +44,9 @@
 		                    	<div class="submit-status"></div> <!-- submit status -->
 
                                 <label for="partner_email">Email Adres <span class="required">*</span></label>
-                                <input type="text" name="emailadres" placeholder="john@do.nl" value="{{ huwelijk.partners[1].persoon.emailadres }}"/>
+                                <input type="text" name="emailadres" placeholder="john@do.nl" value="{{  user.emailadres }}"/>
                                 <label for="partner_telefoonnummer">Telefoonnummer</label>
-                                <input type="text" name="telefoonnummer" placeholder="+31 6 12345678" value="{{ huwelijk.partners[1].persoon.telefoonnummer }}"/>                                
+                                <input type="text" name="telefoonnummer" placeholder="+31 6 12345678" value="{{ user.telefoonnummer }}"/>                                
  								<button type="submit" class="btn btn-success btn-lg btn-block btn-icon"><i class="far fa-envelope"></i> Opslaan</button> 								
 		                    </form>
                         </div>
@@ -62,11 +61,13 @@
                 
                 <div class="col-right">
 					<!-- NAW gegevens partner 2 -->					
-            	    {% if huwelijk.partners|length > 1 %}
+            	    {% if huwelijk.partners|length > 1 %}            	    
+                    {% for partner in partners %}		
+            	    {% if partner.id != user.id %}    
                 	<div class="affa-feature-icon"> 
                     	<i class="fas fa-user " ></i>
                         <div class="feature-text">
-                        	<h4>{{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}}</h4>
+                        	<h4>{{partner.naam.voornamen }} {{ partner.naam.geslachtsnaam}}</h4>
                             <p>
 	                            {# huwelijk.partners[1].status #} 
                             </p>
@@ -78,12 +79,11 @@
                     	<i class="fas fa-home"></i>
                         <div class="feature-text">
                         	<h4>Adres en contact</h4>
-                            <p ng-hide="huwelijk.partners[1].acceptatieDatum ">{{ huwelijk.partners[1].persoon.voornamen }} {{ huwelijk.partners[1].persoon.geslachtsnaam}} heeft de uitnodiging nog niet geacepteerd.</p>
-                            <p ng-show="huwelijk.partners[1].acceptatieDatum">
-                            {# huwelijk.partners[1].persoon.verblijfadres.straatnaam }} {{ huwelijk.partners[1].persoon.verblijfadres.huisnummer }} <br />
-                            {{ huwelijk.partners[1].persoon.verblijfadres.postcode }} {{ huwelijk.partners[1].persoon.verblijfadres.woonplaats }}<br />
-                            {{ huwelijk.partners[1].persoon.emailadres }}<br />
-                            {{ huwelijk.partners[1].persoon.telefoonnummer #}
+                            <p>
+                            {# partner.verblijfadres.straatnaam }} {{ partner.huisnummer }} <br />
+                            {{ partner.persoon.verblijfadres.postcode }} {{ partner.verblijfadres.woonplaats }}<br />
+                            {{ partner.persoon.emailadres }}<br />
+                            {{ partner.telefoonnummer #}
 
 							</p>
 							
@@ -91,12 +91,14 @@
      						<a href="{{ path('app_product_index') }}" class="btn btn-primary btn-icon btn-block"><i class="far fa-rings-wedding"></i> Ga door naar ceremonie</a>
                         </div>
                     </div>        
+                    {% endif %}
+                    {% endfor %}
                     {% else %} 
 					<!-- Uitnodigen partner 2 -->
                     <div class="affa-feature-icon"> <!-- 6 -->
                     	<i class="fas fa-envelope"></i>
                         <div class="feature-text">
-                        	<h4>{% if huwelijk is defined and huwelijk.type is defined  %}Vraag je partner ten  {{ huwelijk.type|capitalize }}{% else %}Nodig je partner uit{% endif %}.</h4>
+                        	<h4>{% if huwelijk is defined and huwelijk.type is defined  %}Vraag uw partner ten  {{ huwelijk.type|capitalize }}{% else %}Nodig uw partner uit{% endif %}.</h4>
                             <p>Want dit doet u natuurlijk samen</p>         
                             <br/>                   
 		                	<form method="post" action="{{ path('app_partner_index')}}" class="affa-form-contact">

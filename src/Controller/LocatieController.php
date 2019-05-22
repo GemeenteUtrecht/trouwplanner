@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Service\LocatieService;
 use App\Service\HuwelijkService;
+use App\Service\CommonGroundService;
 
 /**
  * @Route("/locaties")
@@ -18,14 +19,16 @@ class LocatieController extends AbstractController
 	/**
 	* @Route("/")
 	*/
-	public function indexAction(Session $session, LocatieService $locatieService)
+	public function indexAction(Session $session, LocatieService $locatieService,  CommonGroundService $commonGroundService)
 	{
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 				
+		$locatie = null;
 		// What if we already have an official?
-		if($huwelijk['locatie'] && $huwelijk['locatie']['id']){
-			return $this->redirect($this->generateUrl('app_locatie_view', ['id'=> (int)$huwelijk['locatie']['locatie']['id']]));
+		if($huwelijk['locatie'] ){
+			$locatie=$commonGroundService->getSingle($huwelijk['locatie']);
+			return $this->redirect($this->generateUrl('app_locatie_view', ['id'=> (int)$locatie['id']]));
 		}	
 		
 		$locaties = $locatieService->getAll();
@@ -34,6 +37,7 @@ class LocatieController extends AbstractController
 				'user' => $user,
 				'huwelijk' => $huwelijk,
 				'locaties' => $locaties,
+				'locatie' => $locatie,
 		]);
 	}
 	
@@ -45,14 +49,17 @@ class LocatieController extends AbstractController
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		if($huwelijkService->setLocation((int) $id)){
-			$this->addFlash('success', 'Locatie '.$locatie['naam'].' is ingesteld');
+		$locatie = $locatieService->getOne($id);
+		$huwelijk['locatie'] ="http://locaties.demo.zaakonline.nl".$locatie["@id"];
+		
+		if($huwelijkService->updateHuwelijk($huwelijk)){
+			$this->addFlash('success', 'Uw locatie '.$locatie['naam'].' is toegevoegd');
 			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
 		}
 		else{
-			$this->addFlash('danger', 'Locatie '.$locatie['naam'].' kon niet worden ingesteld');
+			$this->addFlash('danger', 'Locatie kon niet worden toegeveogd');
 			return $this->redirect($this->generateUrl('app_locatie_index'));
-		}		
+		}
 		
 	}
 	
@@ -64,7 +71,9 @@ class LocatieController extends AbstractController
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		if($huwelijkService->removeLocation()){
+		
+		$huwelijk['locatie'] = null;		
+		if($huwelijkService->updateHuwelijk($huwelijk)){
 			$this->addFlash('success', 'Locatie '.$locatie['naam'].' is ingesteld');
 			return $this->redirect($this->generateUrl('app_locatie_index'));
 		}
@@ -78,14 +87,14 @@ class LocatieController extends AbstractController
 	/**
 	 * @Route("/{id}")
 	 */
-	public function viewAction(Session $session, $id, LocatieService $locatieService)
+	public function viewAction(Session $session, $id, LocatieService $locatieService,  CommonGroundService $commonGroundService)
 	{
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
 		
 		$locatie= $locatieService->getOne($id);
-		
+				
 		return $this->render('locatie/locatie.html.twig', [
 				'user' => $user,
 				'huwelijk' => $huwelijk,

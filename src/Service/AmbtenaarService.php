@@ -16,7 +16,7 @@ class AmbtenaarService
 		
 		$this->client= new Client([
 				// Base URI is used with relative requests
-				'base_uri' => 'http://api.zaakonline.nl/ambtenaren',
+				'base_uri' => 'http://ambtenaren.demo.zaakonline.nl/ambtenaren',
 				// You can set any number of default request options.
 				'timeout'  => 2000.0,
 		]);
@@ -31,7 +31,7 @@ class AmbtenaarService
 	
 	public function getOne($id)
 	{
-		$response = $this->client->request('GET','ambtenaar/'.$id);
+		$response = $this->client->request('GET','ambtenaren/'.$id);
 		$response = json_decode($response->getBody(), true);
 		return $response;
 	}

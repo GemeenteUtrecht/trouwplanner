@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Service\AmbtenaarService;
 use App\Service\HuwelijkService;
+use App\Service\CommonGroundService;
 /**
  * @Route("/ambtenaren")
  */
@@ -17,14 +18,15 @@ class AmbtenaarController extends AbstractController
 	/**
 	* @Route("/")
 	*/
-	public function indexAction(Session $session, AmbtenaarService $ambtenaarService)
+	public function indexAction(Session $session, AmbtenaarService $ambtenaarService,  CommonGroundService $commonGroundService)
 	{
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
 		// What if we already have an official?
-		if($huwelijk['trouwAmbtenaar'] && $huwelijk['trouwAmbtenaar']['id']){
-			return $this->redirect($this->generateUrl('app_ambtenaar_view', ['id'=> (int)$huwelijk['trouwAmbtenaar']['ambtenaar']['id']]));			
+		if($huwelijk['ambtenaar'] ){
+			$ambtenaar=$commonGroundService->getSingle($huwelijk['ambtenaar']);
+			return $this->redirect($this->generateUrl('app_ambtenaar_view', ['id'=> (int)$ambtenaar['id']]));			
 		}		
 		
 		$ambtenaren= $ambtenaarService->getAll();
@@ -39,12 +41,12 @@ class AmbtenaarController extends AbstractController
 	/**
 	 * @Route("/voor-een-dag")
 	 */
-	public function voorEenDagAction(Session $session)
+	public function vooreendagAction(Session $session)
 	{
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		return $this->render('ambtenaar/voor-een-dag.html.twig', [
+		return $this->render('ambtenaar/voor-dag.html.twig', [
 				'user' => $user,
 				'huwelijk' => $huwelijk,
 		]);
@@ -71,15 +73,21 @@ class AmbtenaarController extends AbstractController
 	{
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');		
+				
+		$ambtenaar = $ambtenaarService->getOne($id);
+		$huwelijk['ambtenaar'] = "http://ambtenaren.demo.zaakonline.nl".$ambtenaar["@id"];
 		
-		if($huwelijkService->setOfficial((int) $id)){
-			$this->addFlash('success', 'Ambtenaar uitgenodigd');
+		if($huwelijkService->updateHuwelijk($huwelijk)){
+			$this->addFlash('success', 'Uw ambtenaar '.$ambtenaar['voornamen'].' is uitgenodigd');
 			return $this->redirect($this->generateUrl('app_reservering_index'));
 		}
 		else{
-			$this->addFlash('danger', 'Ambtenaar kon niet worden uitgenodigd');
+			$this->addFlash('danger', 'Ambtenaar kon niet worden geanuleerd');
 			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
-		}				
+		}
+		
+		
+					
 		
 	}
 	
@@ -91,7 +99,8 @@ class AmbtenaarController extends AbstractController
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		if($huwelijkService->removeOfficial()){
+		$huwelijk['ambtenaar'] = null;
+		if($huwelijkService->updateHuwelijk($huwelijk)){
 			$this->addFlash('success', 'Ambtenaar geanuleerd');
 			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
 		}

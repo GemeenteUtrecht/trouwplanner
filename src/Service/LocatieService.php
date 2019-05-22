@@ -16,7 +16,7 @@ class LocatieService
 		
 		$this->client= new Client([
 				// Base URI is used with relative requests
-				'base_uri' => 'http://api.zaakonline.nl/locaties',
+				'base_uri' => 'http://locaties.demo.zaakonline.nl/locaties',
 				// You can set any number of default request options.
 				'timeout'  => 2000.0,
 		]);

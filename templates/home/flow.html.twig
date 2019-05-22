@@ -11,55 +11,55 @@
             	{% if huwelijk is defined and huwelijk %}
             	<div class="col-md-12 text-center flow"> 
                     <ul>
-                        <li class="animation {% if huwelijk is not empty and huwelijk.type is not empty %}completed{% endif %}" data-animation="animation-bounce-in">                    
+                        <li class="animation {% if huwelijk is not empty and huwelijk.type is defined and huwelijk.type is not empty %}completed{% endif %}" data-animation="animation-bounce-in">                    
                         	<a href="{{ path('app_huwelijk_index') }}">
                         		<i class="fas fa-ring fa-3x "></i>
                             </a>
-                            <br/>{% if huwelijk is not empty and huwelijk.type is not empty %}{{ huwelijk.type|capitalize }}{% else %} Huwelijk {% endif %}
+                            <br/>{% if huwelijk is not empty and huwelijk.type is defined and huwelijk.type is not empty %}{{ huwelijk.type|capitalize }}{% else %} Wat wilt u? {% endif %}
     					</li>
-                        <li class="animation  {% if huwelijk is not empty and huwelijk.partners|length >= 2 %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="200">          
+                        <li class="animation  {% if huwelijk is not empty and huwelijk.partners is defined and huwelijk.partners|length >= 2 %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="200">          
                         	<a href="{{ path('app_partner_index') }}">
                             	<i class="fas fa-user-friends fa-3x "></i>
                             </a>
                            <br/> Partner
     					</li>
-                        <li class="animation  {% if huwelijk is not empty and huwelijk.primairProduct is not empty %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="400">          
+                        <li class="animation  {% if huwelijk is not empty  and huwelijk.ceremonie is defined and huwelijk.ceremonie is not empty %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="400">          
                         	<a href="{{ path('app_product_index') }}">
                             	<i class="fas fa-glass-cheers fa-3x "></i>
                             </a>
                            <br/> Ceremonie 
     					</li>
-                        <li class="animation  {% if huwelijk is not empty and huwelijk.datum is not empty and huwelijk.tijd is not empty %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="600">             
+                        <li class="animation  {% if huwelijk is not empty  and huwelijk.datum is defined and huwelijk.datum is not empty %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="600">             
                         	<a href="{{ path('app_datum_index') }}">
                         		<i class="fas fa-calendar-day fa-3x"></i>
                             </a>
                             <br/>Datum
     					</li>
-                        <li class="animation  {% if huwelijk is not empty and huwelijk.locatie is defined and huwelijk.locatie  %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="800">            
+                        <li class="animation  {% if huwelijk is not empty  and huwelijk.locatie is defined and huwelijk.locatie is defined and huwelijk.locatie  %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="800">            
                         	<a href="{{ path('app_locatie_index') }}" >
                             	<i class="fas fa-building  fa-3x "></i>
                             </a>
                             <br/>Locatie
     					</li>
-                        <li class="animation  {% if huwelijk is not empty and huwelijk.trouwAmbtenaar is defined  and huwelijk.trouwAmbtenaar  %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="1000">              
+                        <li class="animation  {% if huwelijk is not empty and huwelijk.ambtenaar is defined and huwelijk.ambtenaar  %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="1000">              
                         	<a href="{{ path('app_ambtenaar_index') }}" >
                         		<i class="fas fa-user-tie fa-3x "></i>
                             </a>
                             <br/>Ambtenaar
     					</li>
-                        <li class="animation  {% if huwelijk is not empty and huwelijk.aanvraag is not empty %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="1200">             
+                        <li class="animation  {% if huwelijk is not empty and huwelijk.aanvraag is defined   and huwelijk.aanvraag is not empty %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="1200">             
                         	<a href="{{ path('app_reservering_index') }}" >
                         		<i class="fas fa-calendar-check fa-3x" ></i>
                             </a>
                             <br/>Reserveren
     					</li>
                         <li class="animation" data-animation="animation-bounce-in" data-delay="1400">      
-                        	<a href="{{ path('app_melding_index') }}" target="_blanck"> 
+                        	<a href="{{ path('app_melding_index') }}"> 
                             	<i class="fas fa-envelope fa-3x"></i>
                             </a>
                             <br/>Melding
     					</li>
-                        <li class="animation  {% if huwelijk is not empty and huwelijk.getuigen|length >= 4 %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="1600">             
+                        <li class="animation  {% if huwelijk is not empty  and huwelijk.getuigen is defined  and huwelijk.getuigen|length >= 4 %}completed"{% endif %}" data-animation="animation-bounce-in" data-delay="1600">             
                         	<a href="{{ path('app_getuigen_index') }}">
                             	<i class="fas fa-users  fa-3x"></i>
                             </a>
@@ -72,13 +72,13 @@
                             <br/>Extras       
     					</li>
     					<!-- 
-                        <li  class="animation {% if huwelijk is not empty and huwelijk.melding is defined  %}completed{% endif %}">      
+                        <li  class="animation {% if huwelijk is not empty  and huwelijk.melding is defined and huwelijk.melding is defined  %}completed{% endif %}">      
                         	<a href="{{ path('app_melding_index') }}"> 
                             	<i class="fas fa-envelope fa-3x"></i>
                             </a>
                             <br/>Melding
     					</li>-->
-                        <li  class="animation {% if huwelijk is defined and huwelijk.betaling is defined  %}completed{% endif %}" data-animation="animation-bounce-in" data-delay="2000">      
+                        <li  class="animation {% if huwelijk is defined  and huwelijk.betaling is defined and huwelijk.betaling is defined  %}completed{% endif %}" data-animation="animation-bounce-in" data-delay="2000">      
                         	<a href="{{ path('app_betalen_index') }}">
                         		<i class="fas fa-cash-register fa-3x"></i>
                             </a>
@@ -88,7 +88,7 @@
                 </div><!-- .col end -->  
                 {% else %} 
             	<div class="col-md-12 text-center">      
-                    	<a href="http://digispoof.zaakonline.nl?responce_url={{ absolute_url(path('app_home_login'))|replace({'http://': 'https://'}) }}" class="btn btn-login btn-lg"><span class="fas fa-sign-in-alt"></span> Log hier in om te beginnen</a> 
+                    	<a href="http://digispoof.zaakonline.nl?responceUrl={{ absolute_url(path('app_home_login'))|replace({'http://': 'https://'}) }}" class="btn btn-login btn-lg"><span class="fas fa-sign-in-alt"></span> Log hier in om te beginnen</a> 
                 </div><!-- .col end -->  
                 {% endif %}                   
             </div><!-- .row end -->                  

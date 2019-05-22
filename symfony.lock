@@ -120,6 +120,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "messagebird/php-rest-api": {
+        "version": "1.14.0.1"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },

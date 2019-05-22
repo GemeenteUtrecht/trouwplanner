@@ -37,8 +37,12 @@ class HomeController extends AbstractController
 	public function loginAction(Session $session, Request $request, HuwelijkService $huwelijkService, BRPService $brpService)
 	{
 		if($persoon = $brpService->getPersonOnBsn($request->request->get('bsn'))){
-			$session->set('user', $person);
-			$this->addFlash('success', 'Welkom '.$persoon['voornamen']);			
+			$session->set('user', $persoon);	
+			
+			$huwelijk = $huwelijkService->getHuwelijkOnPersoon($persoon);
+			$session->set('huwelijk', $huwelijk);
+			
+			$this->addFlash('success', 'Welkom '.$persoon['naam']['voornamen']);
 		}
 		else{
 			$this->addFlash('danger', 'U kon helaas niet worden ingelogd');		

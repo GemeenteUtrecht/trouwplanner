@@ -1,11 +1,12 @@
 <?php
-// src/Service/ProductService.php
+// src/Service/BRPService.php
 namespace App\Service;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
-class ProductService
+class PersonenService
 {
 	private $params;
 	private $client;
@@ -16,7 +17,7 @@ class ProductService
 		
 		$this->client= new Client([
 				// Base URI is used with relative requests
-				'base_uri' => 'http://producten-diensten.demo.zaakonline.nl/producten',
+				'base_uri' => 'http://174.138.104.116/',
 				// You can set any number of default request options.
 				'timeout'  => 2000.0,
 		]);
@@ -24,33 +25,34 @@ class ProductService
 	
 	public function getAll()
 	{
-		$response = $this->client->request('GET');
+		$response = $this->client->request('GET','/personen');
 		$response = json_decode($response->getBody(), true);
 		return $response["hydra:member"];
 	}
 	
-	public function getOne($id)
+	public function getPersonOnBsn($bsn)
+	{		
+		$response = $this->client->request('GET','/personen',['query' => ['burgerservicenummer' => $bsn]]);
+		$response = json_decode($response->getBody(), true);
+		return $response["hydra:member"][0];
+	}
+	
+	public function delete($persoon)
 	{
-		$response = $this->client->request('GET','/producten/'.$id);
+		$response = $this->client->request('DELETE','/persoon/'.$persoon['id']);
 		$response = json_decode($response->getBody(), true);
 		return $response;
 	}
 	
-	
-	public function save($product)
+	public function create($persoon)
 	{
-		if($product['id']){
-			$response = $this->client->put('product/'.$product['id'], [
-					\GuzzleHttp\RequestOptions::JSON => $product
-			]);
-		}
-		else{
-			$response = $this->client->post('products', [
-					\GuzzleHttp\RequestOptions::JSON => $product
-			]);
-		}
-		//$response=  $this->client->send($request);
+		$persoon['bronOrganisatie'] = 123456789;
+		
+		$response =  $this->client->post('/personen', [
+				RequestOptions::JSON => $persoon
+		]);
 		$response = json_decode($response->getBody(), true);
 		return $response;
 	}
+	
 }

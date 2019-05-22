@@ -26,23 +26,23 @@ class DatumController extends AbstractController
 		/* @todo we should turn this into symfony form */
 		if ($request->isMethod('POST') && $request->request->get('datum')) {
 			
-			var_dump($request->request->get('datum'));
+			//var_dump($request->request->get('datum'));
 			
 			$dateArray = (explode(" ",$request->request->get('datum')));
 			$date = strtotime($dateArray[1].' '.$dateArray[2].' '.$dateArray[3]);
-			$date = date('Y-m-d',$date);
+			$postdate = date('Y-m-d',$date);
+			$displaydate = date('d-m-Y',$date);
 			
-			if($huwelijkService->setDate($date, $request->request->get('tijd'))){
-				$this->addFlash('success', 'Uw datum voorkeur '.$date.' is opgeslagen');
+			$huwelijk['datum']=$postdate;
+			if($huwelijkService->updateHuwelijk($huwelijk)){
+				$this->addFlash('success', 'Uw datum '.$displaydate.' is ingesteld');
 				return $this->redirect($this->generateUrl('app_locatie_index'));
 			}
 			else{
-				$this->addFlash('danger', 'Datum voorkeur kon niet worden opgeslagen');
+				$this->addFlash('danger', 'Uw datum kon niet worden ingesteld');
 				return $this->redirect($this->generateUrl('app_datum_index'));
-			}
-			
+			}				
 		}
-		
 		return $this->render('datum/index.html.twig', [
 				'huwelijk' => $huwelijk,
 				'user' => $user,

@@ -36,14 +36,16 @@ class ExtraController extends AbstractController
 		$user = $session->get('user');
 		
 		$product= $productService->getOne($id);
+		$huwelijk['extras'][] = "http://producten-diensten.demo.zaakonline.nl".$product["@id"];
 		
-		$this->addFlash('success', 'Extra '.$product['naam'].' is toegevoegd');
-		
-		return $this->render('ambtenaar/ambtenaar.html.twig', [
-				'user' => $user,
-				'huwelijk' => $huwelijk,
-				'extra' => $product,
-		]);
+		if($huwelijkService->updateHuwelijk($huwelijk)){
+			$this->addFlash('success', 'Uw plechtigheid '.$product['naam'].' ingesteld');
+			return $this->redirect($this->generateUrl('app_datum_index'));
+		}
+		else{
+			$this->addFlash('danger', 'Uw plechtigheid kon niet worden ingesteld');
+			return $this->redirect($this->generateUrl('app_product_index'));
+		}	
 	}
 	
 	/**

@@ -55,22 +55,23 @@ class HuwelijkController extends AbstractController
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		if($huwelijkService->setProduct((int) $id)){
-			/*@todo ditmoet er dus ook weer uit*/
-			// Overwrite voor gratis huwelijken (moet dynamsich worden)
-			if((int) $id == 1){
-				$huwelijkService->setLocation((int) 1); // Stadskantoor
-				$huwelijkService->setOfficial((int) 4); // Toegewezen ambtenaar
-			}
-			
-			$this->addFlash('success', 'Plechtigheid geselecteerd');
+		$product= $productService->getOne($id);
+		$huwelijk['ceremonie']="http://producten-diensten.demo.zaakonline.nl".$product["@id"];
+		
+		// Beetje fals spelen maar zo zij
+		if($product["@id"]=="/producten/1" || $product["@id"]=="/producten/2"){
+			$huwelijk['locatie']="http://locaties.demo.zaakonline.nl/locaties/1";
+			$huwelijk['ambtenaar']="http://ambtenaren.demo.zaakonline.nl/ambtenaren/4";
+		}
+		
+		if($huwelijkService->updateHuwelijk($huwelijk)){
+			$this->addFlash('success', 'Uw plechtigheid '.$product['naam'].' ingesteld');
 			return $this->redirect($this->generateUrl('app_datum_index'));
 		}
 		else{
-			$this->addFlash('danger', 'Plechtigheid kon niet worden geselecteerd');
-			return $this->redirect($this->generateUrl('app_huwelijk_index'));
+			$this->addFlash('danger', 'Uw plechtigheid kon niet worden ingesteld');
+			return $this->redirect($this->generateUrl('app_product_index'));
 		}
-		
 	}
 	
 	/**
@@ -81,14 +82,15 @@ class HuwelijkController extends AbstractController
 		$huwelijk = $session->get('huwelijk');
 		$user = $session->get('user');
 		
-		if($huwelijkService->removeProduct((int) $id)){
+		$huwelijk['ceremonie'] = null;
+		if($huwelijkService->updateHuwelijk($huwelijk)){
 			
-			$this->addFlash('success', 'Plechtigheid geselecteerd');
-			return $this->redirect($this->generateUrl('app_datum_index'));
+			$this->addFlash('success', 'Plechtigheid verwijderd');
+			return $this->redirect($this->generateUrl('app_product_index'));
 		}
 		else{
-			$this->addFlash('danger', 'Plechtigheid kon niet worden geselecteerd');
-			return $this->redirect($this->generateUrl('app_ambtenaar_index'));
+			$this->addFlash('danger', 'Plechtigheid kon niet worden verwijderd');
+			return $this->redirect($this->generateUrl('app_product_index'));
 		}
 		
 	}

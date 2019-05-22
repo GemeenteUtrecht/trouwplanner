@@ -20,13 +20,13 @@
 	                    		{{ ambtenaar.samenvatting|e }}
 	                        </div>
 	                        <div class="testimonial-author">
-	                            <h4>{{ ambtenaar.voornaamen }} {{ ambtenaar.geslachtsnaam }}</h4>
-	                            {% if  huwelijk is defined  and huwelijk and huwelijk.trouwambtenaar is defined  and huwelijk.trouwambtenaar.id == ambtenaar.id %}
+	                            <h4>{{ ambtenaar.voornamen }} {{ ambtenaar.geslachtsnaam }}</h4>
+	                            {% if  huwelijk is defined  and huwelijk and huwelijk.ambtenaar is defined  and huwelijk.ambtenaar == ambtenaar.id %}
 	                            <p>Door u gekozen</p>
 	                            {% else %}
 	                            <p>Trouwambtenaar</p>
 	                            {% endif %}
-	                            <img src="{{ambtenaar.afbeelding.url}}" alt="{{ ambtenaar.voornaamen }} {{ ambtenaar.geslachtsnaam }}"/>
+	                            <img src="{{ambtenaar.afbeelding}}" alt="{{ ambtenaar.voornamen }} {{ ambtenaar.geslachtsnaam }}"/>
 	                        </div>
 	                    </div>
                     </a>
@@ -37,7 +37,7 @@
             <div class="row" >
 			<!-- Trouwbenaar zonder keuze  -->                
                 <div class="col-sm-6"> <!-- 4 -->
-                	<a href="">
+                	<a href="{{ path('app_ambtenaar_vooreendag') }}">
 	                	<div class="affa-testimonial">
 	                    	<div class="testimonial-text">
 	                        	<p>Je kan ook zelf een een trouwambtenaar voor een dag aanleveren.</p>

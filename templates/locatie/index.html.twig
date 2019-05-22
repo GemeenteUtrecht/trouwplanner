@@ -27,10 +27,10 @@
                 	<div class="item entertainment mobile intern"> <!-- 1 -->
                     	<a href="{{ path('app_locatie_view',{'id':locatie.id}) }}" data-fancybox-group="images_gallery" >
                             <figure class="img-overlay">
-                            	<img ng-src="{{ locatie.afbeelding.url}}" alt="Portfolio Item 1" />
+                            	<img ng-src="{{ locatie.afbeelding}}" alt="Portfolio Item 1" />
                                 <div class="overlay-masked" style="display: none;">
                                 	<span class="overlay-icon" style="top: 25%; opacity: 0;"></span>
-                                    <p style="display: none;">{{ locatie.naam }} {{ locatie.afbeelding.url}}</p>
+                                    <p style="display: none;">{{ locatie.naam }} {{ locatie.afbeelding}}</p>
                                 </div>
                             </figure>
                         </a>

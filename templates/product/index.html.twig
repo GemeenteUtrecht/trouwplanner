@@ -9,54 +9,57 @@
                 <div class="row">
         	
                     <div class="post-heading-center">
-                    	<h2>Hoe willen jullie trouwen?</h2>
+                    	<h2>Hoe wilt u gaan trouwen ?</h2>
                     </div>
 	                            
                     {% for product in producten %} 
-                    {% if huwelijk is not empty and ((huwelijk.primairProduct is not empty and product.id == huwelijk.primairProduct.id) or huwelijk.primairProduct is empty) %}
+                    {% if ceremonie is not empty %}
+                    <div class="col-sm-4"></div>
+                                    {%  endif  %}                            	
+                    {% if huwelijk is not empty and ((ceremonie is not empty and product.id == ceremonie.id) or ceremonie is empty) %}
                     <div class="col-sm-4 tbl-prc-col"> <!-- 1  -->
                     	<div class="tbl-prc-wrap">
                         	<div class="tbl-prc-heading">
                             	<h4>
-                                	{% if huwelijk is not empty and huwelijk.primairProduct is not empty and product.id == huwelijk.primairProduct.id %}
+                                	{% if huwelijk is not empty and ceremonie is not empty and product.id == ceremonie.id %}
     								<i class="fas fa-check"></i>
                                     {%  endif  %}                            	
                                     {{ product.naam }}
                                 </h4>
                             </div>
                             <div class="tbl-prc-price bg-yellow">
-                                <h5>&euro; {{ product.exclAmount / 100 }} </h5>
+                                <h5>&euro; {{ product.prijsExcl / 100 }} </h5>
                                 <p>{{ product.samenvatting|raw }}</p>
                             </div>
                             <ul class="tbl-prc-list">
-                                <li>Eerste mogelijkheid: <b>{{  product.beschikbaar |date("Y-d-m") }}</b></li>
+                                <li>Eerste mogelijkheid: <b>{{  product.beschikbaar |date("d-m-Y") }}</b></li>
                             </ul>
                             {{ product.beschrijving|raw }}
                             <div class="tbl-prc-footer">
 	                            <a href="{{ path('app_huwelijk_view',{'id':product.id}) }}"  class="btn btn-secondary btn-icon  btn-block" >Meer lezen</a> 
-                                {% if huwelijk is not empty and huwelijk.aanvraag is empty %}
+                                {% if huwelijk is not empty and huwelijk.aanvraag is empty and ceremonie is empty%}
 	                            <br/><br/>
 	                            <a href="{{ path('app_huwelijk_set',{'id':product.id}) }}"  class="btn btn-primary btn-icon  btn-block">Ja dit wil ik!</a> 
 	                            {% elseif  huwelijk is not empty and huwelijk.aanvraag is not empty%}
 	                            <br/><br/>
 	                            U heeft reeds een reserving gedaan, neem contact op als u uw huwelijks type nog wil wijzigen.<br/><br/>
                     			<a href="{{ path('app_datum_index') }}"  class="btn btn-primary btn-icon  btn-block">Doorgaan naar datum</a> 
-                                {% else %}
+                                {% elseif user is empty %}
 	                            <br/><br/>
 	                            U dient in te loggen voordat u een huwelijks type kan selecteren.<br/><br/>
                     			<a href="http://digispoof.zaakonline.nl?responce_url={{ absolute_url(path('app_home_login'))|replace({'http://': 'https://'}) }}"  class="btn btn-primary btn-icon  btn-block"><span class="fas fa-sign-in-alt"></span> Inloggen</a> 
 	                            {% endif %}
+                                {% if huwelijk is not empty and ceremonie is not empty %}	
+	                            <br/><br/>
+            	                 	<a href="{{ path('app_huwelijk_unset',{'id':product.id}) }}"  class="btn btn-danger btn-block btn-icon " >Wijzig ceremonie</a> 
+                                 {% endif %}
                             </div>
                         </div>
                     </div>
                     {% endif %}
                     
-                    {% if huwelijk is not empty and huwelijk.primairProduct is not empty %}
-                    <div class="col-sm-8 tbl-prc-col"> <!-- 1  -->                    	
-	                 	<a href="{{ path('app_huwelijk_unset',{'id':product.id}) }}"  class="btn btn-danger btn-icon " >Wijzig ceremonie</a> 
-                    </div>
-                     {% endif %}
-                    {% endfor %}                        
+                    {% endfor %}        
+                         
                     
                 </div>
                 <!-- .row end -->

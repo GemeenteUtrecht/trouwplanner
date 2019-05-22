@@ -8,39 +8,44 @@
                 <div class="col-sm-12 col-md-6 col-sm-offset-1 col-md-offset-0 text-center-sm text-center-xs">
                 	<div class="margin-bottom40">
                     	<div class="post-heading-left text-center-sm text-center-xs" >
-                        	<h4>Trouwambtenaar </h4>
-                            <h2>{{ ambtenaar.voornaamen}} {{ ambtenaar.geslachtsnaam}}</h2>
+                        	<h4>ambtenaar </h4>
+                            <h2>{{ ambtenaar.voornamen}} {{ ambtenaar.geslachtsnaam}}</h2>
                         </div>
                         {{ ambtenaar.samenvatting|raw }}     
                         <br/>
                         <br/>
-                         {% if huwelijk is defined and huwelijk and huwelijk.trouwAmbtenaar is empty%}
+                         {% if huwelijk is defined and huwelijk and huwelijk.ambtenaar is empty%}
                         <a href="{{ path('app_ambtenaar_set',{'id':ambtenaar.id}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
-                         	Reserveer deze trouwambtenaar
+                         	Reserveer deze ambtenaar
                          </a>
-                         {% elseif huwelijk is defined and huwelijk and huwelijk.trouwAmbtenaar is not empty and huwelijk.trouwAmbtenaar.ambtenaar.id == ambtenaar.id and (huwelijk.primairProduct is empty or huwelijk.primairProduct.id != 1) %}
+                         {% elseif huwelijk is defined and huwelijk and huwelijk.ambtenaar is not empty and huwelijk.ceremonie !=  "http://producten-diensten.demo.zaakonline.nl/producten/1" and huwelijk.ceremonie != "http://producten-diensten.demo.zaakonline.nl/producten/2" %}
                          <a href="{{ path('app_ambtenaar_unset',{'id':ambtenaar.id}) }}" class="btn btn-danger btn-icon" >
                         	<i class="far fa-calendar-times"></i>
-                         	Annuleer deze trouwambtenaar
+                         	Annuleer deze ambtenaar
                          </a>
-                         {% elseif  huwelijk.primairProduct.id == 1 %}
-                         <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een trouwambtenaar te kiezen. Wilt u toch een trouwambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_product_index') }}">hier</a> uw ceremonie aanpassen.</p>
+                         <br/><br/>
+                         <a href="{{ path('app_reservering_index') }}" class="btn btn-primary btn-icon" >
+                        	<i class="far fa-calendar-times"></i>
+                         	Ga door naar reservering
+                         </a>
+                         {% elseif huwelijk is defined and huwelijk.ceremonie is defined and (huwelijk.ceremonie ==  "http://producten-diensten.demo.zaakonline.nl/producten/1" or huwelijk.ceremonie == "http://producten-diensten.demo.zaakonline.nl/producten/2") %}
+                         <p>Let op: Het type ceremonie dat u heeft geselecteerd laat geen keuze voor een ambtenaar toe. Alleen bij een uitgebreide ceremonie bestaat de mogelijkheid een ambtenaar te kiezen. Wilt u toch een ambtenaar kunnen kiezen, dan kunt u  <a href="{{ path('app_product_index') }}">hier</a> uw ceremonie aanpassen.</p>
                          
                          <a href="{{ path('app_reservering_index') }}" class="btn btn-primary btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Ga door naar reservering
                          </a>
-                         {% elseif huwelijk is defined and huwelijk and huwelijk.trouwAmbtenaar is not empty and huwelijk.trouwAmbtenaar.ambtenaar.id != ambtenaar.id %}
+                         {% elseif huwelijk is defined and huwelijk and huwelijk.ambtenaar is not empty  %}
                          <p>U heeft reeds een andere trouwambtenaar gereserveerd</p>
                          {% else %}
-                         <p>U dient eerst in te loggen voordat u deze ambtenaar kan reserveren</p>
+                         <p>U dient eerst in te loggen voordat u deze trouwambtenaar kan reserveren</p>
                          {% endif %}
                     </div>
                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
                 	<figure class="col-img40 margin-bottom40 animation">
-                        <img  ng-src="{{ambtenaar.afbeelding.url}}" alt="Image">
+                        <img  ng-src="{{ambtenaar.afbeelding}}" alt="Image">
                     </figure>
                     
                     beschikbaarheid van deze Ambtenaar
@@ -53,7 +58,7 @@
                 
                 <div class="col-sm-10 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0">
                 	<figure class="margin-bottom40 animation" data-animation="animation-fade-in-left">
-                        <iframe width="560" height="315" frameborder="0" allowfullscreen="" src="{{ambtenaar.film.url}}"></iframe>
+                        <iframe width="560" height="315" frameborder="0" allowfullscreen="" src="{{ambtenaar.film}}"></iframe>
                     </figure>
                 </div>
                 

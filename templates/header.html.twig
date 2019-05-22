@@ -3,16 +3,16 @@
         <div class="container fluid-container header-content content-area">
           <i class="header-icon far fa-rings-wedding"></i>
           <div class="header-title">
-            {% if huwelijk is defined and huwelijk.type is defined  %}
+            {% if huwelijk is defined and huwelijk is not empty  and huwelijk.type is defined and huwelijk.type  %}
             <h1>{{ huwelijk.type|capitalize }}</h1>     
             {% else %} 
             <h1>Trouwen of Partnerschap</h1>            
             {% endif %}            
             <h3>In Utrecht</h3>
           </div>
-          {% if huwelijk is defined and huwelijk%}
+          {% if user is defined and user%}
           <div class="header-loginbar">
-          	<i class="fas fa-lock-alt"></i>Beste {{ huwelijk.partners[0].persoon.voornamen }} {{ huwelijk.partners[0].persoon.geslachtsnaam}} bent ingelogd over een beveiligde verbinding, klik <a href="{{ path('app_home_logout') }}"> hier om uit te loggen</a>
+          	<i class="fas fa-lock-alt"></i> Beste {{ user.naam.voornamen }} {{  user.naam.geslachtsnaam}} u bent ingelogd over een beveiligde verbinding, klik <a href="{{ path('app_home_logout') }}"> hier om uit te loggen</a>
           </div>          
           {% endif %}            
         </div>        
