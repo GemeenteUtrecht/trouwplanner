@@ -19,7 +19,7 @@ services:
       
   ## The new Syfony Based MVC website
   utrecht-trouwen-php:
-    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-php:V.0.0.16
+    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-php:V.0.0.17
     build:
       context: ./
       target: api_platform_php
@@ -32,7 +32,7 @@ services:
       - ./:/srv/api:rw,cached
 
   utrecht-trouwen-nginx:
-    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-nginx:V.0.0.16
+    image: ${CONTAINER_REGISTRY_BASE}/utrecht-trouwen-nginx:V.0.0.17
     build:
       context: ./
       target: api_platform_nginx

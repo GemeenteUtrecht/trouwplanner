@@ -124,63 +124,62 @@ class HuwelijkService
 		//unset($huwelijk['getuigen']); 
 		//unset($huwelijk['ambtenaren']);
 		//unset($huwelijk['documenten']);		
-		if(!$huwelijk['getuigen']){
+		if(isset($huwelijk['getuigen']) && !$huwelijk['getuigen']){
 			$huwelijk['getuigen']=[];
 		}
-		/*
-		if(!$huwelijk['extras']){
+		if(isset($huwelijk['extras']) && !$huwelijk['extras']){
 			$huwelijk['extras']=[];
 		}
-		*/
-		if(!$huwelijk['emailadres']){
+		
+		if(isset($huwelijk['emailadres']) && !$huwelijk['emailadres']){
 			unset($huwelijk['emailadres']);
 		}
-		if(!$huwelijk['telefoonnummer']){
+		if(isset($huwelijk['telefoonnummer']) && !$huwelijk['telefoonnummer']){
 			unset($huwelijk['telefoonnummer']);
 		}
-		if(!$huwelijk['voornamen']){
+		if(isset($huwelijk['voornamen']) && !$huwelijk['voornamen']){
 			unset($huwelijk['voornamen']);
 		}
-		if(!$huwelijk['geslachtsnaam']){
+		if(isset($huwelijk['voornamen']) && !$huwelijk['geslachtsnaam']){
 			unset($huwelijk['geslachtsnaam']);
 		}
-		if(!$huwelijk['partner']){
+		if(isset($huwelijk['partner']) && !$huwelijk['partner']){
 			unset($huwelijk['partner']);
 		}
-		if(!$huwelijk['removeId']){
+		if(isset($huwelijk['removeId']) && !$huwelijk['removeId']){
 			unset($huwelijk['removeId']);
 		}
-		if(!$huwelijk['document']){
+		if(isset($huwelijk['document']) && !$huwelijk['document']){
 			unset($huwelijk['document']);
 		}
-		if(!$huwelijk['documentType']){
+		if(isset($huwelijk['documentType']) && !$huwelijk['documentType']){
 			unset($huwelijk['documentType']);
 		}
-		if(!$huwelijk['setLocation']){
+		if(isset($huwelijk['getuigen']) && !$huwelijk['setLocation']){
 			unset($huwelijk['setLocation']);
 		}
-		if(!$huwelijk['setProduct']){
+		if(isset($huwelijk['getuigen']) && !$huwelijk['setProduct']){
 			unset($huwelijk['setProduct']);
 		}
-		if(!$huwelijk['setOfficial']){
+		if(isset($huwelijk['getuigen']) && !$huwelijk['setOfficial']){
 			unset($huwelijk['setOfficial']);
 		}
-		if(!$huwelijk['bsn']){
+		if(isset($huwelijk['bsn']) && !$huwelijk['bsn']){
 			unset($huwelijk['bsn']);
 		}
-		if(!$huwelijk['datum']){
+		if(isset($huwelijk['datum']) && !$huwelijk['datum']){
 			unset($huwelijk['datum']);
 		}
-		if(!$huwelijk['tijd']){
+		if(isset($huwelijk['tijd']) && !$huwelijk['tijd']){
 			unset($huwelijk['tijd']);
 		}
-		if(!$huwelijk['mogelijkeDatums']){
+		if(isset($huwelijk['mogelijkeDatums']) && !$huwelijk['mogelijkeDatums']){
 			unset($huwelijk['mogelijkeDatums']);
 		}
-		if(!$huwelijk['mogelijkeTijden']){
+		if(isset($huwelijk['mogelijkeTijden']) && !$huwelijk['mogelijkeTijden']){
 			unset($huwelijk['mogelijkeTijden']);
 		}
-		if(!$huwelijk['identificatie']){
+		if(isset($huwelijk['identificatie']) && !$huwelijk['identificatie']){
 			unset($huwelijk['identificatie']);
 		}
 		unset($huwelijk['registratiedatum']);
