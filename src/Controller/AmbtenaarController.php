@@ -24,7 +24,7 @@ class AmbtenaarController extends AbstractController
 		$user = $session->get('user');
 		
 		// What if we already have an official?
-		if($huwelijk['ambtenaar'] ){
+		if($huwelijk && isset($huwelijk['ambtenaar']) && $huwelijk['ambtenaar'] ){
 			$ambtenaar=$commonGroundService->getSingle($huwelijk['ambtenaar']);
 			return $this->redirect($this->generateUrl('app_ambtenaar_view', ['id'=> (int)$ambtenaar['id']]));			
 		}		

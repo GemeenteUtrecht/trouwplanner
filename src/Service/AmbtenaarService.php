@@ -5,20 +5,25 @@ namespace App\Service;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use GuzzleHttp\Client ;
 
+use App\Service\CommonGroundService;
+
+
 class AmbtenaarService
 {
 	private $params;
 	private $client;
+	private $commonGroundService;
 	
-	public function __construct(ParameterBagInterface $params)
+	public function __construct(ParameterBagInterface $params, CommonGroundService $commonGroundService)
 	{
 		$this->params = $params;
+		$this->commonGroundService = $commonGroundService;
 		
 		$this->client= new Client([
 				// Base URI is used with relative requests
 				'base_uri' => 'http://ambtenaren.demo.zaakonline.nl/ambtenaren',
 				// You can set any number of default request options.
-				'timeout'  => 2000.0,
+				'timeout'  => 4000.0,
 		]);
 	}
 		
@@ -26,13 +31,20 @@ class AmbtenaarService
 	{
 		$response = $this->client->request('GET');
 		$response = json_decode($response->getBody(), true);
-		return $response["hydra:member"];
+		$responses = $response["hydra:member"];
+		
+		// Lets get the persons for ambtenaren
+		foreach($responses as $key=>$value){
+			$responses[$key]["persoon"] = $this->commonGroundService->getSingle($value["persoon"]);			
+		}
+		return $responses;
 	}
 	
 	public function getOne($id)
 	{
 		$response = $this->client->request('GET','ambtenaren/'.$id);
 		$response = json_decode($response->getBody(), true);
+		$response['persoon'] = $this->commonGroundService->getSingle($response["persoon"]);
 		return $response;
 	}
 	

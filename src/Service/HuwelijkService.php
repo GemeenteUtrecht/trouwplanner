@@ -26,7 +26,7 @@ class HuwelijkService
 				// Base URI is used with relative requests
 				'base_uri' => 'http://trouwen.demo.zaakonline.nl/huwelijken',
 				// You can set any number of default request options.
-				'timeout'  => 2000.0,
+				'timeout'  => 4000.0,
 		]);
 	}
 	
@@ -127,8 +127,61 @@ class HuwelijkService
 		if(!$huwelijk['getuigen']){
 			$huwelijk['getuigen']=[];
 		}
+		/*
 		if(!$huwelijk['extras']){
 			$huwelijk['extras']=[];
+		}
+		*/
+		if(!$huwelijk['emailadres']){
+			unset($huwelijk['emailadres']);
+		}
+		if(!$huwelijk['telefoonnummer']){
+			unset($huwelijk['telefoonnummer']);
+		}
+		if(!$huwelijk['voornamen']){
+			unset($huwelijk['voornamen']);
+		}
+		if(!$huwelijk['geslachtsnaam']){
+			unset($huwelijk['geslachtsnaam']);
+		}
+		if(!$huwelijk['partner']){
+			unset($huwelijk['partner']);
+		}
+		if(!$huwelijk['removeId']){
+			unset($huwelijk['removeId']);
+		}
+		if(!$huwelijk['document']){
+			unset($huwelijk['document']);
+		}
+		if(!$huwelijk['documentType']){
+			unset($huwelijk['documentType']);
+		}
+		if(!$huwelijk['setLocation']){
+			unset($huwelijk['setLocation']);
+		}
+		if(!$huwelijk['setProduct']){
+			unset($huwelijk['setProduct']);
+		}
+		if(!$huwelijk['setOfficial']){
+			unset($huwelijk['setOfficial']);
+		}
+		if(!$huwelijk['bsn']){
+			unset($huwelijk['bsn']);
+		}
+		if(!$huwelijk['datum']){
+			unset($huwelijk['datum']);
+		}
+		if(!$huwelijk['tijd']){
+			unset($huwelijk['tijd']);
+		}
+		if(!$huwelijk['mogelijkeDatums']){
+			unset($huwelijk['mogelijkeDatums']);
+		}
+		if(!$huwelijk['mogelijkeTijden']){
+			unset($huwelijk['mogelijkeTijden']);
+		}
+		if(!$huwelijk['identificatie']){
+			unset($huwelijk['identificatie']);
 		}
 		unset($huwelijk['registratiedatum']);
 		unset($huwelijk['wijzigingsdatum']);
@@ -139,8 +192,11 @@ class HuwelijkService
 				RequestOptions::JSON => $huwelijk
 		]);
 		
+		// We gaan het huwelijk nu opnieuw ophalen als object en in de sessie wegschrijven
+		$response = $this->client->request('GET','/huwelijk/'.$huwelijk['id']);
+		$huwelijk= json_decode($response->getBody(), true);
 		
-		$huwelijk = json_decode($response->getBody(),true);
+		//$huwelijk = json_decode($response->getBody(),true);
 		$this->session->set('huwelijk', $huwelijk);
 		
 		return $huwelijk;

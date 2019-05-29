@@ -71,7 +71,7 @@
                                     <!-- Trouw Ambtenaar -->
                                     <li>
                                     	{% if ambtenaar is not empty %}
-                                    	<i class="fa fas fa-check"></i> Ambtenaar: {{  ambtenaar.voornamen }} {{ambtenaar.geslachtsnaam }}
+                                    	<i class="fa fas fa-check"></i> Ambtenaar: {{  ambtenaar.persoon.naam.voornamen }} {{ambtenaar.persoon.naam.geslachtsnaam }}
                                     	{% else %}
                                     	<i class="fa far fa-square"></i> U heeft nog  geen ambtenaar doorgegeven, doe dat <a href="{{ path('app_ambtenaar_index') }}">hier</a>
                                     	{% endif %}

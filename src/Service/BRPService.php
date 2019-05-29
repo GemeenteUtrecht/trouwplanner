@@ -18,7 +18,7 @@ class BRPService
 				// Base URI is used with relative requests
 				'base_uri' => 'http://brp.demo.zaakonline.nl',
 				// You can set any number of default request options.
-				'timeout'  => 2000.0,
+				'timeout'  => 4000.0,
 		]);
 	}
 	

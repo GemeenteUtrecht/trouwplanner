@@ -24,19 +24,20 @@ class ReserveringController extends AbstractController
 		
 		// What if we already have an official?
 		$locatie= null;
-		if($huwelijk['locatie'] ){
+		if($huwelijk && isset($huwelijk['locatie']) && $huwelijk['locatie'] ){
 			$locatie=$commonGroundService->getSingle($huwelijk['locatie']);
 		}
 		$ambtenaar= null;
-		if($huwelijk['ambtenaar'] ){
-			$ambtenaar=$commonGroundService->getSingle($huwelijk['ambtenaar']);
+		if($huwelijk && isset($huwelijk['ambtenaar']) && $huwelijk['ambtenaar'] ){
+			$ambtenaar = $commonGroundService->getSingle($huwelijk['ambtenaar']);
+			$ambtenaar['persoon'] = $commonGroundService->getSingle($ambtenaar['persoon']);
 		}
 		$ceremonie= null;
-		if($huwelijk && $huwelijk['ceremonie']){
+		if($huwelijk && isset($huwelijk['ceremonie']) &&$huwelijk['ceremonie']){
 			$ceremonie=$commonGroundService->getSingle($huwelijk['ceremonie']);
 		}
 		$getuigen = [];
-		if($huwelijk && $huwelijk['getuigen']){
+		if($huwelijk && isset($huwelijk['getuigen']) && $huwelijk['getuigen']){
 			foreach($huwelijk['getuigen'] as $getuige){
 				$getuigen[]= $commonGroundService->getSingle($getuige);
 			}

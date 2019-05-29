@@ -11,6 +11,9 @@ class CommonGroundService
 {
 	public function getSingle($url)
 	{
+		if(!$url){
+			return null;
+		}
 		$client = new Client([
 				// You can set any number of default request options.
 				'timeout'  => 2.0,

@@ -28,7 +28,7 @@ class ProductController extends AbstractController
 		$producten = $productService->getAll();
 		
 		$ceremonie= null;
-		if($huwelijk && $huwelijk['ceremonie']){
+		if($huwelijk && isset($huwelijk['ceremonie']) && $huwelijk['ceremonie']){
 			$ceremonie=$commonGroundService->getSingle($huwelijk['ceremonie']);
 		}
 		

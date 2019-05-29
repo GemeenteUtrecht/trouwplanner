@@ -26,7 +26,7 @@ class LocatieController extends AbstractController
 				
 		$locatie = null;
 		// What if we already have an official?
-		if($huwelijk['locatie'] ){
+		if($huwelijk && isset($huwelijk['locatie']) && $huwelijk['locatie'] ){
 			$locatie=$commonGroundService->getSingle($huwelijk['locatie']);
 			return $this->redirect($this->generateUrl('app_locatie_view', ['id'=> (int)$locatie['id']]));
 		}	

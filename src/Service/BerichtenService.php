@@ -22,7 +22,7 @@ class BerichtenService
 				// Base URI is used with relative requests
 				'base_uri' => 'http://api.zaakonline.nl/producten',
 				// You can set any number of default request options.
-				'timeout'  => 2000.0,
+				'timeout'  => 4000.0,
 		]);
 	}	
 	

@@ -24,7 +24,7 @@ class BetalenController extends AbstractController
 		$user = $session->get('user');
 		
 		$product = null;
-		if($huwelijk && $huwelijk['ceremonie']){
+		if($huwelijk && isset($huwelijk['ceremonie']) && $huwelijk && $huwelijk['ceremonie']){
 			$product=$commonGroundService->getSingle($huwelijk['ceremonie']);
 		}
 		

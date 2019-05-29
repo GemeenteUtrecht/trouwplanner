@@ -20,13 +20,13 @@
 	                    		{{ ambtenaar.samenvatting|e }}
 	                        </div>
 	                        <div class="testimonial-author">
-	                            <h4>{{ ambtenaar.voornamen }} {{ ambtenaar.geslachtsnaam }}</h4>
+	                            <h4>{{ ambtenaar.persoon.naam.voornamen }} {{ ambtenaar.persoon.naam.geslachtsnaam }}</h4>
 	                            {% if  huwelijk is defined  and huwelijk and huwelijk.ambtenaar is defined  and huwelijk.ambtenaar == ambtenaar.id %}
 	                            <p>Door u gekozen</p>
 	                            {% else %}
 	                            <p>Trouwambtenaar</p>
 	                            {% endif %}
-	                            <img src="{{ambtenaar.afbeelding}}" alt="{{ ambtenaar.voornamen }} {{ ambtenaar.geslachtsnaam }}"/>
+	                            <img src="{{ambtenaar.afbeelding}}" alt="{{ ambtenaar.persoon.naam.voornamen }} {{ ambtenaar.persoon.naam.geslachtsnaam }}"/>
 	                        </div>
 	                    </div>
                     </a>

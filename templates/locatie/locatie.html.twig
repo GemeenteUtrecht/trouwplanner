@@ -15,12 +15,12 @@
                         {{ locatie.samenvatting|raw }}                        
                         <br/>
                         <br/>
-                         {% if huwelijk is defined and huwelijk and huwelijk.locatie is empty%}
+                         {% if huwelijk is defined and huwelijk and huwelijk.locatie  is defined and huwelijk.locatie is empty%}
                         <a href="{{ path('app_locatie_set',{'id':locatie.id}) }}" class="btn btn-success btn-icon" >
                         	<i class="far fa-calendar-check"></i>
                          	Reserveer deze locatie
                          </a>
-                         {% elseif huwelijk is defined and huwelijk and huwelijk.locatie is not empty and huwelijk.ceremonie != "http://producten-diensten.demo.zaakonline.nl/producten/1" and huwelijk.ceremonie != "http://producten-diensten.demo.zaakonline.nl/producten/2" %}
+                         {% elseif huwelijk is defined and huwelijk and huwelijk.locatie  is defined and huwelijk.locatie is not empty and huwelijk.ceremonie != "http://producten-diensten.demo.zaakonline.nl/producten/1" and huwelijk.ceremonie != "http://producten-diensten.demo.zaakonline.nl/producten/2" %}
                          <a href="{{ path('app_locatie_unset',{'id':locatie.id}) }}" class="btn btn-danger btn-icon" >
                         	<i class="far fa-calendar-times"></i>
                          	Annuleer deze locatie
@@ -36,7 +36,7 @@
                         	<i class="far fa-calendar-times"></i>
                          	Ga door naar ambtenaar
                          </a>
-                         {% elseif huwelijk is defined and huwelijk and huwelijk.locatie is not empty and huwelijk.locatie.ambtenaar.id != locatie.id %}
+                         {% elseif huwelijk is defined and huwelijk and huwelijk.locatie  is defined and huwelijk.locatie is not empty and huwelijk.locatie.ambtenaar.id != locatie.id %}
                          <p>U heeft reeds een andere locatie gereserveerd</p>
                          {% else %}
                          <p>U dient eerst in te loggen voordat u deze locatie kan reserveren</p>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-5 col-sm-offset-1 col-md-offset-0 col-lg-offset-1">
-                         {% if huwelijk is defined and huwelijk and huwelijk.locatie is not empty%}
+                         {% if huwelijk is defined and huwelijk and huwelijk.locatie  is defined and huwelijk.locatie is not empty%}
                         	<figure class="col-img40 margin-bottom40">
                                 <img  ng-src="{{locatie.afbeelding}}" alt="Image">
                             </figure>

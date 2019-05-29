@@ -18,7 +18,7 @@ class ProductService
 				// Base URI is used with relative requests
 				'base_uri' => 'http://producten-diensten.demo.zaakonline.nl/producten',
 				// You can set any number of default request options.
-				'timeout'  => 2000.0,
+				'timeout'  => 4000.0,
 		]);
 	}
 	
