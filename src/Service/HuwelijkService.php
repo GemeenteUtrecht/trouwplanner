@@ -131,55 +131,55 @@ class HuwelijkService
 			$huwelijk['extras']=[];
 		}
 		
-		if(isset($huwelijk['emailadres']) && !$huwelijk['emailadres']){
+		if(!$huwelijk['emailadres']){
 			unset($huwelijk['emailadres']);
 		}
-		if(isset($huwelijk['telefoonnummer']) && !$huwelijk['telefoonnummer']){
+		if(!$huwelijk['telefoonnummer']){
 			unset($huwelijk['telefoonnummer']);
 		}
-		if(isset($huwelijk['voornamen']) && !$huwelijk['voornamen']){
+		if(!$huwelijk['voornamen']){
 			unset($huwelijk['voornamen']);
 		}
-		if(isset($huwelijk['voornamen']) && !$huwelijk['geslachtsnaam']){
+		if(!$huwelijk['geslachtsnaam']){
 			unset($huwelijk['geslachtsnaam']);
 		}
-		if(isset($huwelijk['partner']) && !$huwelijk['partner']){
+		if(!$huwelijk['partner']){
 			unset($huwelijk['partner']);
 		}
-		if(isset($huwelijk['removeId']) && !$huwelijk['removeId']){
+		if(!$huwelijk['removeId']){
 			unset($huwelijk['removeId']);
 		}
-		if(isset($huwelijk['document']) && !$huwelijk['document']){
+		if(!$huwelijk['document']){
 			unset($huwelijk['document']);
 		}
-		if(isset($huwelijk['documentType']) && !$huwelijk['documentType']){
+		if(!$huwelijk['documentType']){
 			unset($huwelijk['documentType']);
 		}
-		if(isset($huwelijk['getuigen']) && !$huwelijk['setLocation']){
+		if(!$huwelijk['setLocation']){
 			unset($huwelijk['setLocation']);
 		}
-		if(isset($huwelijk['getuigen']) && !$huwelijk['setProduct']){
+		if(!$huwelijk['setProduct']){
 			unset($huwelijk['setProduct']);
 		}
-		if(isset($huwelijk['getuigen']) && !$huwelijk['setOfficial']){
+		if(!$huwelijk['setOfficial']){
 			unset($huwelijk['setOfficial']);
 		}
-		if(isset($huwelijk['bsn']) && !$huwelijk['bsn']){
+		if(!$huwelijk['bsn']){
 			unset($huwelijk['bsn']);
 		}
-		if(isset($huwelijk['datum']) && !$huwelijk['datum']){
+		if(!$huwelijk['datum']){
 			unset($huwelijk['datum']);
 		}
-		if(isset($huwelijk['tijd']) && !$huwelijk['tijd']){
+		if(!$huwelijk['tijd']){
 			unset($huwelijk['tijd']);
 		}
-		if(isset($huwelijk['mogelijkeDatums']) && !$huwelijk['mogelijkeDatums']){
+		if(!$huwelijk['mogelijkeDatums']){
 			unset($huwelijk['mogelijkeDatums']);
 		}
-		if(isset($huwelijk['mogelijkeTijden']) && !$huwelijk['mogelijkeTijden']){
+		if(!$huwelijk['mogelijkeTijden']){
 			unset($huwelijk['mogelijkeTijden']);
 		}
-		if(isset($huwelijk['identificatie']) && !$huwelijk['identificatie']){
+		if(!$huwelijk['identificatie']){
 			unset($huwelijk['identificatie']);
 		}
 		unset($huwelijk['registratiedatum']);
